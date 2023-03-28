@@ -32,15 +32,10 @@ function Login() {
                                             </div>
                                             <div className="form-group text-center m-t-20">
                                                 <div className="col-xs-12">
-                                                    <button style={{ background: "#8da1af" }} className="btn  btn-lg btn-block text-uppercase " type="submit">Log In</button>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
-                                                    {/* <div className="social">
-                                                        <a href="javascript:void(0)" className="btn  btn-facebook" data-toggle="tooltip" title="Login with Facebook"> <i aria-hidden="true" className="fa fa-facebook"></i> </a>
-                                                        <a href="javascript:void(0)" className="btn btn-googleplus" data-toggle="tooltip" title="Login with Google"> <i aria-hidden="true" className="fa fa-google-plus"></i> </a>
-                                                    </div> */}
+
+                                                    <Link to="/dashboard">
+                                                        <button style={{ background: "#8da1af" }} className="btn  btn-lg btn-block text-uppercase " type="submit">Log In</button>
+                                                    </Link>
                                                 </div>
                                             </div>
                                             <div className="form-group m-b-0">

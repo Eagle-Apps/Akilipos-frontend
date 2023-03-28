@@ -1,0 +1,23 @@
+.main_phase_break_container_ah {
+    border-radius: 8px;
+    color: black;
+    text-transform: capitalize;
+    min-height: 62vh;
+    background-color: white;
+}
+
+#view-project-tasks-ah {
+    background-color: inherit;
+    color: black;
+    border: none;
+    outline: none;
+}
+
+.main_phase_break_container_ah h5 {
+    color: #70bfad;
+}
+
+.main_phase_break_container_ah p {
+    color: black;
+    font-weight: 500;
+}

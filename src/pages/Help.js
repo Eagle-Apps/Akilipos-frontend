@@ -21,11 +21,11 @@ function CustomToggle({ eventKey }) {
 function HelpCenter() {
     const [project, setProject] = useState([
         {
-            "day": "day 1",
+            "day": "What is the Cash Book Page?",
             "lectures": "3 lectures",
             "content": [
                 {
-                    "topic": "working with html tags",
+                    "topic": "Keeping a cash book for your business is very important because it helps your business keep track of purchases that can easily slip through the cracks.",
                     "duration": "30 min",
                     "status": "done",
                     "resource": true,
@@ -55,11 +55,11 @@ function HelpCenter() {
 
         },
         {
-            "day": "day 2",
+            "day": "How to record a New Sale?",
             "lectures": "4 lectures",
             "content": [
                 {
-                    "topic": "working with html tagsbkbsbfks fsskbfsb sbkbsfsbkfsf sfbksbbs skkb",
+                    "topic": "Keeping a cash book for your business is very important because it helps your business keep track of purchases that can easily slip through the cracks.bkbsbfks fsskbfsb sbkbsfsbkfsf sfbksbbs skkb",
                     "duration": "30 min",
                     "status": "pending",
                     "resource": true,
@@ -89,11 +89,11 @@ function HelpCenter() {
 
         },
         {
-            "day": "day 3",
+            "day": "How to View all your transactions?",
             "lectures": "2 lectures",
             "content": [
                 {
-                    "topic": "working with html tags",
+                    "topic": "Keeping a cash book for your business is very important because it helps your business keep track of purchases that can easily slip through the cracks. ggggggggggggggggggggg",
                     "duration": "30 min",
                     "status": "pending",
                     "resource": true,

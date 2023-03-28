@@ -23,11 +23,11 @@ function CustomToggle({ eventKey }) {
 function Faq() {
     const [project, setProject] = useState([
         {
-            "day": "day 1",
+            "day": "What is the Cash Book Page?",
             "lectures": "3 lectures",
             "content": [
                 {
-                    "topic": "working with html tags",
+                    "topic": "Keeping a cash book for your business is very important because it helps your business keep track of purchases that can easily slip through the cracks.",
                     "duration": "30 min",
                     "status": "done",
                     "resource": true,
@@ -57,11 +57,11 @@ function Faq() {
 
         },
         {
-            "day": "day 2",
+            "day": "How to record a New Sale?",
             "lectures": "4 lectures",
             "content": [
                 {
-                    "topic": "working with html tagsbkbsbfks fsskbfsb sbkbsfsbkfsf sfbksbbs skkb",
+                    "topic": "Keeping a cash book for your business is very important because it helps your business keep track of purchases that can easily slip through the cracks.bkbsbfks fsskbfsb sbkbsfsbkfsf sfbksbbs skkb",
                     "duration": "30 min",
                     "status": "pending",
                     "resource": true,
@@ -91,11 +91,11 @@ function Faq() {
 
         },
         {
-            "day": "day 3",
+            "day": "How to View all your transactions?",
             "lectures": "2 lectures",
             "content": [
                 {
-                    "topic": "working with html tags",
+                    "topic": "Keeping a cash book for your business is very important because it helps your business keep track of purchases that can easily slip through the cracks. gggggggggggggggggggggg",
                     "duration": "30 min",
                     "status": "pending",
                     "resource": true,
@@ -160,10 +160,10 @@ function Faq() {
                     </div>
                 </div>
 
-                <div className="pe-3">
+                <div className="py-3" style={{ background: "#70bfad" }}>
 
-                    <div className="mt-2 mb-3">
-                        <button style={{ background: "#8da1af" }} className="create-btn-ah" onClick={handleShow}>Ask a Question ?</button>
+                    <div className="mt-2 mb-3" >
+                        <button className="create-btn-ah ms-3" onClick={handleShow}>Ask a Question ?</button>
                         <Modal
                             show={show}
                             onHide={handleClose}

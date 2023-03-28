@@ -108,39 +108,46 @@ function NavBar(props) {
                 </Link>
               </Nav.Item>
 
-              <Nav.Link id={props.class2} style={{ display: "flex", alignItems: "" }}>
-                <Icon icon="emojione-monotone:money-bag" width="24px" height="" className="" />
-                <NavDropdown title="My Business" id={props.class2} style={{}}>
+              <Nav.Link id={props.class2} style={{ display: "flex", color: props.color2 }}>
+                <Icon icon="emojione-monotone:money-bag" width="24px" />
+                <NavDropdown title="My Business" id={props.class2}>
                   <NavDropdown.Item>
-                    <Link to='/shop' style={{}}>
+                    <Link to='/shop'>
                       <Icon icon="bi:shop" width="24px" height="24px" className="me-3" />
                       My Shop
                     </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
-                    <Link to='/products' style={{}}>
+                    <Link to='/products'>
                       <Icon icon="fluent-mdl2:product-variant" width="24px" height="24px" className="me-3" />
                       My Products
                     </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
-                    <Link to='/vendors' style={{ textAlign: "center" }}>
+                    <Link to='/suppliers' style={{ textAlign: "center" }}>
                       <Icon icon="fluent:people-community-add-20-filled" width="24px" height="24px" className="me-3" />
-                      My Vendors
+                      My Suppliers
                     </Link>
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav.Link>
 
               <Nav.Item id={props.class3}>
-                <Link to='/orders' style={{ display: "flex", color: props.color3, alignItems: "center" }}>
+                <Link to='/customers' style={{ display: "flex", color: props.color3, alignItems: "center" }}>
+                  <Icon icon="ph:users-four-light" width="24px" height="24px" className="me-3" />
+                  My Customers
+                </Link>
+              </Nav.Item>
+
+              <Nav.Item id={props.class4}>
+                <Link to='/orders' style={{ display: "flex", color: props.color4, alignItems: "center" }}>
                   <Icon icon="material-symbols:order-approve-outline-sharp" width="24px" height="24px" className="me-3" />
                   Orders
                 </Link>
               </Nav.Item>
 
-              <Nav.Item id={props.class3}>
-                <Link to='/payment' style={{ display: "flex", color: props.color3, alignItems: "center" }}>
+              <Nav.Item id={props.class5}>
+                <Link to='/payment' style={{ display: "flex", color: props.color5, alignItems: "center" }}>
                   <Icon icon="mdi:credit-card-check-outline" width="24px" height="24px" className="me-3" />
                   Payments
                 </Link>
@@ -156,20 +163,20 @@ function NavBar(props) {
 
 
             <div className="bottomNav">
-              <Nav.Item id={props.class5}>
-                <Link to='/settings' style={{ display: "flex", color: props.color5, alignItems: "center" }}>
+              <Nav.Item id={props.class6}>
+                <Link to='/settings' style={{ display: "flex", color: props.color6, alignItems: "center" }}>
                   <Icon icon="material-symbols:settings-outline" width="24px" height="24px" className="me-3" />
                   Settings
                 </Link>
               </Nav.Item>
-              <Nav.Item id={props.class6}>
-                <Link to='/help' style={{ display: "flex", color: props.color6, alignItems: "center" }}>
+              <Nav.Item id={props.class7}>
+                <Link to='/help' style={{ display: "flex", color: props.color7, alignItems: "center" }}>
                   <Icon icon="ic:round-help-outline" width="24px" height="24px" className="me-3" />
                   Help Center
                 </Link>
               </Nav.Item>
-              <Nav.Item id={props.class6}>
-                <Link to='#' style={{ display: "flex", color: props.color6, alignItems: "center" }}>
+              <Nav.Item id={props.class8}>
+                <Link to='#' style={{ display: "flex", color: props.color8, alignItems: "center" }}>
                   <Icon icon="ri:logout-circle-line" width="24px" height="24px" className="me-3" />
                   Log Out
                 </Link>

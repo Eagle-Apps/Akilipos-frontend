@@ -15,7 +15,7 @@ import Catalog from './pages/Product';
 import ResetPassword from './pages/ResetPassword';
 import HelpCenter from './pages/Help';
 import Faq from './pages/Faq';
-import Vendors from './pages/Vendors';
+import Suppliers from './pages/Suppliers';
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/help" element={<HelpCenter />} />
           <Route path="/faq" element={<Faq />} />
-          <Route path="/vendors" element={<Vendors />} />
+          <Route path="/suppliers" element={<Suppliers />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

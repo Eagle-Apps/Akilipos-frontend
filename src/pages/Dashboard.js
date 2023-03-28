@@ -7,7 +7,7 @@ function Dashboard() {
     return <>
         <Row>
             <Col md="2" sm="12">
-                <NavBar />
+                <NavBar class1="activeBar" color1="white" />
             </Col>
             <Col md="10" sm="12" style={{ minHeight: "100vh" }} className="content-wrapper">
                 <div style={{ minHeight: "85vh" }}>

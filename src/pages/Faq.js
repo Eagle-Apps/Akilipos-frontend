@@ -24,102 +24,51 @@ function Faq() {
     const [project, setProject] = useState([
         {
             "day": "What is the Cash Book Page?",
-            "lectures": "3 lectures",
             "content": [
                 {
-                    "topic": "Keeping a cash book for your business is very important because it helps your business keep track of purchases that can easily slip through the cracks.",
-                    "duration": "30 min",
-                    "status": "done",
-                    "resource": true,
-                    "status2": "lecture",
+                    "topic": "Keeping a cash book for your business is very important because it helps your business keep track of purchases that can easily slip through the cracks."
                 },
                 {
-                    "topic": "creating registration form",
-                    "duration": "24 min",
-                    "status": "done",
-                    "resource": false,
-                    "status2": "lecture",
+                    "topic": "creating registration form"
                 }, {
-                    "topic": "build a page",
-                    "duration": "24 min",
-                    "status": "pending",
-                    "resource": false,
-                    "status2": "classwork",
+                    "topic": "build a page"
                 },
                 {
-                    "topic": "build three pages",
-                    "duration": "24 min",
-                    "status": "pending",
-                    "resource": true,
-                    "status2": "assignment",
+                    "topic": "build three pages"
                 }
             ],
 
         },
         {
             "day": "How to record a New Sale?",
-            "lectures": "4 lectures",
             "content": [
                 {
-                    "topic": "Keeping a cash book for your business is very important because it helps your business keep track of purchases that can easily slip through the cracks.bkbsbfks fsskbfsb sbkbsfsbkfsf sfbksbbs skkb",
-                    "duration": "30 min",
-                    "status": "pending",
-                    "resource": true,
-                    "status2": "lecture",
+                    "topic": "Keeping a cash book for your business is very important because it helps your business keep track of purchases that can easily slip through the cracks.bkbsbfks fsskbfsb sbkbsfsbkfsf sfbksbbs skkb"
                 },
                 {
-                    "topic": "creating registration form",
-                    "duration": "24 min",
-                    "status": "pending",
-                    "resource": false,
-                    "status2": "lecture",
+                    "topic": "creating registration form"
                 }, {
-                    "topic": "build a page",
-                    "duration": "24 min",
-                    "status": "pending",
-                    "resource": false,
-                    "status2": "classwork",
+                    "topic": "build a page"
                 },
                 {
-                    "topic": "build three pages",
-                    "duration": "24 min",
-                    "status": "pending",
-                    "resource": true,
-                    "status2": "assignment",
+                    "topic": "build three pages"
                 }
             ],
 
         },
         {
             "day": "How to View all your transactions?",
-            "lectures": "2 lectures",
             "content": [
                 {
-                    "topic": "Keeping a cash book for your business is very important because it helps your business keep track of purchases that can easily slip through the cracks. gggggggggggggggggggggg",
-                    "duration": "30 min",
-                    "status": "pending",
-                    "resource": true,
-                    "status2": "lecture",
+                    "topic": "Keeping a cash book for your business is very important because it helps your business keep track of purchases that can easily slip through the cracks. gggggggggggggggggggggg"
                 },
                 {
-                    "topic": "creating registration form",
-                    "duration": "24 min",
-                    "status": "pending",
-                    "resource": false,
-                    "status2": "lecture",
+                    "topic": "creating registration form"
                 }, {
-                    "topic": "build a page",
-                    "duration": "24 min",
-                    "status": "pending",
-                    "resource": false,
-                    "status2": "classwork",
+                    "topic": "build a page"
                 },
                 {
-                    "topic": "build three pages",
-                    "duration": "24 min",
-                    "status": "pending",
-                    "resource": true,
-                    "status2": "assignment",
+                    "topic": "build three pages"
                 }
             ],
 

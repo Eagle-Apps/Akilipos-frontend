@@ -4,6 +4,7 @@ import StoreContext from './context/store';
 import "./style.css";
 import "./assets/css/forgotPassword.css";
 import "./assets/css/faq.css";
+import "./assets/css/customers.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sample from './pages/sample';
 import Home from './pages/Home';
@@ -16,6 +17,7 @@ import ResetPassword from './pages/ResetPassword';
 import HelpCenter from './pages/Help';
 import Faq from './pages/Faq';
 import Suppliers from './pages/Suppliers';
+import Customers from './pages/Customers';
 
 function App() {
   return (
@@ -32,6 +34,7 @@ function App() {
           <Route path="/help" element={<HelpCenter />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/suppliers" element={<Suppliers />} />
+          <Route path="/customers" element={<Customers />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

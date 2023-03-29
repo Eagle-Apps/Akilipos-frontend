@@ -1,0 +1,9 @@
+.chatonline a {
+    text-decoration: none;
+}
+
+.chat-main-box {
+    max-height: 70vh;
+    overflow-y: scroll;
+    margin: 20px;
+}

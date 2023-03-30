@@ -10,11 +10,14 @@ import { ChevronDown } from "react-feather";
 import logo from "../assets/images/akili.png";
 import { Link } from "react-router-dom";
 
-function CustomToggle({ eventKey }) {
+function CustomToggle({ eventKey, day }) {
     const decoratedOnClick = useAccordionButton(eventKey);
 
     return (
         <button id="view-project-tasks-ah" type="button" onClick={decoratedOnClick}>
+            <div className="mt-2" >
+                <h5 style={{ fontSize: "18px", fontWeight: "500" }}>{day}</h5>
+            </div>
             <ChevronDown />
         </button>
     );
@@ -162,10 +165,7 @@ function Faq() {
                                                     className="flexbtw"
                                                     style={{ borderBottom: "1px solid silver", background: "whitesmoke", height: "65px", alignItems: "center" }}
                                                 >
-                                                    <div className="mt-2">
-                                                        <h5 style={{ fontSize: "18px", fontWeight: "500" }}>{e.day}</h5>
-                                                    </div>
-                                                    <CustomToggle eventKey={i} />
+                                                    <CustomToggle eventKey={i} day={e.day} />
                                                 </Card.Header>
                                                 <Accordion.Collapse eventKey={i}>
 

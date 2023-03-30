@@ -11,6 +11,13 @@
     color: black;
     border: none;
     outline: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#view-project-tasks-ah button {
+    color: black;
 }
 
 .main_phase_break_container_ah h5 {

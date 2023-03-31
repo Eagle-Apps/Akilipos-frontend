@@ -133,7 +133,7 @@ function NavBar(props) {
               </Nav.Link>
 
               <Nav.Item id={props.class3}>
-                <Link to='/customers' style={{ display: "flex", color: props.color3, alignItems: "center" }}>
+                <Link to='/customers-view' style={{ display: "flex", color: props.color3, alignItems: "center" }}>
                   <Icon icon="ph:users-four-light" width="24px" height="24px" className="me-3" />
                   My Customers
                 </Link>

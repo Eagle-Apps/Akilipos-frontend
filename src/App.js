@@ -18,6 +18,7 @@ import HelpCenter from './pages/Help';
 import Faq from './pages/Faq';
 import Suppliers from './pages/Suppliers';
 import Customers from './pages/Customers';
+import CustomersTable from './pages/CustomerTable';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/faq" element={<Faq />} />
           <Route path="/suppliers" element={<Suppliers />} />
           <Route path="/customers" element={<Customers />} />
+          <Route path="/customers-view" element={<CustomersTable />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

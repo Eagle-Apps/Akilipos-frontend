@@ -25,287 +25,7 @@ function Customers() {
 
                     <div className="">
 
-                        {/* <div className="mt-2 mb-3">
-                            <button style={{ background: "white" }} className="create-btn-ah" onClick={handleShow}>Add Supplier +</button>
-                            <Modal
-                                show={show}
-                                onHide={handleClose}
-                                backdrop="static"
-                                keyboard={false}
-                                centered
-                            >
-                                <Modal.Header closeButton
-                                    style={{ padding: "10px 50px" }} >
-                                    <Modal.Title>Add a New Vendor ?</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body style={{ padding: "15px 50px" }}>
-
-                                    <div className="card card-body">
-                                        <div className="col-sm-12 col-xs-12">
-                                            <form>
-                                                <div className="form-group">
-                                                    <label for="exampleInputEmail1">Name</label>
-                                                    <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Enter Product Name" />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label for="exampleInputEmail1">Address</label>
-                                                    <input type="address" className="form-control" id="exampleInputEmail1" placeholder="Enter Address" />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label for="exampleInputPassword1">Role</label>
-                                                    <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Describe Role" />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label for="exampleInputPassword1">Phone</label>
-                                                    <input type="tel" className="form-control" id="exampleInputPassword1" placeholder="Phone Number" />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label for="exampleInputPassword1">Picture</label>
-                                                    <input type="file" className="form-control" id="exampleInputPassword1" placeholder="" />
-                                                </div>
-                                                <button style={{ background: "black", color: "white", fontWeight: "800" }} type="submit" className="btn waves-effect waves-light m-r-10">Submit</button>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                </Modal.Body>
-                            </Modal>
-                        </div> */}
-
-                        {/* vendor section */}
-                        {/* <div className="row">
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
-                                <div className="card card-body">
-                                    <div className="row">
-                                        <div className="col-md-4 col-lg-3 text-center">
-                                            <a href="app-contact-detail.html"><img src="../assets/images/users/1.jpg" alt="user" className="img-circle img-responsive" /></a>
-                                        </div>
-                                        <div className="col-md-8 col-lg-9">
-                                            <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                                            <address>
-                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                <br />
-                                                <br />
-                                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
-                                <div className="card card-body">
-                                    <div className="row">
-                                        <div className="col-md-4 col-lg-3 text-center">
-                                            <a href="app-contact-detail.html"><img src="../assets/images/users/2.jpg" alt="user" className="img-circle img-responsive" /></a>
-                                        </div>
-                                        <div className="col-md-8 col-lg-9">
-                                            <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                                            <address>
-                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                <br />
-                                                <br />
-                                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
-                                <div className="card card-body">
-                                    <div className="row">
-                                        <div className="col-md-4 col-lg-3 text-center">
-                                            <a href="app-contact-detail.html"><img src="../assets/images/users/3.jpg" alt="user" className="img-circle img-responsive" /></a>
-                                        </div>
-                                        <div className="col-md-8 col-lg-9">
-                                            <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                                            <address>
-                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                <br />
-                                                <br />
-                                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
-                                <div className="card card-body">
-                                    <div className="row">
-                                        <div className="col-md-4 col-lg-3 text-center">
-                                            <a href="app-contact-detail.html"><img src="../assets/images/users/4.jpg" alt="user" className="img-circle img-responsive" /></a>
-                                        </div>
-                                        <div className="col-md-8 col-lg-9">
-                                            <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                                            <address>
-                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                <br />
-                                                <br />
-                                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
-                                <div className="card card-body">
-                                    <div className="row">
-                                        <div className="col-md-4 col-lg-3 text-center">
-                                            <a href="app-contact-detail.html"><img src="../assets/images/users/5.jpg" alt="user" className="img-circle img-responsive" /></a>
-                                        </div>
-                                        <div className="col-md-8 col-lg-9">
-                                            <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                                            <address>
-                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                <br />
-                                                <br />
-                                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
-                                <div className="card card-body">
-                                    <div className="row">
-                                        <div className="col-md-4 col-lg-3 text-center">
-                                            <a href="app-contact-detail.html"><img src="../assets/images/users/6.jpg" alt="user" className="img-circle img-responsive" /></a>
-                                        </div>
-                                        <div className="col-md-8 col-lg-9">
-                                            <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                                            <address>
-                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                <br />
-                                                <br />
-                                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
-                                <div className="card card-body">
-                                    <div className="row">
-                                        <div className="col-md-4 col-lg-3 text-center">
-                                            <a href="app-contact-detail.html"><img src="../assets/images/users/7.jpg" alt="user" className="img-circle img-responsive" /></a>
-                                        </div>
-                                        <div className="col-md-8 col-lg-9">
-                                            <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                                            <address>
-                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                <br />
-                                                <br />
-                                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
-                                <div className="card card-body">
-                                    <div className="row">
-                                        <div className="col-md-4 col-lg-3 text-center">
-                                            <a href="app-contact-detail.html"><img src="../assets/images/users/8.jpg" alt="user" className="img-circle img-responsive" /></a>
-                                        </div>
-                                        <div className="col-md-8 col-lg-9">
-                                            <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                                            <address>
-                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                <br />
-                                                <br />
-                                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
-                                <div className="card card-body">
-                                    <div className="row">
-                                        <div className="col-md-4 col-lg-3 text-center">
-                                            <a href="app-contact-detail.html"><img src="../assets/images/users/1.jpg" alt="user" className="img-circle img-responsive" /></a>
-                                        </div>
-                                        <div className="col-md-8 col-lg-9">
-                                            <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                                            <address>
-                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                <br />
-                                                <br />
-                                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
-                                <div className="card card-body">
-                                    <div className="row">
-                                        <div className="col-md-4 col-lg-3 text-center">
-                                            <a href="app-contact-detail.html"><img src="../assets/images/users/2.jpg" alt="user" className="img-circle img-responsive" /></a>
-                                        </div>
-                                        <div className="col-md-8 col-lg-9">
-                                            <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                                            <address>
-                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                <br />
-                                                <br />
-                                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
-                                <div className="card card-body">
-                                    <div className="row">
-                                        <div className="col-md-4 col-lg-3 text-center">
-                                            <a href="app-contact-detail.html"><img src="../assets/images/users/3.jpg" alt="user" className="img-circle img-responsive" /></a>
-                                        </div>
-                                        <div className="col-md-8 col-lg-9">
-                                            <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                                            <address>
-                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                <br />
-                                                <br />
-                                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
-                                <div className="card card-body">
-                                    <div className="row">
-                                        <div className="col-md-4 col-lg-3 text-center">
-                                            <a href="app-contact-detail.html"><img src="../assets/images/users/4.jpg" alt="user" className="img-circle img-responsive" /></a>
-                                        </div>
-                                        <div className="col-md-8 col-lg-9">
-                                            <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                                            <address>
-                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                <br />
-                                                <br />
-                                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div> */}
-                        <div className="card mb-2 me-2" style={{marginTop:"-20px"}}>
+                        <div className="card mb-2 me-2" style={{ marginTop: "-20px" }}>
 
                             <div className="chat-main-box">
 
@@ -345,72 +65,156 @@ function Customers() {
                                     </div>
                                 </div>
 
+                                {/* tab section */}
+                                <div className="">
+                                    <ul className="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                                        <li className="nav-item" role="presentation">
+                                            <button className="nav-link custom-nav-ah active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Message</button>
+                                        </li>
+                                        <li className="nav-item" role="presentation">
+                                            <button className="nav-link custom-nav-ah" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Rewards</button>
+                                        </li>
+                                        <li className="nav-item" role="presentation">
+                                            <button className="nav-link custom-nav-ah" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Report</button>
+                                        </li>
+                                    </ul>
+                                    <div className="tab-content" id="myTabContent">
+                                        {/* message section in tab */}
+                                        <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                            <div className="chat-right-aside">
+                                                <div className="chat-rbox">
+                                                    <ul className="chat-list p-20">
 
-                                <div className="chat-right-aside">                                
-                                    <div className="chat-rbox">
-                                        <ul className="chat-list p-20">
+                                                        <li>
+                                                            <div className="chat-img"><img src="../assets/images/users/1.jpg" alt="user" /></div>
+                                                            <div className="chat-content">
+                                                                <h5>James Anderson</h5>
+                                                                <div className="box bg-light-info">Lorem Ipsum is simply dummy text of the printing & type setting industry.</div>
+                                                            </div>
+                                                            <div className="chat-time">10:56 am</div>
+                                                        </li>
 
-                                            <li>
-                                                <div className="chat-img"><img src="../assets/images/users/1.jpg" alt="user" /></div>
-                                                <div className="chat-content">
-                                                    <h5>James Anderson</h5>
-                                                    <div className="box bg-light-info">Lorem Ipsum is simply dummy text of the printing & type setting industry.</div>
+                                                        <li>
+                                                            <div className="chat-img"><img src="../assets/images/users/2.jpg" alt="user" /></div>
+                                                            <div className="chat-content">
+                                                                <h5>Bianca Doe</h5>
+                                                                <div className="box bg-light-info">It’s Great opportunity to work.</div>
+                                                            </div>
+                                                            <div className="chat-time">10:57 am</div>
+                                                        </li>
+
+                                                        <li className="reverse">
+
+                                                            <div className="chat-content">
+                                                                <h5>Steave Doe</h5>
+                                                                <div className="box bg-light-inverse">It’s Great opportunity to work.</div>
+                                                            </div>
+                                                            <div className="chat-img"><img src="../assets/images/users/5.jpg" alt="user" /></div>
+                                                            <div className="chat-time">10:57 am</div>
+                                                        </li>
+
+                                                        <li className="reverse">
+
+                                                            <div className="chat-content">
+                                                                <h5>Steave Doe</h5>
+                                                                <div className="box bg-light-inverse">It’s Great opportunity to work.</div>
+                                                            </div>
+
+                                                            <div className="chat-img"><img src="../assets/images/users/5.jpg" alt="user" /></div>
+                                                            <div className="chat-time">10:57 am</div>
+                                                        </li>
+
+                                                        <li>
+                                                            <div className="chat-img"><img src="../assets/images/users/3.jpg" alt="user" /></div>
+                                                            <div className="chat-content">
+                                                                <h5>Angelina Rhodes</h5>
+                                                                <div className="box bg-light-info">Well we have good budget for the project</div>
+                                                            </div>
+                                                            <div className="chat-time">11:00 am</div>
+                                                        </li>
+
+                                                    </ul>
                                                 </div>
-                                                <div className="chat-time">10:56 am</div>
-                                            </li>
-
-                                            <li>
-                                                <div className="chat-img"><img src="../assets/images/users/2.jpg" alt="user" /></div>
-                                                <div className="chat-content">
-                                                    <h5>Bianca Doe</h5>
-                                                    <div className="box bg-light-info">It’s Great opportunity to work.</div>
+                                                <div className="card-body b-t">
+                                                    <div className="row">
+                                                        <div className="col-8">
+                                                            <textarea placeholder="Type your message here" className="form-control b-0"></textarea>
+                                                        </div>
+                                                        <div className="col-4 text-right">
+                                                            <button type="button" className="btn btn-info btn-circle btn-lg"><i className="fa fa-paper-plane-o"></i> </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div className="chat-time">10:57 am</div>
-                                            </li>
-
-                                            <li className="reverse">
-
-                                                <div className="chat-content">
-                                                    <h5>Steave Doe</h5>
-                                                    <div className="box bg-light-inverse">It’s Great opportunity to work.</div>
-                                                </div>
-                                                <div className="chat-img"><img src="../assets/images/users/5.jpg" alt="user" /></div>
-                                                <div className="chat-time">10:57 am</div>
-                                            </li>
-
-                                            <li className="reverse">
-
-                                                <div className="chat-content">
-                                                    <h5>Steave Doe</h5>
-                                                    <div className="box bg-light-inverse">It’s Great opportunity to work.</div>
-                                                </div>
-
-                                                <div className="chat-img"><img src="../assets/images/users/5.jpg" alt="user" /></div>
-                                                <div className="chat-time">10:57 am</div>
-                                            </li>
-
-                                            <li>
-                                                <div className="chat-img"><img src="../assets/images/users/3.jpg" alt="user" /></div>
-                                                <div className="chat-content">
-                                                    <h5>Angelina Rhodes</h5>
-                                                    <div className="box bg-light-info">Well we have good budget for the project</div>
-                                                </div>
-                                                <div className="chat-time">11:00 am</div>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <div className="card-body b-t">
-                                        <div className="row">
-                                            <div className="col-8">
-                                                <textarea placeholder="Type your message here" className="form-control b-0"></textarea>
                                             </div>
-                                            <div className="col-4 text-right">
-                                                <button type="button" className="btn btn-info btn-circle btn-lg"><i className="fa fa-paper-plane-o"></i> </button>
+                                        </div>
+                                        {/* Discount section in tab */}
+                                        <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <div className="card m-2 p-2">
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label className="control-label">Want to Reward this Customer? Choose a type.</label>
+                                                        <div className="m-b-10">
+                                                            <label className="custom-control custom-radio">
+                                                                <input id="radio1" name="radio" type="radio" className="custom-control-input" />
+                                                                <span className="custom-control-label">Coin</span>
+                                                            </label>
+                                                            <label className="custom-control custom-radio">
+                                                                <input id="radio2" name="radio" type="radio" className="custom-control-input" />
+                                                                <span className="custom-control-label">Gift</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Products</label>
+                                                            <select class="form-control custom-select" data-placeholder="Choose a Gift" tabindex="1">
+                                                                <option value="Category 1">Cup</option>
+                                                                <option value="Category 2">Shoe</option>
+                                                                <option value="Category 3">Pen</option>
+                                                                <option value="Category 4">Umbrella</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Coin</label>
+                                                            <input type="number" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div className="flexbtw">
+                                                    <h5>Nagode Coins available for Redemption:</h5>
+                                                    <p>30000</p>
+                                                </div>
+                                                <div className="flexbtw">
+                                                    <h5>Nagode Coins Equal:</h5>
+                                                    <p>#3,000</p>
+                                                </div>
+                                                <div>
+                                                    <h5>Gifts Received:</h5>
+                                                    <ol>
+                                                        <li>Fan</li>
+                                                        <li>Key Holder</li>
+                                                        <li>Water</li>
+                                                        <li>Hamper</li>
+                                                        <li>Fan</li>
+                                                        <li>Fan</li>
+                                                    </ol>
+                                                </div>
+
                                             </div>
+                                        </div>
+                                        {/* Report section in tab */}
+                                        <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                            Report goes here
                                         </div>
                                     </div>
                                 </div>
+
+
 
                             </div>
 

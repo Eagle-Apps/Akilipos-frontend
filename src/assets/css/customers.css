@@ -7,3 +7,27 @@
     overflow-y: scroll;
     margin: 20px;
 }
+
+.custom-nav-ah {
+    color: #70bfad !important;
+}
+
+.custom-nav-ah:hover {
+    color: black !important;
+    background-color: whitesmoke !important;
+}
+
+.card-subtitle-link {
+    color: #70bfad;
+    text-decoration: none;
+    float: right;
+    font-weight: 700;
+}
+
+.card-subtitle-link:hover {
+    color: black;
+}
+
+.form-control {
+    box-shadow: none !important;
+}

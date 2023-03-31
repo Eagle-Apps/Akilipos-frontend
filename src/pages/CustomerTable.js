@@ -28,7 +28,7 @@ function CustomersTable() {
 
                         <div className="card me-2">
                             <div className="card-body">
-                                <h4 className="card-title">Customers Details</h4>
+                                <h4 className="card-title">Customers Details (87)</h4>
                                 <Link to="/customers" className="card-subtitle-link">
                                     <h6 className="">
                                         Messages, Giveaways and Report

@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import NavBar from "../components/Nav";
 import Footer from "../components/Footer";
+import Aos from "aos";
+import 'aos/dist/aos.css';
 
 function Dashboard() {
+    useEffect(() => {
+        Aos.init({ duration: 1000 })
+    }, []);
+
     return <>
         <Row>
             <Col md="2" sm="12">
@@ -33,7 +39,7 @@ function Dashboard() {
                     <div className="pe-3">
                         {/* Top cards section */}
                         <div className="card-group">
-                            <div className="card">
+                            <div className="card" data-aos="flip-up">
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-12">
@@ -53,7 +59,7 @@ function Dashboard() {
                             </div>
                             {/* <!-- Column // */}
                             {/* <!-- Column // */}
-                            <div className="card">
+                            <div className="card" data-aos="slide-up">
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-12">
@@ -73,7 +79,7 @@ function Dashboard() {
                             </div>
                             {/* <!-- Column // */}
                             {/* <!-- Column // */}
-                            <div className="card">
+                            <div className="card" data-aos="zoom-in">
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-12">
@@ -93,7 +99,7 @@ function Dashboard() {
                             </div>
                             {/* <!-- Column // */}
                             {/* <!-- Column // */}
-                            <div className="card">
+                            <div className="card" data-aos="fade-out">
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-12">
@@ -116,7 +122,7 @@ function Dashboard() {
                         {/* analysis section */}
                         <div className="row">
                             {/* <!-- Column --> */}
-                            <div className="col-lg-8 col-xlg-9">
+                            <div className="col-lg-8 col-xlg-9" data-aos="slide-left" data-aos-once="true">
                                 <div className="card">
                                     <div className="card-body">
                                         <div className="row">
@@ -148,7 +154,7 @@ function Dashboard() {
                             </div>
                             {/* <!-- Column --> */}
                             <div className="col-lg-4 col-xlg-3">
-                                <div className="card card-inverse card-info">
+                                <div className="card card-inverse card-info" data-aos="slide-right" data-aos-once="true">
                                     <div className="card-body" style={{ background: "black" }}>
                                         <div className="d-flex">
                                             <div className="m-r-20 align-self-center">
@@ -170,7 +176,7 @@ function Dashboard() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="card card-inverse card-success" style={{ background: "black" }}>
+                                <div className="card card-inverse card-success" data-aos="zoom-in" data-aos-once="true" style={{ background: "black" }}>
                                     <div className="card-body">
                                         <div className="d-flex">
                                             <div className="m-r-20 align-self-center">
@@ -196,7 +202,7 @@ function Dashboard() {
                         </div>
 
                         {/* employee report section */}
-                        <div className="row">
+                        <div className="row" data-aos="zoom-in" data-aos-once="true">
                             <div className="col-lg-12">
                                 <div className="card">
                                     <div className="card-body">
@@ -401,7 +407,9 @@ function Dashboard() {
                         </div>
 
                         {/* Product Overview Section */}
-                        <div className="card card-default">
+                        <div className="card card-default" data-aos="slide-left"
+                            data-aos-once="true"
+                            data-aos-easing="ease-out-sine">
                             <div className="card-header">
                                 <div className="card-actions">
                                     <a className="" data-action="collapse"><i className="ti-minus"></i></a>
@@ -502,7 +510,9 @@ function Dashboard() {
 
 
                 </div>
-                <div>
+                <div data-aos="zoom-in"
+                    data-aos-once="true"
+                    data-aos-easing="ease-out-sine">
                     <Footer />
                 </div>
             </Col>

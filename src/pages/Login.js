@@ -68,7 +68,7 @@ function Login() {
                             </div>
                         </section>
 
-                        <Footer />
+                        {/* <Footer /> */}
                     </div>
                 </div>
             </div >

@@ -37,59 +37,69 @@ function ResetPassword() {
 
 
     return <>
-        <div className="reset-wrapper">
-            <Container className="passwordReset ">
-                <Row >
-                    <Col className="square p-5" lg="10" md="12" sm='12' style={{ borderRadius: '10px', border: "2px solid black" }}>
-                        {/* <img src={logo} alt="akili-logo" /> */}
-                        <h6>Akili POS</h6>
-                        <div className="text-center mb-3 account-header" style={{ background: '#8da1af', color: 'white' }}>
-                            <h3>Forgot Password?</h3>
-                        </div>
-                        {/* {success !== "" ?
-                        <FlashMessage duration={10000} persistOnHover={true} >
-                            <p id="flash">{success}</p>
-                        </FlashMessage> : ""
-                    } */}
-                        <Form>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Email </Form.Label>
-                                <span className="flex">
-                                    <Icon className="login-icon" color="black" icon="bxs:user" width="25" height="35" />
-                                    <Form.Control
-                                        type="email"
-                                        placeholder="Email"
-                                        name="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    />
-                                </span>
-                            </Form.Group>
+        <div className="cenn">
+            <div className="cen">
+                <div className="row">
+                    <div className="col-md-9">
+                        <section id="wrapper">
+                            <div className="login-register">
+                                <div className="login-box card">
+                                    <div className="card-body">
+                                        <form className="form-horizontal form-material" id="loginform" action="index.html">
+                                            <h3 className="box-title m-b-20 text-center" >Akili POS</h3>
+                                            <h6>Forgot Password?</h6>
+                                            <div className="form-group ">
+                                                <div className="col-xs-12">
+                                                    <input className="form-control" type="email" required="" placeholder="Email" /> </div>
+                                            </div>
+                                            <div className="form-group text-center m-t-20">
+                                                <div className="col-xs-12">
 
-                            <div style={{ display: "flex", justifyContent: "center" }}>
-                                <Button className="align-self-center" id='reset-btn' onClick={() => forgotPassword()}>
-                                    Submit
-                                </Button>
+                                                    <Link to="/dashboard">
+                                                        <button style={{ background: "#8da1af" }} className="btn  btn-lg btn-block text-uppercase " type="submit" onClick={() => forgotPassword()}>Submit</button>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                            <div className="form-group m-b-0">
+                                                <div className="mt-4 text-center" id="backToLogin">
+                                                    <Link to='/login'>
+                                                        Back to the Log In Page
+                                                    </Link>
+                                                </div>
+                                                <div className="col-sm-12 text-center">
+                                                    <div>Don't have an account? &nbsp;
+                                                        <Link to="/register"><b>Sign Up</b></Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form className="form-horizontal" id="recoverform" action="index.html">
+                                            <div className="form-group ">
+                                                <div className="col-xs-12">
+                                                    <h3>Recover Password</h3>
+                                                    <p className="text-muted">Enter your Email and instructions will be sent to you! </p>
+                                                </div>
+                                            </div>
+                                            <div className="form-group ">
+                                                <div className="col-xs-12">
+                                                    <input className="form-control" type="text" required="" placeholder="Email" /> </div>
+                                            </div>
+                                            <div className="form-group text-center m-t-20">
+                                                <div className="col-xs-12">
+                                                    <button className="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Reset</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
+                        </section>
 
-                        </Form>
-                        <div className="mt-4 text-center" id="backToLogin">
-                            <Link to='/login'>
-                                Back to the Log In Page
-                            </Link>
-                        </div>
-                    </Col>
-
-                    <Col className="toRegsiter text-center m-3 p-3" lg='10'>
-                        Don't you have an account?<br />
-                        <Link to="/register">Sign Up !</Link>
-                    </Col>
-
-                </Row>
-
-
-            </Container>
-        </div>
+                        {/* <Footer /> */}
+                    </div>
+                </div>
+            </div >
+        </div >
 
     </>
 }

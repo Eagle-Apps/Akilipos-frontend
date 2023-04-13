@@ -39,7 +39,7 @@ function Dashboard() {
                     <div className="pe-3">
                         {/* Top cards section */}
                         <div className="card-group">
-                            <div className="card" data-aos="flip-up">
+                            <div className="card" data-aos="slide-down">
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-12">
@@ -79,7 +79,7 @@ function Dashboard() {
                             </div>
                             {/* <!-- Column // */}
                             {/* <!-- Column // */}
-                            <div className="card" data-aos="zoom-in">
+                            <div className="card" data-aos="slide-down">
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-12">
@@ -99,7 +99,7 @@ function Dashboard() {
                             </div>
                             {/* <!-- Column // */}
                             {/* <!-- Column // */}
-                            <div className="card" data-aos="fade-out">
+                            <div className="card" data-aos="slide-up">
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-12">
@@ -176,7 +176,7 @@ function Dashboard() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="card card-inverse card-success" data-aos="zoom-in" data-aos-once="true" style={{ background: "black" }}>
+                                <div className="card card-inverse card-success" data-aos="flip-up" data-aos-once="true" style={{ background: "black" }}>
                                     <div className="card-body">
                                         <div className="d-flex">
                                             <div className="m-r-20 align-self-center">

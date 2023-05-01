@@ -5,6 +5,7 @@ import "./style.css";
 import "./assets/css/forgotPassword.css";
 import "./assets/css/faq.css";
 import "./assets/css/customers.css";
+import "./assets/css/navbar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sample from './pages/sample';
 import Home from './pages/Home';
@@ -19,6 +20,7 @@ import Faq from './pages/Faq';
 import Suppliers from './pages/Suppliers';
 import Customers from './pages/Customers';
 import CustomersTable from './pages/CustomerTable';
+import Settings from './pages/Settings';
 
 function App() {
   return (
@@ -37,6 +39,7 @@ function App() {
           <Route path="/suppliers" element={<Suppliers />} />
           <Route path="/customers" element={<Customers />} />
           <Route path="/customers-view" element={<CustomersTable />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

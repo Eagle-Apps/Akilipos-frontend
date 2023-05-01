@@ -1,242 +1,53 @@
-<div className="row">
-    <!-- .col -->
-    <div className="col-md-6 col-lg-6 col-xlg-4">
-        <div className="card card-body">
-            <div className="row">
-                <div className="col-md-4 col-lg-3 text-center">
-                    <a href="app-contact-detail.html"><img src="../assets/images/users/1.jpg" alt="user" className="img-circle img-responsive" /></a>
-                </div>
-                <div className="col-md-8 col-lg-9">
-                    <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                    <address>
-                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                        <br />
-                        <br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
+<div className="tab-pane" id="settings" role="tabpanel">
+    <div className="card-body">
+        <form className="form-horizontal form-material">
+            <div className="form-group">
+                <label className="col-md-12">Full Name</label>
+                <div className="col-md-12">
+                    <input type="text" placeholder="Johnathan Doe" className="form-control form-control-line" />
                 </div>
             </div>
-        </div>
-    </div>
-
-
-    <div className="col-md-6 col-lg-6 col-xlg-4">
-        <div className="card card-body">
-            <div className="row">
-                <div className="col-md-4 col-lg-3 text-center">
-                    <a href="app-contact-detail.html"><img src="../assets/images/users/2.jpg" alt="user" className="img-circle img-responsive" /></a>
-                </div>
-                <div className="col-md-8 col-lg-9">
-                    <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                    <address>
-                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                        <br />
-                        <br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
+            <div className="form-group">
+                <label for="example-email" className="col-md-12">Email</label>
+                <div className="col-md-12">
+                    <input type="email" placeholder="johnathan@admin.com" className="form-control form-control-line" name="example-email" id="example-email" />
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- /.col -->
-    <!-- .col -->
-    <div className="col-md-6 col-lg-6 col-xlg-4">
-        <div className="card card-body">
-            <div className="row">
-                <div className="col-md-4 col-lg-3 text-center">
-                    <a href="app-contact-detail.html"><img src="../assets/images/users/3.jpg" alt="user" className="img-circle img-responsive" /></a>
-                </div>
-                <div className="col-md-8 col-lg-9">
-                    <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                    <address>
-                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                        <br />
-                        <br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
+            <div className="form-group">
+                <label className="col-md-12">Password</label>
+                <div className="col-md-12">
+                    <input type="password" value="password" className="form-control form-control-line" />
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- /.col -->
-    <!-- .col -->
-    <div className="col-md-6 col-lg-6 col-xlg-4">
-        <div className="card card-body">
-            <div className="row">
-                <div className="col-md-4 col-lg-3 text-center">
-                    <a href="app-contact-detail.html"><img src="../assets/images/users/4.jpg" alt="user" className="img-circle img-responsive" /></a>
-                </div>
-                <div className="col-md-8 col-lg-9">
-                    <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                    <address>
-                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                        <br />
-                        <br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
+            <div className="form-group">
+                <label className="col-md-12">Phone No</label>
+                <div className="col-md-12">
+                    <input type="text" placeholder="123 456 7890" className="form-control form-control-line" />
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- /.col -->
-    <!-- .col -->
-    <div className="col-md-6 col-lg-6 col-xlg-4">
-        <div className="card card-body">
-            <div className="row">
-                <div className="col-md-4 col-lg-3 text-center">
-                    <a href="app-contact-detail.html"><img src="../assets/images/users/5.jpg" alt="user" className="img-circle img-responsive" /></a>
-                </div>
-                <div className="col-md-8 col-lg-9">
-                    <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                    <address>
-                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                        <br />
-                        <br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
+            <div className="form-group">
+                <label className="col-md-12">Message</label>
+                <div className="col-md-12">
+                    <textarea rows="5" className="form-control form-control-line"></textarea>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- /.col -->
-    <!-- .col -->
-    <div className="col-md-6 col-lg-6 col-xlg-4">
-        <div className="card card-body">
-            <div className="row">
-                <div className="col-md-4 col-lg-3 text-center">
-                    <a href="app-contact-detail.html"><img src="../assets/images/users/6.jpg" alt="user" className="img-circle img-responsive" /></a>
-                </div>
-                <div className="col-md-8 col-lg-9">
-                    <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                    <address>
-                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                        <br />
-                        <br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
+            <div className="form-group">
+                <label className="col-sm-12">Select Country</label>
+                <div className="col-sm-12">
+                    <select className="form-control form-control-line">
+                        <option>London</option>
+                        <option>India</option>
+                        <option>Usa</option>
+                        <option>Canada</option>
+                        <option>Thailand</option>
+                    </select>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- /.col -->
-    <!-- .col -->
-    <div className="col-md-6 col-lg-6 col-xlg-4">
-        <div className="card card-body">
-            <div className="row">
-                <div className="col-md-4 col-lg-3 text-center">
-                    <a href="app-contact-detail.html"><img src="../assets/images/users/7.jpg" alt="user" className="img-circle img-responsive" /></a>
-                </div>
-                <div className="col-md-8 col-lg-9">
-                    <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                    <address>
-                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                        <br />
-                        <br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
+            <div className="form-group">
+                <div className="col-sm-12">
+                    <button className="btn btn-success">Update Profile</button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-    <!-- /.col -->
-    <!-- .col -->
-    <div className="col-md-6 col-lg-6 col-xlg-4">
-        <div className="card card-body">
-            <div className="row">
-                <div className="col-md-4 col-lg-3 text-center">
-                    <a href="app-contact-detail.html"><img src="../assets/images/users/8.jpg" alt="user" className="img-circle img-responsive" /></a>
-                </div>
-                <div className="col-md-8 col-lg-9">
-                    <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                    <address>
-                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                        <br />
-                        <br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.col -->
-    <!-- .col -->
-    <div className="col-md-6 col-lg-6 col-xlg-4">
-        <div className="card card-body">
-            <div className="row">
-                <div className="col-md-4 col-lg-3 text-center">
-                    <a href="app-contact-detail.html"><img src="../assets/images/users/1.jpg" alt="user" className="img-circle img-responsive" /></a>
-                </div>
-                <div className="col-md-8 col-lg-9">
-                    <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                    <address>
-                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                        <br />
-                        <br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.col -->
-    <!-- .col -->
-    <div className="col-md-6 col-lg-6 col-xlg-4">
-        <div className="card card-body">
-            <div className="row">
-                <div className="col-md-4 col-lg-3 text-center">
-                    <a href="app-contact-detail.html"><img src="../assets/images/users/2.jpg" alt="user" className="img-circle img-responsive" /></a>
-                </div>
-                <div className="col-md-8 col-lg-9">
-                    <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                    <address>
-                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                        <br />
-                        <br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.col -->
-    <!-- .col -->
-    <div className="col-md-6 col-lg-6 col-xlg-4">
-        <div className="card card-body">
-            <div className="row">
-                <div className="col-md-4 col-lg-3 text-center">
-                    <a href="app-contact-detail.html"><img src="../assets/images/users/3.jpg" alt="user" className="img-circle img-responsive" /></a>
-                </div>
-                <div className="col-md-8 col-lg-9">
-                    <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                    <address>
-                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                        <br />
-                        <br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.col -->
-    <!-- .col -->
-    <div className="col-md-6 col-lg-6 col-xlg-4">
-        <div className="card card-body">
-            <div className="row">
-                <div className="col-md-4 col-lg-3 text-center">
-                    <a href="app-contact-detail.html"><img src="../assets/images/users/4.jpg" alt="user" className="img-circle img-responsive" /></a>
-                </div>
-                <div className="col-md-8 col-lg-9">
-                    <h3 className="box-title m-b-0">Johnathan Doe</h3> <small>Web Designer</small>
-                    <address>
-                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                        <br />
-                        <br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.col -->
 </div>

@@ -21,6 +21,7 @@ import Suppliers from './pages/Suppliers';
 import Customers from './pages/Customers';
 import CustomersTable from './pages/CustomerTable';
 import Settings from './pages/Settings';
+import Price from './pages/Pricing';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/customers" element={<Customers />} />
           <Route path="/customers-view" element={<CustomersTable />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/prices" element={<Price />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

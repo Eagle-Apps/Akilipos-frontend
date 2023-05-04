@@ -99,7 +99,16 @@ function Faq() {
 
                         </div>  </Link>
                     <div>PRODUCTS</div>
-                    <div>BLOG</div>
+                    <div>
+                        <a href="/#about">
+                            ABOUT
+                        </a>
+                    </div>
+                    <div>
+                        <Link to="/prices">
+                            PRICE
+                        </Link>
+                    </div>
                     <div>
                         <Link to="/faq">
                             FAQ

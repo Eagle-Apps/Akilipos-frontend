@@ -28,3 +28,9 @@
     color: black;
     font-weight: 500;
 }
+
+#error {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+}

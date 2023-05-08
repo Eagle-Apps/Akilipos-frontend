@@ -10,8 +10,8 @@ import { NavDropdown } from "react-bootstrap";
 
 function NavBar(props) {
   let store = useContext(Store);
-  let [mainUrl] = store.endUrl;
-  let [user, setUser] = store.userinfo;
+  let mainUrl;
+  // let [user, setUser] = store.userinfo;
   let [email, setEmail] = useState("");
   let location = useLocation()
   let [password, setPassword] = useState("");
@@ -54,7 +54,7 @@ function NavBar(props) {
     })
       .then(res => res.json())
       .then(result => {
-        setUser(result)
+        // setUser(result)
         localStorage.setItem("afriqId", result.user._id)
       })
     history('/')

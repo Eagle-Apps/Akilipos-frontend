@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import GoToTop from "../components/goToTop";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Store } from "../context/store";
 
 function SignUp() {
@@ -18,10 +18,11 @@ function SignUp() {
     let [error, setError] = useState("");
     let [terms, setTerms] = useState(false);
     // let [, set] = useState();
+    let navigate = useNavigate();
 
     let checkTerm = () => {
         terms ? setTerms(false) : setTerms(true);
-    }
+    };
 
     let register = async () => {
         setLoading(true);
@@ -64,15 +65,19 @@ function SignUp() {
             method: "POST",
             body: JSON.stringify(data)
         });
-       
+
         if (response.status === 200) {
             await response.json()
-            setError("Registration Completed");
+            setError("Registration Completed, Redirecting to Login Page");
             const t1 = setTimeout(() => {
                 setLoading(false);
                 setError("");
                 clearTimeout(t1);
             }, 2000);
+            const t2 = setTimeout(() => {
+                navigate("/login")
+                clearTimeout(t2);
+            }, 5000);
             setBusinessName("")
             setPassword("")
             setAddress("")
@@ -80,7 +85,13 @@ function SignUp() {
             setCountry("")
             setTerms(false)
         } else {
-            setError("Error Occurred")
+            let err = await response.json()
+            if (err.message === "User already exists") {
+                setError(err.message)
+            } else {
+                setError("Error Occurred")
+            }
+
             const t1 = setTimeout(() => {
                 setError("")
                 setLoading(false)

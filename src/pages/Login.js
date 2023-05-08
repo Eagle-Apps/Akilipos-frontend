@@ -17,11 +17,11 @@ function Login() {
                                             <h3 className="box-title m-b-20 text-center" >Sign In</h3>
                                             <div className="form-group ">
                                                 <div className="col-xs-12">
-                                                    <input className="form-control" type="text" required="" placeholder="Username" /> </div>
+                                                    <input className="form-control" type="email" required placeholder="Email" /> </div>
                                             </div>
                                             <div className="form-group">
                                                 <div className="col-xs-12">
-                                                    <input className="form-control" type="password" required="" placeholder="Password" /> </div>
+                                                    <input className="form-control" type="password" required placeholder="Password" /> </div>
                                             </div>
                                             <div className="form-group row">
                                                 <div className="col-md-12 font-14">
@@ -67,8 +67,6 @@ function Login() {
                                 </div>
                             </div>
                         </section>
-
-                        {/* <Footer /> */}
                     </div>
                 </div>
             </div >

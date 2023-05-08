@@ -87,6 +87,12 @@ function Settings() {
                                     </div>
                                 </div> */}
                                 <div className="form-group">
+                                    <label className="col-md-12">Coin Name</label>
+                                    <div className="col-md-12">
+                                        <input type="text" placeholder="Thank You Coin" className="form-control form-control-line" />
+                                    </div>
+                                </div>
+                                <div className="form-group">
                                     <label className="col-md-12">Coin Value</label>
                                     <div className="col-md-12">
                                         <input type="Number" placeholder="100" className="form-control form-control-line" />
@@ -94,7 +100,7 @@ function Settings() {
                                 </div>
                                 <div className="form-group">
                                     <div className="col-sm-12">
-                                        <button className="btn btn-success">Update Profile</button>
+                                        <button className="btn btn-success">Update</button>
                                     </div>
                                 </div>
                             </form>

@@ -25,7 +25,6 @@ function SignUp() {
     };
 
     let register = async () => {
-        setLoading(true);
         if (!terms) {
             setError("Terms of Service have not been accepted");
             const t1 = setTimeout(() => {
@@ -55,7 +54,7 @@ function SignUp() {
             }, 3000);
             return;
         }
-
+        setLoading(true);
         let url = auth + "/register";
         let data = { businessName, email, password, address, country, userName };
         const response = await fetch(url, {
@@ -89,6 +88,7 @@ function SignUp() {
             if (err.message === "User already exists") {
                 setError(err.message)
             } else {
+                console.log(err)
                 setError("Error Occurred")
             }
 

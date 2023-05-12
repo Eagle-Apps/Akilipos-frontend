@@ -1,14 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Col, Row } from "react-bootstrap";
 import NavBar from "../components/Nav";
 import Footer from "../components/Footer";
 import Modal from "react-bootstrap/Modal";
 import { Home, RotateCcw } from "react-feather";
+import { Store } from "../context/store";
+import { useParams } from "react-router-dom";
+import PulseLoader from "react-spinners/PulseLoader";
 
 function Catalog() {
+    let store = useContext(Store);
+    let [productUrl] = store.product;
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    let { id } = useParams();
+    let [products, setProducts] = useState([]);
+    // let [, set] = useState("");
+    let [loading, setLoading] = useState(false);
+    let [error, setError] = useState("");
+
+    useEffect(() => {
+        loadProducts();
+    }, []);
+
+    let loadProducts = () => {
+        let url = `${productUrl}/products/${id}`;
+        fetch(url)
+            .then((e) => e.json())
+            .then((res) => {
+                setProducts(res.products)
+            });
+    };
+    
     return <>
         <Row>
             <Col md="2" sm="12">
@@ -78,12 +102,6 @@ function Catalog() {
                         {/* Product Overview Section */}
                         <div className="card card-default">
                             <div className="card-header">
-                                <div className="card-actions">
-                                    <a className="" data-action="collapse"><i className="ti-minus"></i></a>
-                                    <a className="btn-minimize" data-action="expand"><i
-                                        className="mdi mdi-arrow-expand"></i></a>
-                                    <a className="btn-close" data-action="close"><i className="ti-close"></i></a>
-                                </div>
                                 <h4 className="card-title m-b-0">Product Overview</h4>
                             </div>
                             <div className="card-body collapse show">
@@ -95,78 +113,35 @@ function Catalog() {
                                                 <th>Image</th>
                                                 <th>Quantity</th>
                                                 <th>Date</th>
-                                                <th>Status</th>
+                                                <th>Price</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Steave Jobs</td>
-                                                <td>
-                                                    <img src="../assets/images/gallery/chair.jpg" alt="iMac" width="80" />
-                                                </td>
-                                                <td>20</td>
-                                                <td>10-7-2017</td>
-                                                <td>
-                                                    <span className="label label-success font-weight-100">Paid</span>
-                                                </td>
-                                                <td><a href="javascript:void(0)" className="text-inverse p-r-10"
-                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                        className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
-                                                            className="text-inverse" title="" data-toggle="tooltip"
-                                                            data-original-title="Delete"><i className="ti-trash"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Varun Dhavan</td>
-                                                <td>
-                                                    <img src="../assets/images/gallery/chair2.jpg" alt="iPhone"
-                                                        width="80" />
-                                                </td>
-                                                <td>25</td>
-                                                <td>09-7-2017</td>
-                                                <td>
-                                                    <span className="label label-warning font-weight-100">Pending</span>
-                                                </td>
-                                                <td><a href="javascript:void(0)" className="text-inverse p-r-10"
-                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                        className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
-                                                            className="text-inverse" title="" data-toggle="tooltip"
-                                                            data-original-title="Delete"><i className="ti-trash"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ritesh Desh</td>
-                                                <td>
-                                                    <img src="../assets/images/gallery/chair3.jpg" alt="apple_watch"
-                                                        width="80" />
-                                                </td>
-                                                <td>12</td>
-                                                <td>08-7-2017</td>
-                                                <td>
-                                                    <span className="label label-success font-weight-100">Paid</span>
-                                                </td>
-                                                <td><a href="javascript:void(0)" className="text-inverse p-r-10"
-                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                        className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
-                                                            className="text-inverse" title="" data-toggle="tooltip"
-                                                            data-original-title="Delete"><i className="ti-trash"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Hrithik</td>
-                                                <td>
-                                                    <img src="../assets/images/gallery/chair4.jpg" alt="mac_mouse"
-                                                        width="80" />
-                                                </td>
-                                                <td>18</td>
-                                                <td>02-7-2017</td>
-                                                <td>
-                                                    <span className="label label-danger font-weight-100">Failed</span>
-                                                </td>
-                                                <td><a href="javascript:void(0)" className="text-inverse p-r-10"
-                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                        className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
-                                                            className="text-inverse" title="" data-toggle="tooltip"
-                                                            data-original-title="Delete"><i className="ti-trash"></i></a></td>
-                                            </tr>
+                                            {products.length === 0 ? <div>No Product found</div> :
+                                                products.map((e, i) => {
+                                                    let year = new Date(e.createdAt).getFullYear();
+                                                    let month = new Date(e.createdAt).getMonth() + 1;
+                                                    let day = new Date(e.createdAt).getDate();
+                                                    let date = `${day}/${month}/${year}`;
+                                                    return (<tr>
+                                                        <td style={{ textTransform: "capitalize" }}>{e.name}</td>
+                                                        <td>
+                                                            <img src={e.imageUrl[0]} alt={e.name[0]} width="80" />
+                                                        </td>
+                                                        <td>{e.quantity}</td>
+                                                        <td>{date}</td>
+                                                        <td>
+                                                            {e.costPrice}
+                                                        </td>
+                                                        <td><a href="javascript:void(0)" className="text-inverse p-r-10"
+                                                            data-toggle="tooltip" title="" data-original-title="Edit"><i
+                                                                className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
+                                                                    className="text-inverse" title="" data-toggle="tooltip"
+                                                                    data-original-title="Delete"><i className="ti-trash"></i></a></td>
+                                                    </tr>)
+                                                })}
+
                                         </tbody>
                                     </table>
                                 </div>

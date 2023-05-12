@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import logo from "../assets/images/akili.png";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -25,6 +25,8 @@ function NavBar(props) {
   const loginStatus = (e) => setBlock(e);
   const logoutStatus = (e) => setNone(e);
   let routePath = useLocation();
+  let { id } = useParams();
+
 
   useEffect(() => {
     userCheck();
@@ -112,13 +114,13 @@ function NavBar(props) {
                 <Icon icon="emojione-monotone:money-bag" width="24px" />
                 <NavDropdown title="My Business" id={props.class2}>
                   <NavDropdown.Item>
-                    <Link to='/shop'>
+                    <Link to={`/employees/${id}`}>
                       <Icon icon="bi:shop" width="24px" height="24px" className="me-3" />
-                      My Shop
+                      My Employees
                     </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
-                    <Link to='/products'>
+                    <Link to={`/products/${id}`}>
                       <Icon icon="fluent-mdl2:product-variant" width="24px" height="24px" className="me-3" />
                       My Products
                     </Link>
@@ -190,7 +192,7 @@ function NavBar(props) {
         </Navbar.Collapse>
       </div>
 
-    </Navbar>
+    </Navbar >
 
 
   </>

@@ -22,6 +22,7 @@ import Customers from './pages/Customers';
 import CustomersTable from './pages/CustomerTable';
 import Settings from './pages/Settings';
 import Price from './pages/Pricing';
+import Employess from './pages/Employees';
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
           <Route path="/sample" element={<Sample />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/products" element={<Catalog />} />
+          <Route path="/products/:id" element={<Catalog />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/help" element={<HelpCenter />} />
           <Route path="/faq" element={<Faq />} />
@@ -42,6 +43,7 @@ function App() {
           <Route path="/customers-view" element={<CustomersTable />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/prices" element={<Price />} />
+          <Route path="/employees/:id" element={<Employess />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

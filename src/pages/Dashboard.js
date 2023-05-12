@@ -1,14 +1,56 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Col, Row } from "react-bootstrap";
 import NavBar from "../components/Nav";
 import Footer from "../components/Footer";
 import Aos from "aos";
 import 'aos/dist/aos.css';
+import { Store } from "../context/store";
+import { useParams } from "react-router-dom";
 
 function Dashboard() {
+    let store = useContext(Store);
+    let [auth] = store.auth;
+    let [employeeUrl] = store.employee;
+    let [orderUrl] = store.order;
+    let { id } = useParams();
+    let [orders, setOrders] = useState([]);
+    let [completedOrder, setCompletedOrder] = useState([]);
+    let [employees, setEmployees] = useState([]);
+
     useEffect(() => {
+        loadOrders();
+        loadCompletedOrders();
+        loadEmployees();
         Aos.init({ duration: 1000 })
-    }, []);
+    }, [orders, completedOrder]);
+
+    let pending = ((orders.length - completedOrder.length) * 100 / (orders.length) + "%").toLocaleString();
+    let complete = ((completedOrder.length) * 100 / (orders.length) + "%").toLocaleString();
+
+    let loadCompletedOrders = () => {
+        let url = `${orderUrl}/orders/${id}`;
+        fetch(url)
+            .then((e) => e.json())
+            .then((res) => {
+                setCompletedOrder(res)
+            });
+    };
+    let loadOrders = () => {
+        let url = `${orderUrl}/orders/${id}`;
+        fetch(url)
+            .then((e) => e.json())
+            .then((res) => {
+                setOrders(res)
+            });
+    };
+    let loadEmployees = () => {
+        let url = `${employeeUrl}/employees/${id}`;
+        fetch(url)
+            .then((e) => e.json())
+            .then((res) => {
+                setEmployees(res.employees)
+            });
+    };
 
     return <>
         <Row>
@@ -44,13 +86,13 @@ function Dashboard() {
                                     <div className="row">
                                         <div className="col-12">
                                             <h2 className="m-b-0"><i className="mdi mdi-alert-circle text-danger"></i></h2>
-                                            <h3 className="">2456</h3>
+                                            <h3 className="">{orders?.length - completedOrder.length}</h3>
                                             <h6 className="card-subtitle">Pending Orders</h6>
                                         </div>
                                         <div className="col-12">
                                             <div className="progress">
                                                 <div className="progress-bar bg-info" role="progressbar"
-                                                    style={{ width: "85%", height: "100%" }} aria-valuenow="25" aria-valuemin="0"
+                                                    style={{ width: pending, height: "100%" }} aria-valuenow="25" aria-valuemin="0"
                                                     aria-valuemax="100"></div>
                                             </div>
                                         </div>
@@ -64,13 +106,13 @@ function Dashboard() {
                                     <div className="row">
                                         <div className="col-12">
                                             <h2 className="m-b-0"><i className="mdi mdi-briefcase-check text-success"></i></h2>
-                                            <h3 className="">546</h3>
+                                            <h3 className="">{completedOrder?.length}</h3>
                                             <h6 className="card-subtitle">Completed Orders</h6>
                                         </div>
                                         <div className="col-12">
                                             <div className="progress">
                                                 <div className="progress-bar bg-success" role="progressbar"
-                                                    style={{ width: "45%", height: "100%" }} aria-valuenow="70" aria-valuemin="0"
+                                                    style={{ width: complete, height: "100%" }} aria-valuenow="70" aria-valuemin="0"
                                                     aria-valuemax="100"></div>
                                             </div>
                                         </div>
@@ -120,8 +162,8 @@ function Dashboard() {
                         </div>
 
                         {/* analysis section */}
-                        <div className="row">
-                            {/* <!-- Column --> */}
+                        {/* <div className="row">
+                           
                             <div className="col-lg-8 col-xlg-9" data-aos="slide-left" data-aos-once="true">
                                 <div className="card">
                                     <div className="card-body">
@@ -152,7 +194,7 @@ function Dashboard() {
                                     </div>
                                 </div>
                             </div>
-                            {/* <!-- Column --> */}
+                           
                             <div className="col-lg-4 col-xlg-3">
                                 <div className="card card-inverse card-info" data-aos="slide-right" data-aos-once="true">
                                     <div className="card-body" style={{ background: "black" }}>
@@ -198,8 +240,8 @@ function Dashboard() {
                                     </div>
                                 </div>
                             </div>
-                            {/* <!-- Column --> */}
-                        </div>
+                           
+                        </div> */}
 
                         {/* employee report section */}
                         <div className="row" data-aos="zoom-in" data-aos-once="true">
@@ -207,19 +249,21 @@ function Dashboard() {
                                 <div className="card">
                                     <div className="card-body">
                                         <div className="d-flex no-block">
-                                            <h4 className="card-title">Salary Report<br /><small className="text-muted">Employee Salary
-                                                Report by Month</small></h4>
-                                            <div className="ml-auto">
+                                            <h4 className="card-title">Staff Salary Report<br />
+                                                {/* <small className="text-muted">Employee Salary
+                                                    Report by Month</small> */}
+                                            </h4>
+                                            {/* <div className="ml-auto">
                                                 <select className="custom-select">
                                                     <option selected="">July</option>
                                                     <option value="1">Aug</option>
                                                     <option value="2">Sept</option>
                                                     <option value="3">Oct</option>
                                                 </select>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
-                                    <div className="bg-light p-20">
+                                    {/* <div className="bg-light p-20">
                                         <div className="d-flex">
                                             <div className="align-self-center">
                                                 <h3 className="m-b-0">February 2022</h3><small>Total Salary Paid:</small>
@@ -228,85 +272,38 @@ function Dashboard() {
                                                 <h2 className="text-success">$5470</h2>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="card-body">
+                                    </div> */}
+                                    <div className="bg-light card-body">
                                         <div className="table-responsive">
                                             <table className="table table-hover earning-box">
                                                 <thead>
                                                     <tr>
                                                         <th colspan="2">Name</th>
+                                                        <th>Phone</th>
                                                         <th>Status</th>
                                                         <th>Earnings</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td style={{ width: "50px" }}><span className="round"><img
-                                                            src="../assets/images/users/8.jpg" alt="user"
-                                                            width="50" /></span></td>
-                                                        <td>
-                                                            <h6>Sunil Joshi</h6><small className="text-muted">Web Designer</small>
-                                                        </td>
-                                                        <td><span className="label label-success">Low</span></td>
-                                                        <td>$3.9K</td>
-                                                    </tr>
-                                                    <tr className="active">
-                                                        <td><span className="round"><img src="../assets/images/users/2.jpg"
-                                                            alt="user" width="50" /></span></td>
-                                                        <td>
-                                                            <h6>Andrew</h6><small className="text-muted">Project Manager</small>
-                                                        </td>
-                                                        <td><span className="label label-info">Medium</span></td>
-                                                        <td>$23.9K</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><span className="round round-success"><img
-                                                            src="../assets/images/users/1.jpg" alt="user"
-                                                            width="50" /></span></td>
-                                                        <td>
-                                                            <h6>Bhavesh patel</h6><small className="text-muted">Developer</small>
-                                                        </td>
-                                                        <td><span className="label label-primary">High</span></td>
-                                                        <td>$12.9K</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><span className="round round-primary"><img
-                                                            src="../assets/images/users/4.jpg" alt="user"
-                                                            width="50" /></span></td>
-                                                        <td>
-                                                            <h6>Nirav Joshi</h6><small className="text-muted">Frontend Eng</small>
-                                                        </td>
-                                                        <td><span className="label label-danger">Low</span></td>
-                                                        <td>$10.9K</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><span className="round round-warning"><img
-                                                            src="../assets/images/users/5.jpg" alt="user"
-                                                            width="50" /></span></td>
-                                                        <td>
-                                                            <h6>Micheal Doe</h6><small className="text-muted">Content Writer</small>
-                                                        </td>
-                                                        <td><span className="label label-warning">High</span></td>
-                                                        <td>$12.9K</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><span className="round round-danger"><img
-                                                            src="../assets/images/users/1.jpg" alt="user"
-                                                            width="50" /></span></td>
-                                                        <td>
-                                                            <h6>Johnathan</h6><small className="text-muted">Graphic</small>
-                                                        </td>
-                                                        <td><span className="label label-info">High</span></td>
-                                                        <td>$2.6K</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><span className="round round-success">M</span></td>
-                                                        <td>
-                                                            <h6>Vishal Doe</h6><small className="text-muted">Content Writer</small>
-                                                        </td>
-                                                        <td><span className="label label-warning">High</span></td>
-                                                        <td>$12.9K</td>
-                                                    </tr>
+                                                    {employees.length === 0 ? <div>No Employees Added Yet</div> :
+                                                        employees?.map((e, i) => {
+                                                            return (
+                                                                <tr >
+                                                                    <td style={{ width: "50px" }}><span className="round"><img
+                                                                        src={e.image} alt={e.name[0]}
+                                                                        width="50" /></span></td>
+                                                                    <td>
+                                                                        <h6>{e.name}</h6><small className="text-muted">{e.position}</small>
+                                                                    </td>
+                                                                    <td><span>{e.phone}</span></td>
+                                                                    <td >{e.status}</td>
+                                                                    <td>{e.salary}</td>
+                                                                </tr>
+                                                            )
+                                                        })
+
+                                                    }
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -411,12 +408,6 @@ function Dashboard() {
                             data-aos-once="true"
                             data-aos-easing="ease-out-sine">
                             <div className="card-header">
-                                <div className="card-actions">
-                                    <a className="" data-action="collapse"><i className="ti-minus"></i></a>
-                                    <a className="btn-minimize" data-action="expand"><i
-                                        className="mdi mdi-arrow-expand"></i></a>
-                                    <a className="btn-close" data-action="close"><i className="ti-close"></i></a>
-                                </div>
                                 <h4 className="card-title m-b-0">Product Overview</h4>
                             </div>
                             <div className="card-body collapse show">

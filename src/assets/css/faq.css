@@ -35,3 +35,9 @@
     text-align: center;
     text-transform: capitalize;
 }
+
+.hero .card-body:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    border: 1px black solid;
+}

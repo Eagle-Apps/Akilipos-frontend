@@ -1,21 +1,20 @@
 import React, { useContext, useState } from "react";
 import GoToTop from "../components/goToTop";
-import Footer from "../components/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { Store } from "../context/store";
 
 function Login() {
     let store = useContext(Store);
     let [auth] = store.auth;
+    let [employeeUrl] = store.employee;
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState("");
     let navigate = useNavigate();
     let [loading, setLoading] = useState(false);
     let [error, setError] = useState("");
+    let [loginMode, setLoginMode] = useState(true);
 
     let login = async () => {
-        setLoading(true);
-
         if (password.trim() === "" || email.trim() === "") {
             setError("Please fill missing field(s)!!!");
             const t1 = setTimeout(() => {
@@ -25,7 +24,10 @@ function Login() {
             }, 2000);
             return;
         }
-        let url = auth + "/login";
+        setLoading(true);
+        let url;
+        loginMode ? url = employeeUrl + "/login" : url = auth + "/login";
+
         let data = { email, password };
         const response = await fetch(url, {
             headers: {
@@ -78,9 +80,22 @@ function Login() {
                             <div className="login-register">
                                 <div className="login-box card">
                                     <div className="card-body">
-                                        <div className="form-horizontal form-material" id="loginform">
+                                        <div className="form-horizontal form-material bt-switch" id="loginform">
                                             <h3 className="box-title m-b-20 text-center" >Sign In</h3>
                                             <p id="error">{error}</p>
+                                            <div>
+                                                <input type="radio" id="userLogin" name={loginMode} />
+                                                <input type="radio" id="adminLogin" name={loginMode} />
+                                                <div className="row">
+                                                    <div className="col-lg-6">
+                                                        <button onClick={() => setLoginMode(true)} className="btn btn-block text-uppercase" for="userLogin" style={{ background: loginMode ? "whitesmoke" : "white" }}>Login as Attendant</button>
+                                                    </div>
+                                                    <div className="col-lg-6">
+                                                        <button onClick={() => setLoginMode(false)} className="btn btn-block text-uppercase" for="adminLogin" style={{ background: loginMode ? "white" : "whitesmoke" }}>Login as Admin</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                             <div className="form-group ">
                                                 <div className="col-xs-12">
                                                     <input className="form-control" type="email" required placeholder="Email" value={email}

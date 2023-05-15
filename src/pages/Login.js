@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import GoToTop from "../components/goToTop";
 import { Link, useNavigate } from "react-router-dom";
 import { Store } from "../context/store";
+import { useCookies } from 'react-cookie';
 
 function Login() {
     let store = useContext(Store);
@@ -13,6 +14,7 @@ function Login() {
     let [loading, setLoading] = useState(false);
     let [error, setError] = useState("");
     let [loginMode, setLoginMode] = useState(true);
+    const [cookies, setCookie] = useCookies(['akili']);
 
     let login = async () => {
         if (password.trim() === "" || email.trim() === "") {
@@ -38,8 +40,9 @@ function Login() {
         });
 
         if (response.status === 200) {
-            let res = await response.json()
+            let res = await response.json();
             let path = `/dashboard/${res.id}`
+            setCookie('akili', res.token, { path: '/' })
             const t1 = setTimeout(() => {
                 setLoading(false);
                 setError("");
@@ -48,9 +51,9 @@ function Login() {
             const t2 = setTimeout(() => {
                 navigate(path);
                 clearTimeout(t2);
-            }, 5000);
-            setPassword("")
-            setEmail("")
+                setPassword("")
+                setEmail("")
+            }, 3000);
         } else {
             let err = await response.json();
             if (err.message === "user with the email does not exist") {

@@ -6,6 +6,7 @@ import Aos from "aos";
 import 'aos/dist/aos.css';
 import { Store } from "../context/store";
 import { useParams } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 function Dashboard() {
     let store = useContext(Store);
@@ -16,6 +17,7 @@ function Dashboard() {
     let [orders, setOrders] = useState([]);
     let [completedOrder, setCompletedOrder] = useState([]);
     let [employees, setEmployees] = useState([]);
+    const [cookies, setCookie] = useCookies(['akili']);
 
     useEffect(() => {
         loadOrders();

@@ -41,3 +41,8 @@
     cursor: pointer;
     border: 1px black solid;
 }
+
+#edit:hover {
+    cursor: pointer;
+    border: 1px solid #70bfad;
+}

@@ -7,42 +7,38 @@ import { Store } from "../context/store";
 import { useParams } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
 
-function Employess() {
+function Vendors() {
     let store = useContext(Store);
-    let [employeeUrl] = store.employee;
+    let [vendorUrl] = store.vendor;
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
+    const [show1, setShow1] = useState(false);
+    const handleClose = () => { setShow(false); setShow1(false) };
     const handleShow = () => setShow(true);
     let { id } = useParams();
-    let [employees, setEmployees] = useState([]);
-    let [email, setEmail] = useState("");
-    let [password, setPassword] = useState("");
+    let [vendors, setVendors] = useState([]);
     let [phone, setPhone] = useState("");
     let [name, setName] = useState("");
-    let [username, setUsername] = useState("");
     let [address, setAddress] = useState("");
-    let [salary, setSalary] = useState(0);
-    let [position, setPosition] = useState("");
     let [loading, setLoading] = useState(false);
     let [error, setError] = useState("");
+    let [errorMsg, setErrorMsg] = useState("");
+    let [vendorId, setVendorId] = useState("");
 
     useEffect(() => {
-        loadEmployees();
+        loadVendors();
     }, []);
 
-    let loadEmployees = () => {
-        let url = `${employeeUrl}/employees/${id}`;
+    let loadVendors = () => {
+        let url = `${vendorUrl}/vendors/${id}`;
         fetch(url)
             .then((e) => e.json())
             .then((res) => {
-                setEmployees(res.employees)
+                setVendors(res.vendors)
             });
     };
 
-    let createEmployee = async () => {
-        if (password.trim() === "" || email.trim() === "" || name.trim() === ""
-            || phone.trim() === "" || salary.trim() === "" || address.trim() === "" || position.trim() === ""
-            || username.trim() === ""
+    let createVendor = async () => {
+        if (name.trim() === "" || phone.trim() === "" || address.trim() === ""
 
         ) {
             setError("Please fill missing field(s)!!!");
@@ -53,33 +49,10 @@ function Employess() {
             }, 3000);
             return;
         }
-        if (Number(salary) === 0) {
-            setError("Salary cannot be Zero or Void");
-            const t1 = setTimeout(() => {
-                setSalary(Number(null))
-                setError("")
-                setLoading(false);
-                clearTimeout(t1);
-            }, 3000);
-            return;
-        }
-        if (password.length < 8) {
-            setError("Password must be at least 8 characters")
-            const t1 = setTimeout(() => {
-                setError("")
-                setLoading(false);
-                clearTimeout(t1);
-            }, 3000);
-            return;
-        }
         setLoading(true);
-        let url = employeeUrl + "/employee";
+        let url = vendorUrl + "/vendor";
 
-        let data = {
-            email, password, phone,
-            name, username, address,
-            salary, position, businessId: id
-        };
+        let data = { phone, name, address, businessId: id };
 
         const response = await fetch(url, {
             headers: {
@@ -90,29 +63,19 @@ function Employess() {
         });
 
         if (response.status === 200) {
+            loadVendors()
             await response.json()
-            setError("Employee Added");
+            setError("Vendor Added");
             const t1 = setTimeout(() => {
                 setLoading(false);
                 setError("");
                 clearTimeout(t1);
             }, 2000);
             setName("")
-            setPassword("")
             setAddress("")
-            setEmail("")
             setPhone("")
-            setUsername("")
-            setPosition("")
-            setSalary(0)
         } else {
-            let err = await response.json()
-            if (err.message === "Email already registered") {
-                setError(err.message)
-            } else {
-                setError("Error Occurred")
-            }
-
+            setError("Error Occurred")
             const t1 = setTimeout(() => {
                 setError("")
                 setLoading(false)
@@ -121,6 +84,78 @@ function Employess() {
         }
 
 
+    };
+
+    let editModal = (e) => {
+        setShow1(true)
+        handleShow()
+        setName(e.name)
+        setPhone(e.phone)
+        setAddress(e.address)
+        setVendorId(e.id)
+    };
+
+    let editVendor = async () => {
+        let url = `${vendorUrl}/vendor/${vendorId}`;
+        let data = {
+            name,
+            phone,
+            address
+        }
+        setLoading(true);
+        const response = await fetch(url, {
+            headers: {
+                "content-type": "application/json"
+            },
+            method: "PUT",
+            body: JSON.stringify(data)
+        });
+        if (response.status === 200) {
+            loadVendors()
+            setError("Vendor Updated!!!")
+            const t1 = await setTimeout(() => {
+                setError("")
+                setLoading(false)
+                handleClose()
+                clearTimeout(t1);
+            }, 2000)
+            setAddress("")
+            setPhone("")
+            setName("")
+        } else {
+            setError("Vendor Not Updated!!!")
+            const t1 = await setTimeout(() => {
+                setError("")
+                setLoading(false)
+                clearTimeout(t1);
+            }, 2000)
+        }
+    };
+
+    let deleteVendor = async (e) => {
+
+        let url = `${vendorUrl}/vendor/${e}`;
+
+        const response = window.confirm("Are you sure?") ? await fetch(url, {
+            headers: {
+                "content-type": "application/json"
+            },
+            method: "DELETE"
+        }) : console.log("");
+        if (response.status === 200) {
+            loadVendors()
+            setErrorMsg("Vendor Deleted!!!")
+            const t1 = await setTimeout(() => {
+                setErrorMsg("")
+                clearTimeout(t1);
+            }, 2000)
+        } else {
+            setErrorMsg("Vendor Not Deleted!!!")
+            const t1 = await setTimeout(() => {
+                setErrorMsg("")
+                clearTimeout(t1);
+            }, 2000)
+        }
     };
     return <>
         <Row>
@@ -133,12 +168,12 @@ function Employess() {
                     {/* header section */}
                     <div className="row page-titles">
                         <div className="col-md-5 align-self-center">
-                            <h3>Employess</h3>
+                            <h3>Vendors</h3>
                         </div>
                         <div className="col-md-7 align-items-center">
                             <ol className="breadcrumb">
                                 <li className="breadcrumb-item">My Business</li>
-                                <li className="breadcrumb-item active">Employess</li>
+                                <li className="breadcrumb-item active">Vendors</li>
                             </ol>
                         </div>
                     </div>
@@ -146,7 +181,7 @@ function Employess() {
                     <div className="pe-3">
 
                         <div className="mt-2 mb-3">
-                            <button style={{ background: "white" }} className="create-btn-ah" onClick={handleShow}> Employee +</button>
+                            <button style={{ background: "white" }} className="create-btn-ah" onClick={handleShow}> Vendor +</button>
                             <Modal
                                 show={show}
                                 onHide={handleClose}
@@ -156,7 +191,7 @@ function Employess() {
                             >
                                 <Modal.Header closeButton
                                     style={{ padding: "10px 50px" }} >
-                                    <Modal.Title>Add a New Employee ?</Modal.Title>
+                                    <Modal.Title>Add a New Vendor ?</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body style={{ padding: "15px 50px" }}>
                                     <p id="error">{error}</p>
@@ -167,31 +202,19 @@ function Employess() {
                                                     <div className="form-group col-md-6">
                                                         <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="exampleInputEmail1" placeholder="Name" />
                                                     </div>
-                                                    <div className="form-group col-md-6">
-                                                        <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" className="form-control" id="exampleInputEmail7" placeholder="Username" />
-                                                    </div>
                                                     <div className="form-group  col-md-6">
                                                         <input value={address} onChange={(e) => setAddress(e.target.value)} type="address" className="form-control" id="exampleInputEmai1" placeholder="Address" />
                                                     </div>
                                                     <div className="form-group  col-md-6">
-                                                        <input value={position} onChange={(e) => setPosition(e.target.value)} type="text" className="form-control" id="exampleInputPassword1" placeholder="Role" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
-                                                        <input value={salary} onChange={(e) => setSalary(e.target.value)} type="number" className="form-control" id="exampleInputNumber1" placeholder="Salary" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
                                                         <input value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" className="form-control" id="exampleInputPassword1" placeholder="Phone Number" />
                                                     </div>
-                                                    <div className="form-group  col-md-6">
-                                                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" id="exampleInputEmail3" placeholder=" Email" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
-                                                        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" id="exampleInputPassword2" placeholder=" Password" />
-                                                    </div>
                                                 </div>
-                                                <button onClick={() => createEmployee()} style={{ background: "black", color: "white", fontWeight: "800" }}
-                                                    type="submit" className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Submit"}
-                                                </button>
+                                                {show1 ? <button
+                                                    type="submit" onClick={() => editVendor(vendorId)} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Update"}
+                                                </button> :
+                                                    <button
+                                                        type="submit" onClick={() => createVendor()} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Submit"}
+                                                    </button>}
                                             </div>
                                         </div>
                                     </div>
@@ -200,16 +223,14 @@ function Employess() {
                             </Modal>
                         </div>
 
-                        {/* Employees section */}
+                        {/* Vendors section */}
                         <div className="row hero">
-                            {employees.length === 0 ? <div>No employees Added</div> :
-                                employees.map((e, i) => {
+                            <h2 className="text-center">{errorMsg}</h2>
+                            {vendors.length === 0 ? <div>No vendors Added</div> :
+                                vendors.map((e, i) => {
                                     return <div className="col-md-6 col-lg-6 col-xlg-4" key={i}>
                                         <div className="card card-body">
                                             <div className="row">
-                                                <div className="col-md-4 col-lg-3 text-center">
-                                                    <a href="app-contact-detail.html"><img src={e.image} alt="user" className="img-circle img-responsive" /></a>
-                                                </div>
                                                 <div className="col-md-8 col-lg-9">
                                                     <h3 className="box-title m-b-0">{e.name}</h3> <small>{e.position}</small>
                                                     <address>
@@ -218,6 +239,16 @@ function Employess() {
                                                         <br />
                                                         <abbr title="Phone"></abbr> {e.phone}
                                                     </address>
+                                                </div>
+                                                <div className="col-md-4 col-lg-3 text-right">
+                                                    <div><a onClick={() => editModal(e)} id="edit" className="text-inverse p-r-10"
+                                                        data-toggle="tooltip" title="" data-original-title="Edit"><i
+                                                            className="ti-marker-alt"></i></a>
+                                                        <a onClick={() => deleteVendor(e.id)} id="edit"
+                                                            className="text-inverse" title="" data-toggle="tooltip"
+                                                            data-original-title="Delete"><i className="ti-trash"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -240,4 +271,4 @@ function Employess() {
     </>
 }
 
-export default Employess;
+export default Vendors;

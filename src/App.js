@@ -24,6 +24,8 @@ import Settings from './pages/Settings';
 import Price from './pages/Pricing';
 import Employess from './pages/Employees';
 import { CookiesProvider } from 'react-cookie';
+import Vendors from './pages/Vendors';
+import Sales from './pages/Sales';
 
 function App() {
   return (
@@ -38,14 +40,16 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/products/:id" element={<Catalog />} />
             <Route path="/reset-password" element={<ResetPassword />} />
-            <Route path="/help" element={<HelpCenter />} />
-            <Route path="/faq" element={<Faq />} />
-            <Route path="/suppliers" element={<Suppliers />} />
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/customers-view" element={<CustomersTable />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/help/:id" element={<HelpCenter />} />
+            <Route path="/faq/:id" element={<Faq />} />
+            <Route path="/suppliers/:id" element={<Suppliers />} />
+            <Route path="/customers/:id" element={<Customers />} />
+            <Route path="/customers-view/:id" element={<CustomersTable />} />
+            <Route path="/settings/:id" element={<Settings />} />
             <Route path="/prices" element={<Price />} />
             <Route path="/employees/:id" element={<Employess />} />
+            <Route path="/suppliers/:id" element={<Vendors />} />
+            <Route path="/orders/:id" element={<Sales />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>

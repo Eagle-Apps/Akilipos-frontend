@@ -6,13 +6,16 @@ const StoreContext = ({ children }) => {
     let [productUrl, setProductUrl] = useState('https://akili-product.onrender.com');
     let [employeeUrl, setEmployeeUrl] = useState('https://akili-employee.onrender.com');
     let [orderUrl, setOrderUrl] = useState('https://akili-order.onrender.com');
+    let [vendorUrl, setVendorUrl] = useState('https://akili-vendor.onrender.com');
+    // let [vendorUrl, setVendorUrl] = useState('http://localhost:8008');
 
     let states = {
         userinfo: [user, setUser],
         auth: [authUrl, setAuthUrl],
         product: [productUrl, setProductUrl],
         employee: [employeeUrl, setEmployeeUrl],
-        order: [orderUrl, setOrderUrl]
+        order: [orderUrl, setOrderUrl],
+        vendor: [vendorUrl, setVendorUrl],
     };
     return <Store.Provider value={states}>{children}</Store.Provider>
 }

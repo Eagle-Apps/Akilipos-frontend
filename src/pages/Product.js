@@ -13,11 +13,12 @@ function Catalog() {
     let store = useContext(Store);
     let [productUrl] = store.product;
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
+    const [show1, setShow1] = useState(false);
+    const handleClose = () => { setShow(false); setShow1(false); setLoading(false) };
     const handleShow = () => setShow(true);
     let { id } = useParams();
     let [products, setProducts] = useState([]);
-    // let [, set] = useState("");
+    let [productId, setProductId] = useState("");
     let [loading, setLoading] = useState(false);
     let [error, setError] = useState("");
     let [name, setName] = useState("");
@@ -27,7 +28,8 @@ function Catalog() {
     let [sellingPrice, setSell] = useState(null);
     let [coinValue, setCoin] = useState(null);
     let [quantity, setQty] = useState(null);
-    let [imageUrl, setImage] = useState(null);
+    let [imageUrl, setImage] = useState([]);
+    let [errorMsg, setErrorMsg] = useState("");
     // let [, set] = useState(""); 
     const [cookies, setCookie] = useCookies(['akili']);
 
@@ -44,13 +46,12 @@ function Catalog() {
             });
     };
 
-
-
     let createProduct = async () => {
+        if (imageUrl.length === 0) return (setError('Add Product Image'))
         setLoading(true);
         const formData = new FormData()
         formData.append('name', name)
-        formData.append('cost', costPrice)
+        formData.append('costPrice', costPrice)
         formData.append('description', description)
         formData.append('quantity', quantity)
         formData.append('sellingPrice', sellingPrice)
@@ -78,11 +79,100 @@ function Catalog() {
                 setError("");
                 clearTimeout(t1);
             }, 2000);
+            setName("")
+            setDescp("")
+            setCategory("")
+            setCost(null)
+            setSell(null)
+            setCoin(null)
+            setQty(null)
+            setImage([])
         } else {
             setError("Error Occured")
             const t1 = setTimeout(() => {
                 setLoading(false);
                 setError("");
+                clearTimeout(t1);
+            }, 2000)
+        }
+    };
+
+    let updateProduct = async () => {
+        let url = `${productUrl}/edit-product/${productId}`;
+        let data = {
+            name,
+            description,
+            category,
+            costPrice: Number(costPrice),
+            sellingPrice: Number(sellingPrice),
+            coinValue: Number(coinValue),
+            quantity: Number(quantity),
+            // imageUrl
+        }
+
+        setLoading(true);
+        const response = await fetch(url, {
+            headers: {
+                Authorization: `Bearer ${cookies.akili}`,
+                "content-type": "application/json"
+            },
+            method: "PATCH",
+            body: JSON.stringify(data)
+        });
+
+        console.log(response);
+        if (response.status === 200) {
+            loadProducts()
+            setError("Product Updated!!!")
+            const t1 = await setTimeout(() => {
+                setError("")
+                setLoading(false)
+                handleClose()
+                clearTimeout(t1);
+            }, 2000)
+        } else {
+            setError("Product Not Updated!!!")
+            const t1 = await setTimeout(() => {
+                setError("")
+                setLoading(false)
+                clearTimeout(t1);
+            }, 2000)
+        }
+    };
+
+    let editModal = (e) => {
+        setShow1(true)
+        handleShow()
+        setName(e.name)
+        setDescp(e.description)
+        setCategory(e.category)
+        setCost(e.costPrice)
+        setSell(e.sellingPrice)
+        setCoin(e.coinValue)
+        setQty(e.quantity)
+        setImage(e.imageUrl)
+        setProductId(e._id)
+    };
+
+    let deleteProduct = async (id) => {
+        let url = `${productUrl}/delete-product/${id}`;
+        const response = window.confirm("Are you sure?") ? await fetch(url, {
+            headers: {
+                "content-type": "application/json"
+            },
+            method: "DELETE"
+        }) : console.log("");
+        if (response.status === 200) {
+            loadProducts()
+            setErrorMsg("Product Deleted!!!")
+            const t1 = await setTimeout(() => {
+                setErrorMsg("")
+                clearTimeout(t1);
+            }, 2000)
+        } else {
+            setErrorMsg("Product Not Deleted!!!")
+            const t1 = await setTimeout(() => {
+                setErrorMsg("")
                 clearTimeout(t1);
             }, 2000)
         }
@@ -152,12 +242,16 @@ function Catalog() {
                                                         <input value={coinValue} onChange={(e) => setCoin(e.target.value)} type="number" className="form-control" id="exampleInputEmail3" placeholder="Coin Value" />
                                                     </div>
                                                     <div className="form-group  col-md-6">
-                                                        <input name="imageUrl" multiple onChange={(e) => setImage(e.target.value)} type="file" className="form-control" id="exampleInputPassword2" placeholder="Image" />
+                                                        <input name="imageUrl" multiple onChange={(e) => setImage(e.target.files)} type="file" className="form-control" id="exampleInputPassword2" placeholder="Image" />
                                                     </div>
                                                 </div>
-                                                <button
-                                                    type="submit" onClick={() => createProduct()} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Submit"}
-                                                </button>
+                                                {show1 ? <button
+                                                    type="submit" onClick={() => updateProduct(productId)} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Update"}
+                                                </button> :
+                                                    <button
+                                                        type="submit" onClick={() => createProduct()} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Submit"}
+                                                    </button>}
+
                                             </div>
                                         </div>
                                     </div>
@@ -171,6 +265,7 @@ function Catalog() {
                             <div className="card-header">
                                 <h4 className="card-title m-b-0">Product Overview</h4>
                             </div>
+                            <h2 className="text-center">{errorMsg}</h2>
                             <div className="card-body collapse show">
                                 <div className="table-responsive">
                                     <table className="table product-overview">
@@ -180,7 +275,8 @@ function Catalog() {
                                                 <th>Image</th>
                                                 <th>Quantity</th>
                                                 <th>Date</th>
-                                                <th>Price</th>
+                                                <th>Cost(&#x20A6;)</th>
+                                                <th>Sell(&#x20A6;)</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -199,13 +295,19 @@ function Catalog() {
                                                         <td>{e.quantity}</td>
                                                         <td>{date}</td>
                                                         <td>
-                                                            {e.costPrice}
+                                                            {e.costPrice.toLocaleString()}
                                                         </td>
-                                                        <td><a href="javascript:void(0)" className="text-inverse p-r-10"
+                                                        <td>
+                                                            {e.sellingPrice.toLocaleString()}
+                                                        </td>
+                                                        <td><a onClick={() => editModal(e)} id="edit" className="text-inverse p-r-10"
                                                             data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                                className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
-                                                                    className="text-inverse" title="" data-toggle="tooltip"
-                                                                    data-original-title="Delete"><i className="ti-trash"></i></a></td>
+                                                                className="ti-marker-alt"></i></a>
+                                                            <a onClick={() => deleteProduct(e._id)} id="edit"
+                                                                className="text-inverse" title="" data-toggle="tooltip"
+                                                                data-original-title="Delete"><i className="ti-trash"></i>
+                                                            </a>
+                                                        </td>
                                                     </tr>)
                                                 })}
 

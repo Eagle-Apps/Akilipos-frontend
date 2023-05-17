@@ -1,5 +1,5 @@
 import Nav from "./Nav";
-import Topbar from "./Topbar";
+// import Topbar from "./Topbar";
 import Footer from "./Footer";
 
 function NotFound() {
@@ -8,7 +8,7 @@ function NotFound() {
       <Nav />
       <div id="content-wrapper" className="d-flex flex-column">
         <div id="content">
-          <Topbar />
+          {/* <Topbar /> */}
           <div className="container-fluid">
             <h1>Page Not Found</h1>
           </div>

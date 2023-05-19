@@ -42,14 +42,14 @@ function App() {
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/help/:id" element={<HelpCenter />} />
             <Route path="/faq/:id" element={<Faq />} />
-            <Route path="/suppliers/:id" element={<Suppliers />} />
+            {/* <Route path="/suppliers/:id" element={<Suppliers />} /> */}
             <Route path="/customers/:id" element={<Customers />} />
             <Route path="/customers-view/:id" element={<CustomersTable />} />
             <Route path="/settings/:id" element={<Settings />} />
             <Route path="/prices" element={<Price />} />
             <Route path="/employees/:id" element={<Employess />} />
             <Route path="/suppliers/:id" element={<Vendors />} />
-            <Route path="/orders/:id" element={<Sales />} />
+            <Route path="/sales/:id" element={<Sales />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>

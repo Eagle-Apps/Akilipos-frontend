@@ -142,9 +142,9 @@ function NavBar(props) {
               </Nav.Item>
 
               <Nav.Item id={props.class4}>
-                <Link to={`/orders/${id}`} style={{ display: "flex", color: props.color4, alignItems: "center" }}>
+                <Link to={`/sales/${id}`} style={{ display: "flex", color: props.color4, alignItems: "center" }}>
                   <Icon icon="material-symbols:order-approve-outline-sharp" width="24px" height="24px" className="me-3" />
-                  Orders
+                  Sales
                 </Link>
               </Nav.Item>
 

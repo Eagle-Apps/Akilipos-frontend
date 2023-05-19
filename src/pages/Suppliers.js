@@ -80,7 +80,7 @@ function Suppliers() {
 
                         {/* vendor section */}
                         <div className="row">
-                            <div className="col-md-6 col-lg-6 col-xlg-4">
+                            {/* <div className="col-md-6 col-lg-6 col-xlg-4">
                                 <div className="card card-body">
                                     <div className="row">
                                         <div className="col-md-4 col-lg-3 text-center">
@@ -97,7 +97,7 @@ function Suppliers() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
 
 
                             <div className="col-md-6 col-lg-6 col-xlg-4">

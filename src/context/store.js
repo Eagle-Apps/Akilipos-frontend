@@ -6,6 +6,7 @@ const StoreContext = ({ children }) => {
     let [productUrl, setProductUrl] = useState('https://akili-product.onrender.com');
     let [employeeUrl, setEmployeeUrl] = useState('https://akili-employee.onrender.com');
     let [orderUrl, setOrderUrl] = useState('https://akili-order.onrender.com');
+    // let [orderUrl, setOrderUrl] = useState('http://localhost:8002');
     let [vendorUrl, setVendorUrl] = useState('https://akili-vendor.onrender.com');
     // let [vendorUrl, setVendorUrl] = useState('http://localhost:8008');
 

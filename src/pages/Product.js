@@ -283,9 +283,9 @@ function Catalog() {
                                         <tbody>
                                             {products.length === 0 ? <div>No Product found</div> :
                                                 products.map((e, i) => {
-                                                    let year = new Date(e.createdAt).getFullYear();
-                                                    let month = new Date(e.createdAt).getMonth() + 1;
-                                                    let day = new Date(e.createdAt).getDate();
+                                                    let year = new Date(e.updatedAt).getFullYear();
+                                                    let month = new Date(e.updatedAt).getMonth() + 1;
+                                                    let day = new Date(e.updatedAt).getDate();
                                                     let date = `${day}/${month}/${year}`;
                                                     return (<tr>
                                                         <td style={{ textTransform: "capitalize" }}>{e.name}</td>

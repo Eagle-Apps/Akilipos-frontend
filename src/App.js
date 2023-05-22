@@ -26,30 +26,40 @@ import Employess from './pages/Employees';
 import { CookiesProvider } from 'react-cookie';
 import Vendors from './pages/Vendors';
 import Sales from './pages/Sales';
+import Protected from './components/Protected';
+import { useCookies } from 'react-cookie';
+import { useParams } from "react-router-dom";
 
 function App() {
+  let { id } = useParams;
+  const [cookies, setCookie] = useCookies(['akili', 'akiliAdmin']);
+  let isLoggedIn = true;
+  let isAdmin = true;
+  // console.log(id)
+  // cookies.akili !== null ? isLoggedIn = true : isLoggedIn = false;
+  // cookies.akiliAdmin ? isAdmin = true : isAdmin = false;
+
   return (
     <CookiesProvider>
       <StoreContext>
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/dashboard/:id" element={<Dashboard />} />
-            <Route path="/sample" element={<Sample />} />
+            <Route path="/dashboard/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Dashboard /></Protected>} />
+            {/* <Route path="/sample" element={<Sample />} /> */}
             <Route path="/register" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/products/:id" element={<Catalog />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
-            <Route path="/help/:id" element={<HelpCenter />} />
+            <Route path="/products/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Catalog /></Protected>} />
+            <Route path="/reset-password" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><ResetPassword /></Protected>} />
+            <Route path="/help/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><HelpCenter /></Protected>} />
             <Route path="/faq/:id" element={<Faq />} />
-            {/* <Route path="/suppliers/:id" element={<Suppliers />} /> */}
-            <Route path="/customers/:id" element={<Customers />} />
-            <Route path="/customers-view/:id" element={<CustomersTable />} />
-            <Route path="/settings/:id" element={<Settings />} />
+            <Route path="/customers/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Customers /></Protected>} />
+            <Route path="/customers-view/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><CustomersTable /></Protected>} />
+            <Route path="/settings/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Settings /></Protected>} />
             <Route path="/prices" element={<Price />} />
-            <Route path="/employees/:id" element={<Employess />} />
-            <Route path="/suppliers/:id" element={<Vendors />} />
-            <Route path="/sales/:id" element={<Sales />} />
+            <Route path="/employees/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Employess /></Protected>} />
+            <Route path="/suppliers/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Vendors /></Protected>} />
+            <Route path="/sales/:id" element={<Protected id={id} isLoggedIn={isLoggedIn}><Sales /></Protected>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>

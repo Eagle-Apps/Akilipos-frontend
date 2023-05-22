@@ -14,7 +14,7 @@ function Login() {
     let [loading, setLoading] = useState(false);
     let [error, setError] = useState("");
     let [loginMode, setLoginMode] = useState(true);
-    const [cookies, setCookie] = useCookies(['akili']);
+    const [cookies, setCookie] = useCookies(['akili', 'akili-admin']);
 
     let login = async () => {
         if (password.trim() === "" || email.trim() === "") {
@@ -41,8 +41,10 @@ function Login() {
 
         if (response.status === 200) {
             let res = await response.json();
-            let path = `/dashboard/${res.id}`
+            let path;
+            loginMode ? path = `/sales/${res.id}` : path = `/dashboard/${res.id}`
             setCookie('akili', res.token, { path: '/' })
+            loginMode ? setCookie('akili-admin', false, { path: '/' }) : setCookie('akili-admin', true, { path: '/' })
             const t1 = setTimeout(() => {
                 setLoading(false);
                 setError("");

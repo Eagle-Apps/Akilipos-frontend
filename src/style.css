@@ -48,6 +48,7 @@
 #activeBar {
     background-color: #70bfad;
     color: white;
+    border-radius: 5px;
 }
 
 .refresh:hover {

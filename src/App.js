@@ -31,13 +31,14 @@ import { useCookies } from 'react-cookie';
 import { useParams } from "react-router-dom";
 
 function App() {
-  let { id } = useParams;
+  let { id } = useParams();
   const [cookies, setCookie] = useCookies(['akili', 'akiliAdmin']);
   let isLoggedIn = true;
   let isAdmin = true;
   // console.log(id)
   // cookies.akili !== null ? isLoggedIn = true : isLoggedIn = false;
   // cookies.akiliAdmin ? isAdmin = true : isAdmin = false;
+  console.log(id)
 
   return (
     <CookiesProvider>
@@ -59,7 +60,7 @@ function App() {
             <Route path="/prices" element={<Price />} />
             <Route path="/employees/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Employess /></Protected>} />
             <Route path="/suppliers/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Vendors /></Protected>} />
-            <Route path="/sales/:id" element={<Protected id={id} isLoggedIn={isLoggedIn}><Sales /></Protected>} />
+            <Route path="/sales/:id" element={<Sales />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>

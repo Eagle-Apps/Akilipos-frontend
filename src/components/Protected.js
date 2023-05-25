@@ -1,15 +1,14 @@
-import { Navigate, useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-// let location=useLocation();
-// console.log(location);
+import { Navigate } from "react-router-dom";
 
-const Protected = ({ isLoggedIn, isAdmin, id, children }) => {
-    if (!isLoggedIn) {
+
+const Protected = (props) => {
+    console.log(props.id);
+    if (!props.isLoggedIn) {
         return <Navigate to="/" replace />;
-    } else if (isLoggedIn && !isAdmin) {
-        return <Navigate to={`/sales/${id}`} replace />;
+    } else if (props.isLoggedIn && !props.isAdmin) {
+        return <Navigate to={'/sales/' + props.id} replace />;
     }
 
-    return children;
+    return props.children;
 };
 export default Protected;

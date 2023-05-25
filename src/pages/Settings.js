@@ -1,14 +1,75 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Col, Row } from "react-bootstrap";
 import NavBar from "../components/Nav";
 import Footer from "../components/Footer";
 import Aos from "aos";
 import 'aos/dist/aos.css';
+import { Store } from "../context/store";
+import { useParams } from "react-router-dom";
 
 function Settings() {
+    let store = useContext(Store);
+    let [authUrl] = store.auth;
+    let { id } = useParams();
+    let [businessName, setBusinessName] = useState("");
+    let [email, setEmail] = useState("");
+    let [address, setAddress] = useState("");
+    let [phone, setPhone] = useState("");
+    let [userName, setUsername] = useState("");
+    let [password, setPassword] = useState("");
+    let [coinName, setCoinName] = useState("");
+    let [coinValue, setCoinValue] = useState("");
+    let [error, setError] = useState("");
+
     useEffect(() => {
-        Aos.init({ duration: 1000 })
+        Aos.init({ duration: 1000 });
+        loadBusiness();
     }, []);
+
+    let loadBusiness = () => {
+        let url = `${authUrl}/fetchUser/${id}`;
+        fetch(url)
+            .then((e) => e.json())
+            .then((res) => {
+                setBusinessName(res.profile.businessName)
+                setEmail(res.profile.email)
+                setAddress(res.profile.address)
+                setUsername(res.profile.userName)
+                setPassword(res.profile.password)
+                setCoinName(res.profile.coinName)
+                setCoinValue(res.profile.coinValue)
+            });
+    };
+
+    let updateBusiness = async () => {
+        let url = `${authUrl}/editprofile`;
+        console.log(url);
+        let data = {
+            businessName, email, address, password, phone, userName, coinName, coinValue
+        };
+        const response = await fetch(url, {
+            headers: {
+                // Authorization: `Bearer ${cookies.akili}`,
+                "content-type": "application/json"
+            },
+            method: "PATCH",
+            body: JSON.stringify(data)
+        });
+        console.log(response);
+        if (response.status === 200) {
+            setError("Business Updated!!!")
+            const t1 = await setTimeout(() => {
+                setError("")
+                clearTimeout(t1);
+            }, 2000)
+        } else {
+            setError("Business Not Updated!!!")
+            const t1 = await setTimeout(() => {
+                setError("")
+                clearTimeout(t1);
+            }, 2000)
+        }
+    };
 
     return <>
         <Row>
@@ -30,80 +91,70 @@ function Settings() {
                         data-aos-once="true"
                         data-aos-easing="ease-out-sine">
                         <div className="card-body">
-                            <form className="form-horizontal form-material">
+                            <h3 className="text-center">{error}</h3>
+                            <div className="form-horizontal form-material">
                                 <div className="form-group">
                                     <label className="col-md-12">Business Name</label>
                                     <div className="col-md-12">
-                                        <input type="text" placeholder="Business Nig. Ltd" className="form-control form-control-line" />
+                                        <input type="text" placeholder="Business Nig. Ltd" className="form-control form-control-line" value={businessName} onChange={(e) => setBusinessName(e.target.value)} />
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label for="example-email" className="col-md-12">Email</label>
                                     <div className="col-md-12">
-                                        <input type="email" placeholder="business@gmail.com" className="form-control form-control-line" name="example-email" id="example-email" />
+                                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="business@gmail.com" className="form-control form-control-line" name="example-email" id="example-email" />
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label className="col-md-12">Password</label>
                                     <div className="col-md-12">
-                                        <input type="password" value="password" className="form-control form-control-line" />
+                                        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control form-control-line" />
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label className="col-md-12">Phone No</label>
                                     <div className="col-md-12">
-                                        <input type="text" placeholder="123 456 7890" className="form-control form-control-line" />
+                                        <input value={phone} onChange={(e) => setPhone(e.target.value)} type="text" placeholder="123 456 7890" className="form-control form-control-line" />
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label className="col-md-12">Address</label>
                                     <div className="col-md-12">
-                                        <input type="text" placeholder="Street Number, Street, City, State, Country" className="form-control form-control-line" />
+                                        <input value={address} onChange={(e) => setAddress(e.target.value)} type="address" placeholder="Street Number, Street, City, State, Country" className="form-control form-control-line" />
                                     </div>
                                 </div>
 
                                 <div className="form-group">
+                                    <label className="col-md-12">Username</label>
+                                    <div className="col-md-12">
+                                        <input value={userName} onChange={(e) => setUsername(e.target.value)} type="address" placeholder="Street Number, Street, City, State, Country" className="form-control form-control-line" />
+                                    </div>
+                                </div>
+
+                                {/* <div className="form-group">
                                     <label className="col-md-12">Logo</label>
                                     <div className="col-md-12">
                                         <input type="file" className="form-control form-control-line" />
-                                    </div>
-                                </div>
-                                {/* <div className="form-group">
-                                    <label className="col-md-12">Message</label>
-                                    <div className="col-md-12">
-                                        <textarea rows="5" className="form-control form-control-line"></textarea>
-                                    </div>
-                                </div> */}
-                                {/* <div className="form-group">
-                                    <label className="col-sm-12">Select Country</label>
-                                    <div className="col-sm-12">
-                                        <select className="form-control form-control-line">
-                                            <option>London</option>
-                                            <option>India</option>
-                                            <option>Usa</option>
-                                            <option>Canada</option>
-                                            <option>Thailand</option>
-                                        </select>
                                     </div>
                                 </div> */}
                                 <div className="form-group">
                                     <label className="col-md-12">Coin Name</label>
                                     <div className="col-md-12">
-                                        <input type="text" placeholder="Thank You Coin" className="form-control form-control-line" />
+                                        <input value={coinName} onChange={(e) => setCoinName(e.target.value)} type="text" placeholder="Thank You Coin" className="form-control form-control-line" />
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label className="col-md-12">Coin Value</label>
                                     <div className="col-md-12">
-                                        <input type="Number" placeholder="100" className="form-control form-control-line" />
+                                        <input value={coinValue} onChange={(e) => setCoinValue(e.target.value)} type="Number" placeholder="100" className="form-control form-control-line" />
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <div className="col-sm-12">
-                                        <button className="btn btn-success">Update</button>
+                                        <button onClick={() => updateBusiness()} className="btn btn-success">Update</button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
 

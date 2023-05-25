@@ -44,28 +44,6 @@ function NavBar(props) {
 
   };
 
-  let loginUser = () => {
-    let data = { email, password }
-    let url = mainUrl + "/login";
-    fetch(url, {
-      headers: {
-        "content-type": "application/json"
-      },
-      method: "POST",
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(result => {
-        // setUser(result)
-        localStorage.setItem("afriqId", result.user._id)
-      })
-    history('/')
-    setEmail("");
-    setPassword("");
-    handleClose();
-  };
-
-
   let handleLogout = () => {
     let url = mainUrl + "/logout";
     fetch(url, {
@@ -77,10 +55,6 @@ function NavBar(props) {
       .then(localStorage.removeItem("afriqId"))
       .then(history('/'))
     userCheck();
-  };
-
-  let handleShowPassword = () => {
-    showPassword === 'password' ? setShowPassword('text') : setShowPassword('password')
   };
 
   return <>
@@ -155,8 +129,8 @@ function NavBar(props) {
                 </Link>
               </Nav.Item>
 
-              <Nav.Item id={props.class4}>
-                <Link to={`/reports/${id}`} style={{ display: "flex", color: props.color4, alignItems: "center" }}>
+              <Nav.Item id={props.class44}>
+                <Link to={`/reports/${id}`} style={{ display: "flex", color: props.color44, alignItems: "center" }}>
                   <Icon icon="ic:outline-assessment" width="24px" height="24px" className="me-3" />
                   Reports & Analysis
                 </Link>

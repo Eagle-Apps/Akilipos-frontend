@@ -88,7 +88,7 @@ function Vendors() {
 
     let editModal = (e) => {
         setShow1(true)
-        handleShow()
+        handleShow();
         setName(e.name)
         setPhone(e.phone)
         setAddress(e.address)

@@ -53,7 +53,7 @@ function App() {
             <Route path="/products/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Catalog /></Protected>} />
             <Route path="/reset-password" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><ResetPassword /></Protected>} />
             <Route path="/help/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><HelpCenter /></Protected>} />
-            <Route path="/faq/:id" element={<Faq />} />
+            <Route path="/faq" element={<Faq />} />
             <Route path="/customers/:id" element={<Customers />} />
             <Route path="/customers-view/:id" element={<CustomersTable />} />
             {/* <Route path="/customers-view/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><CustomersTable /></Protected>} /> */}

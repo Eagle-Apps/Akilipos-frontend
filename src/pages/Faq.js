@@ -77,8 +77,14 @@ function Faq() {
 
         }
     ]);
-    let changeView = (e) => {
-        alert(1)
+    let [hide, setHide] = useState("");
+
+    let mobileView = () => {
+        if (hide === "") {
+            setHide("teleport-show");
+        } else {
+            setHide("");
+        }
     }
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -87,37 +93,84 @@ function Faq() {
 
         <Container fluid style={{ background: "white", minHeight: "100vh" }}>
             <Container>
-                <div className="home-topbar flex px-4" style={{
-                    justifyContent: "space-between", background: "black", alignItems: "center", height: "50px", color: "white",
-                    fontWeight: "600", fontSize: "20px"
-                }}>    <Link to="/">
-                        <div className="logo" style={{ width: "150px" }}>
-
-                            <img id="logo" src={logo} alt="akili-logo" />
-                            <p style={{ color: "white" }}>AKILI POS</p>
-
-
-                        </div>  </Link>
-                    <div>PRODUCTS</div>
-                    <div>
-                        <a href="/#about">
-                            ABOUT
-                        </a>
-                    </div>
-                    <div>
-                        <Link to="/prices">
-                            PRICE
+                <div data-role="Header" className={`header-header`}>
+                    <div className="header-container">
+                        <Link to="/" className="header-navlink">
+                            <div className="logo" style={{ width: "150px" }}>
+                                <img id="logo" src={logo} alt="akili-logo" />
+                                <p style={{ color: "white" }}>AKILI POS</p>
+                            </div>
                         </Link>
                     </div>
-                    <div>
-                        <Link to="/faq">
-                            FAQ
-                        </Link>
+                    <div data-role="BurgerMenu" className="header-burger-menu">
+                        <svg viewBox="0 0 1024 1024" className="header-icon07" onClick={() => mobileView()}>
+                            <path
+                                d="M128 256h768v86h-768v-86zM128 554v-84h768v84h-768zM128 768v-86h768v86h-768z"
+                                className=""
+                            ></path>
+                        </svg>
                     </div>
-                    <div>
-                        <Link to="/login">
-                            LOGIN
-                        </Link>
+                    <div className="header-container3 home-topbar">
+                        <div>
+                            <a href="/#about">
+                                ABOUT
+                            </a>
+                        </div>
+                        <div>
+                            <Link to="/prices">
+                                PRICE
+                            </Link>
+                        </div>
+                        <div>
+                            <Link to="/faq">
+                                FAQ
+                            </Link>
+                        </div>
+                        <div>
+                            <Link to="/login">
+                                LOGIN
+                            </Link>
+                        </div>
+                    </div>
+                    <div data-role="MobileMenu" className={`header-mobile-menu ${hide}`}>
+                        <div className="header-top">
+                            <Link to="/" className="header-navlink3">
+                                <div className="logo" style={{ width: "150px" }}>
+                                    <img id="logo" src={logo} alt="akili-logo" />
+                                    <p style={{ color: "white" }}>AKILI POS</p>
+                                </div>
+                            </Link>
+                            <div data-role="CloseMobileMenu" className="header-close-menu">
+                                <svg viewBox="0 0 1024 1024" className="header-icon15" onClick={() => setHide("")}>
+                                    <path
+                                        d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
+                                        className=""
+                                    ></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div className="header-mid">
+                            <div>
+                                <a href="/#about">
+                                    ABOUT
+                                </a>
+                            </div>
+                            <div>
+                                <Link to="/prices">
+                                    PRICE
+                                </Link>
+                            </div>
+                            <div>
+                                <Link to="/faq">
+                                    FAQ
+                                </Link>
+                            </div>
+                            <div>
+                                <Link to="/login">
+                                    LOGIN
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

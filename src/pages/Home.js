@@ -3,7 +3,10 @@ import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../components/Footer";
 import logo from "../assets/images/akili.png";
 import { Link } from "react-router-dom";
-import Img1 from "../assets/images/bg-biz.jpg"
+import Img1 from "../assets/images/bg-biz.jpg";
+import Img2 from "../assets/images/bg-woman.jpg";
+import Img3 from "../assets/images/5.jpg";
+import Carousel from 'react-bootstrap/Carousel';
 
 function Home(props) {
     let [hide, setHide] = useState("");
@@ -102,7 +105,76 @@ function Home(props) {
                 </div>
 
                 <Row className="business">
-                    <Col md="7">
+                    <Carousel fade>
+                        <Carousel.Item>
+                            <Row>
+                                <Col md="7">
+                                    <div>
+                                        <h3>Simple banking & bookkeeping for your micro business</h3>
+                                        <p>Get an Instant Business Bank Account, Simple Bookkeeping, Send Invoices & Receipts, and get an E-commerce website, all in one FREE app!</p>
+                                    </div>
+                                </Col>
+                                <Col md="5">
+                                    <img src={Img1} alt="business" />
+                                </Col>
+                            </Row>
+                        </Carousel.Item>
+
+                        <Carousel.Item>
+                            <Row>
+                                <Col md="7">
+                                    <div>
+                                        <h3> Stay organized, track transactions.</h3>
+                                        <p>Streamline your micro business finances with our simple banking and bookkeeping solutions  and make informed decisions effortlessly.</p>
+                                    </div>
+                                </Col>
+                                <Col md="5">
+                                    <img src={Img2} alt="business" />
+                                </Col>
+                            </Row>
+                        </Carousel.Item>
+
+                        <Carousel.Item>
+                            <Row>
+                                <Col md="7">
+                                    <div>
+                                        <h3>Start managing your finances with ease and precision.</h3>
+                                        <p>Let our simple banking and bookkeeping tools be your trusted companion on your micro business journey.</p>
+                                    </div>
+                                </Col>
+                                <Col md="5">
+                                    <img src={Img3} alt="business" />
+                                </Col>
+                            </Row>
+                        </Carousel.Item>
+                        {/* <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="holder.js/800x400?text=Second slide&bg=282c34"
+                                alt="Second slide"
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Second slide label</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="holder.js/800x400?text=Third slide&bg=20232a"
+                                alt="Third slide"
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Third slide label</h3>
+                                <p>
+                                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                                </p>
+                            </Carousel.Caption>
+                        </Carousel.Item> */}
+                    </Carousel>
+                    {/* <Col md="7">
                         <div>
                             <h3>Simple banking & bookkeeping for your micro business</h3>
                             <p>Get an Instant Business Bank Account, Simple Bookkeeping, Send Invoices & Receipts, and get an E-commerce website, all in one FREE app!</p>
@@ -110,7 +182,7 @@ function Home(props) {
                     </Col>
                     <Col md="5">
                         <img src={Img1} alt="business" />
-                    </Col>
+                    </Col> */}
                 </Row>
 
                 <Row>

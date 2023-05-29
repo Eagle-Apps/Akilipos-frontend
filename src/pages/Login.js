@@ -29,7 +29,7 @@ function Login() {
         setLoading(true);
         let url;
         loginMode ? url = employeeUrl + "/login" : url = auth + "/login";
-
+        console.log(url)
         let data = { email, password };
         const response = await fetch(url, {
             headers: {

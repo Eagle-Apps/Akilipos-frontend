@@ -7,10 +7,12 @@ const StoreContext = ({ children }) => {
     let [employeeUrl, setEmployeeUrl] = useState('https://akili-employee.onrender.com');
     let [orderUrl, setOrderUrl] = useState('https://akili-order.onrender.com');
     let [vendorUrl, setVendorUrl] = useState('https://akili-vendor.onrender.com');
-    let [customerUrl, setCustomerUrl] = useState('http://localhost:8005');
+    let [customerUrl, setCustomerUrl] = useState('https://akili-users-jjkf.onrender.com');
     let [messageUrl, setMessageUrl] = useState('https://akili-messaging.onrender.com');
+    
     // let [vendorUrl, setVendorUrl] = useState('http://localhost:8008');
     // let [orderUrl, setOrderUrl] = useState('http://localhost:8002');
+    // let [customerUrl, setCustomerUrl] = useState('http://localhost:8005');
 
     let states = {
         userinfo: [user, setUser],

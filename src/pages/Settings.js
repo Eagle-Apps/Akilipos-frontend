@@ -12,7 +12,6 @@ function Settings() {
     let [authUrl] = store.auth;
     let { id } = useParams();
     let [businessName, setBusinessName] = useState("");
-    let [email, setEmail] = useState("");
     let [address, setAddress] = useState("");
     let [phone, setPhone] = useState("");
     let [userName, setUsername] = useState("");
@@ -32,21 +31,21 @@ function Settings() {
             .then((e) => e.json())
             .then((res) => {
                 setBusinessName(res.profile.businessName)
-                setEmail(res.profile.email)
                 setAddress(res.profile.address)
                 setUsername(res.profile.userName)
                 setPassword(res.profile.password)
                 setCoinName(res.profile.coinName)
                 setCoinValue(res.profile.coinValue)
+                setPhone(res.profile.phone)
             });
     };
 
     let updateBusiness = async () => {
-        let url = `${authUrl}/editprofile`;
-        console.log(url);
+        let url = `${authUrl}/edit-business/${id}`;
         let data = {
-            businessName, email, address, password, phone, userName, coinName, coinValue
+            businessName,  address, password, phone, userName, coinName, coinValue: +coinValue
         };
+        console.log(data);
         const response = await fetch(url, {
             headers: {
                 // Authorization: `Bearer ${cookies.akili}`,
@@ -55,7 +54,6 @@ function Settings() {
             method: "PATCH",
             body: JSON.stringify(data)
         });
-        console.log(response);
         if (response.status === 200) {
             setError("Business Updated!!!")
             const t1 = await setTimeout(() => {
@@ -97,12 +95,6 @@ function Settings() {
                                     <label className="col-md-12">Business Name</label>
                                     <div className="col-md-12">
                                         <input type="text" placeholder="Business Nig. Ltd" className="form-control form-control-line" value={businessName} onChange={(e) => setBusinessName(e.target.value)} />
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <label for="example-email" className="col-md-12">Email</label>
-                                    <div className="col-md-12">
-                                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="business@gmail.com" className="form-control form-control-line" name="example-email" id="example-email" />
                                     </div>
                                 </div>
                                 <div className="form-group">
@@ -153,6 +145,7 @@ function Settings() {
                                     <div className="col-sm-12">
                                         <button onClick={() => updateBusiness()} className="btn btn-success">Update</button>
                                     </div>
+                                    <h3 className="text-center">{error}</h3>
                                 </div>
                             </div>
                         </div>

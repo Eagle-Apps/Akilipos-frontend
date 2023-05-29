@@ -29,6 +29,7 @@ function Customers() {
 
     let loadCustomers = () => {
         let url = `${customerUrl}/customers/${id}`;
+        console.log(url)
         fetch(url)
             .then((e) => e.json())
             .then((res) => {

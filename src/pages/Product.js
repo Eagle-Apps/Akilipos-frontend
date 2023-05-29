@@ -281,7 +281,7 @@ function Catalog() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {products.length === 0 ? <div>No Product found</div> :
+                                            {products?.length === 0 ? <div>No Product found</div> :
                                                 products.map((e, i) => {
                                                     let year = new Date(e.updatedAt).getFullYear();
                                                     let month = new Date(e.updatedAt).getMonth() + 1;

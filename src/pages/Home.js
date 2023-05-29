@@ -19,36 +19,6 @@ function Home(props) {
     return <>
         <Container fluid style={{ background: "white", minHeight: "100vh" }}>
             <Container>
-                {/* <div className="home-topbar flex px-4" style={{
-                    justifyContent: "space-between", background: "black", alignItems: "center", height: "50px", color: "white",
-                    fontWeight: "600", fontSize: "20px"
-                }}>
-                    <div className="logo" style={{ width: "150px" }}>
-                        <img id="logo" src={logo} alt="akili-logo" />
-                        <p style={{ color: "white" }}>AKILI POS</p>
-                    </div>
-                    <div>PRODUCTS</div>
-                    <div>
-                        <a href="/#about">
-                            ABOUT
-                        </a>
-                    </div>
-                    <div>
-                        <Link to="/prices">
-                            PRICE
-                        </Link>
-                    </div>
-                    <div>
-                        <Link to="/faq">
-                            FAQ
-                        </Link>
-                    </div>
-                    <div>
-                        <Link to="/login">
-                            LOGIN
-                        </Link>
-                    </div>
-                </div> */}
 
                 <div data-role="Header" className={`header-header`}>
                     <div className="header-container">

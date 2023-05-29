@@ -60,7 +60,7 @@ function CustomersTable() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {customers.length === 0 ? <div className="text-center m-5">
+                                        {customers?.length === 0 ? <div className="text-center m-5">
                                             No customers added
                                         </div> : customers?.map((e, i) => {
                                             return (

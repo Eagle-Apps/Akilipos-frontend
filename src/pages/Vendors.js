@@ -226,7 +226,7 @@ function Vendors() {
                         {/* Vendors section */}
                         <div className="row hero">
                             <h2 className="text-center">{errorMsg}</h2>
-                            {vendors.length === 0 ? <div>No vendors Added</div> :
+                            {vendors?.length === 0 ? <div>No vendors Added</div> :
                                 vendors.map((e, i) => {
                                     return <div className="col-md-6 col-lg-6 col-xlg-4" key={i}>
                                         <div className="card card-body">

@@ -19,10 +19,16 @@ function Dashboard() {
     let [employees, setEmployees] = useState([]);
     const [cookies, setCookie] = useCookies(['akili']);
 
+
+    let [productUrl] = store.product;
+    let [products, setProducts] = useState([]);
+
+
     useEffect(() => {
         loadOrders();
         loadCompletedOrders();
         loadEmployees();
+        loadProducts();
         Aos.init({ duration: 1000 })
     }, [orders, completedOrder]);
 
@@ -51,6 +57,14 @@ function Dashboard() {
             .then((e) => e.json())
             .then((res) => {
                 setEmployees(res.employees)
+            });
+    };
+    let loadProducts = () => {
+        let url = `${productUrl}/products/${id}`;
+        fetch(url)
+            .then((e) => e.json())
+            .then((res) => {
+                setProducts(res.products)
             });
     };
 
@@ -287,7 +301,7 @@ function Dashboard() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {employees.length === 0 ? <div>No Employees Added Yet</div> :
+                                                    {employees?.length === 0 ? <div>No Employees Added Yet</div> :
                                                         employees?.map((e, i) => {
                                                             return (
                                                                 <tr >
@@ -409,7 +423,7 @@ function Dashboard() {
                         <div className="card card-default" data-aos="slide-left"
                             data-aos-once="true"
                             data-aos-easing="ease-out-sine">
-                            <div className="card-header">
+                            {/* <div className="card-header">
                                 <h4 className="card-title m-b-0">Product Overview</h4>
                             </div>
                             <div className="card-body collapse show">
@@ -493,6 +507,50 @@ function Dashboard() {
                                                             className="text-inverse" title="" data-toggle="tooltip"
                                                             data-original-title="Delete"><i className="ti-trash"></i></a></td>
                                             </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> */}
+
+                            <div className="card-header">
+                                <h4 className="card-title m-b-0">Product Overview</h4>
+                            </div>
+                            <div className="card-body collapse show">
+                                <div className="table-responsive">
+                                    <table className="table product-overview">
+                                        <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Image</th>
+                                                <th>Quantity</th>
+                                                <th>Date</th>
+                                                <th>Cost(&#x20A6;)</th>
+                                                <th>Sell(&#x20A6;)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {products?.length === 0 ? <div>No Product found</div> :
+                                                products.map((e, i) => {
+                                                    let year = new Date(e.updatedAt).getFullYear();
+                                                    let month = new Date(e.updatedAt).getMonth() + 1;
+                                                    let day = new Date(e.updatedAt).getDate();
+                                                    let date = `${day}/${month}/${year}`;
+                                                    return (<tr>
+                                                        <td style={{ textTransform: "capitalize" }}>{e.name}</td>
+                                                        <td>
+                                                            <img src={e.imageUrl[0]} alt={e.name[0]} width="80" />
+                                                        </td>
+                                                        <td>{e.quantity}</td>
+                                                        <td>{date}</td>
+                                                        <td>
+                                                            {e.costPrice.toLocaleString()}
+                                                        </td>
+                                                        <td>
+                                                            {e.sellingPrice.toLocaleString()}
+                                                        </td>
+                                                    </tr>)
+                                                })}
+
                                         </tbody>
                                     </table>
                                 </div>

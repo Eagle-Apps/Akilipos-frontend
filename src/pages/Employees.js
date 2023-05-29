@@ -202,7 +202,7 @@ function Employess() {
 
                         {/* Employees section */}
                         <div className="row hero">
-                            {employees.length === 0 ? <div>No employees Added</div> :
+                            {employees?.length === 0 ? <div>No employees Added</div> :
                                 employees.map((e, i) => {
                                     return <div className="col-md-6 col-lg-6 col-xlg-4" key={i}>
                                         <div className="card card-body">

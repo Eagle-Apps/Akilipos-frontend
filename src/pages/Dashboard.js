@@ -178,8 +178,8 @@ function Dashboard() {
                         </div>
 
                         {/* analysis section */}
-                        {/* <div className="row">
-                           
+                        <div className="row">
+
                             <div className="col-lg-8 col-xlg-9" data-aos="slide-left" data-aos-once="true">
                                 <div className="card">
                                     <div className="card-body">
@@ -210,7 +210,7 @@ function Dashboard() {
                                     </div>
                                 </div>
                             </div>
-                           
+
                             <div className="col-lg-4 col-xlg-3">
                                 <div className="card card-inverse card-info" data-aos="slide-right" data-aos-once="true">
                                     <div className="card-body" style={{ background: "black" }}>
@@ -256,8 +256,148 @@ function Dashboard() {
                                     </div>
                                 </div>
                             </div>
-                           
-                        </div> */}
+
+                        </div>
+
+                        {/* Product Overview Section */}
+                        <div className="card card-default" data-aos="slide-left"
+                            data-aos-once="true"
+                            data-aos-easing="ease-out-sine">
+                            {/* <div className="card-header">
+                                <h4 className="card-title m-b-0">Product Overview</h4>
+                            </div>
+                            <div className="card-body collapse show">
+                                <div className="table-responsive">
+                                    <table className="table product-overview">
+                                        <thead>
+                                            <tr>
+                                                <th>Customer</th>
+                                                <th>Photo</th>
+                                                <th>Quantity</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Steave Jobs</td>
+                                                <td>
+                                                    <img src="../assets/images/gallery/chair.jpg" alt="iMac" width="80" />
+                                                </td>
+                                                <td>20</td>
+                                                <td>10-7-2017</td>
+                                                <td>
+                                                    <span className="label label-success font-weight-100">Paid</span>
+                                                </td>
+                                                <td><a href="javascript:void(0)" className="text-inverse p-r-10"
+                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
+                                                        className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
+                                                            className="text-inverse" title="" data-toggle="tooltip"
+                                                            data-original-title="Delete"><i className="ti-trash"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Varun Dhavan</td>
+                                                <td>
+                                                    <img src="../assets/images/gallery/chair2.jpg" alt="iPhone"
+                                                        width="80" />
+                                                </td>
+                                                <td>25</td>
+                                                <td>09-7-2017</td>
+                                                <td>
+                                                    <span className="label label-warning font-weight-100">Pending</span>
+                                                </td>
+                                                <td><a href="javascript:void(0)" className="text-inverse p-r-10"
+                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
+                                                        className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
+                                                            className="text-inverse" title="" data-toggle="tooltip"
+                                                            data-original-title="Delete"><i className="ti-trash"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ritesh Desh</td>
+                                                <td>
+                                                    <img src="../assets/images/gallery/chair3.jpg" alt="apple_watch"
+                                                        width="80" />
+                                                </td>
+                                                <td>12</td>
+                                                <td>08-7-2017</td>
+                                                <td>
+                                                    <span className="label label-success font-weight-100">Paid</span>
+                                                </td>
+                                                <td><a href="javascript:void(0)" className="text-inverse p-r-10"
+                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
+                                                        className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
+                                                            className="text-inverse" title="" data-toggle="tooltip"
+                                                            data-original-title="Delete"><i className="ti-trash"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hrithik</td>
+                                                <td>
+                                                    <img src="../assets/images/gallery/chair4.jpg" alt="mac_mouse"
+                                                        width="80" />
+                                                </td>
+                                                <td>18</td>
+                                                <td>02-7-2017</td>
+                                                <td>
+                                                    <span className="label label-danger font-weight-100">Failed</span>
+                                                </td>
+                                                <td><a href="javascript:void(0)" className="text-inverse p-r-10"
+                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
+                                                        className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
+                                                            className="text-inverse" title="" data-toggle="tooltip"
+                                                            data-original-title="Delete"><i className="ti-trash"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> */}
+
+                            <div className="card-header">
+                                <h4 className="card-title m-b-0">Product Overview</h4>
+                            </div>
+                            <div className="card-body collapse show">
+                                <div className="table-responsive">
+                                    <table className="table product-overview">
+                                        <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Image</th>
+                                                <th>Quantity</th>
+                                                <th>Date</th>
+                                                <th>Cost(&#x20A6;)</th>
+                                                <th>Sell(&#x20A6;)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {products?.length === 0 ? <div>No Product found</div> :
+                                                products.map((e, i) => {
+                                                    let year = new Date(e.updatedAt).getFullYear();
+                                                    let month = new Date(e.updatedAt).getMonth() + 1;
+                                                    let day = new Date(e.updatedAt).getDate();
+                                                    let date = `${day}/${month}/${year}`;
+                                                    return (<tr>
+                                                        <td style={{ textTransform: "capitalize" }}>{e.name}</td>
+                                                        <td>
+                                                            <img src={e.imageUrl[0]} alt={e.name[0]} width="80" />
+                                                        </td>
+                                                        <td>{e.quantity}</td>
+                                                        <td>{date}</td>
+                                                        <td>
+                                                            {e.costPrice.toLocaleString()}
+                                                        </td>
+                                                        <td>
+                                                            {e.sellingPrice.toLocaleString()}
+                                                        </td>
+                                                    </tr>)
+                                                })}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
 
                         {/* employee report section */}
                         <div className="row" data-aos="zoom-in" data-aos-once="true">
@@ -419,143 +559,6 @@ function Dashboard() {
     </div> */}
                         </div>
 
-                        {/* Product Overview Section */}
-                        <div className="card card-default" data-aos="slide-left"
-                            data-aos-once="true"
-                            data-aos-easing="ease-out-sine">
-                            {/* <div className="card-header">
-                                <h4 className="card-title m-b-0">Product Overview</h4>
-                            </div>
-                            <div className="card-body collapse show">
-                                <div className="table-responsive">
-                                    <table className="table product-overview">
-                                        <thead>
-                                            <tr>
-                                                <th>Customer</th>
-                                                <th>Photo</th>
-                                                <th>Quantity</th>
-                                                <th>Date</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Steave Jobs</td>
-                                                <td>
-                                                    <img src="../assets/images/gallery/chair.jpg" alt="iMac" width="80" />
-                                                </td>
-                                                <td>20</td>
-                                                <td>10-7-2017</td>
-                                                <td>
-                                                    <span className="label label-success font-weight-100">Paid</span>
-                                                </td>
-                                                <td><a href="javascript:void(0)" className="text-inverse p-r-10"
-                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                        className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
-                                                            className="text-inverse" title="" data-toggle="tooltip"
-                                                            data-original-title="Delete"><i className="ti-trash"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Varun Dhavan</td>
-                                                <td>
-                                                    <img src="../assets/images/gallery/chair2.jpg" alt="iPhone"
-                                                        width="80" />
-                                                </td>
-                                                <td>25</td>
-                                                <td>09-7-2017</td>
-                                                <td>
-                                                    <span className="label label-warning font-weight-100">Pending</span>
-                                                </td>
-                                                <td><a href="javascript:void(0)" className="text-inverse p-r-10"
-                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                        className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
-                                                            className="text-inverse" title="" data-toggle="tooltip"
-                                                            data-original-title="Delete"><i className="ti-trash"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ritesh Desh</td>
-                                                <td>
-                                                    <img src="../assets/images/gallery/chair3.jpg" alt="apple_watch"
-                                                        width="80" />
-                                                </td>
-                                                <td>12</td>
-                                                <td>08-7-2017</td>
-                                                <td>
-                                                    <span className="label label-success font-weight-100">Paid</span>
-                                                </td>
-                                                <td><a href="javascript:void(0)" className="text-inverse p-r-10"
-                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                        className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
-                                                            className="text-inverse" title="" data-toggle="tooltip"
-                                                            data-original-title="Delete"><i className="ti-trash"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Hrithik</td>
-                                                <td>
-                                                    <img src="../assets/images/gallery/chair4.jpg" alt="mac_mouse"
-                                                        width="80" />
-                                                </td>
-                                                <td>18</td>
-                                                <td>02-7-2017</td>
-                                                <td>
-                                                    <span className="label label-danger font-weight-100">Failed</span>
-                                                </td>
-                                                <td><a href="javascript:void(0)" className="text-inverse p-r-10"
-                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                        className="ti-marker-alt"></i></a> <a href="javascript:void(0)"
-                                                            className="text-inverse" title="" data-toggle="tooltip"
-                                                            data-original-title="Delete"><i className="ti-trash"></i></a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div> */}
-
-                            <div className="card-header">
-                                <h4 className="card-title m-b-0">Product Overview</h4>
-                            </div>
-                            <div className="card-body collapse show">
-                                <div className="table-responsive">
-                                    <table className="table product-overview">
-                                        <thead>
-                                            <tr>
-                                                <th>Title</th>
-                                                <th>Image</th>
-                                                <th>Quantity</th>
-                                                <th>Date</th>
-                                                <th>Cost(&#x20A6;)</th>
-                                                <th>Sell(&#x20A6;)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {products?.length === 0 ? <div>No Product found</div> :
-                                                products.map((e, i) => {
-                                                    let year = new Date(e.updatedAt).getFullYear();
-                                                    let month = new Date(e.updatedAt).getMonth() + 1;
-                                                    let day = new Date(e.updatedAt).getDate();
-                                                    let date = `${day}/${month}/${year}`;
-                                                    return (<tr>
-                                                        <td style={{ textTransform: "capitalize" }}>{e.name}</td>
-                                                        <td>
-                                                            <img src={e.imageUrl[0]} alt={e.name[0]} width="80" />
-                                                        </td>
-                                                        <td>{e.quantity}</td>
-                                                        <td>{date}</td>
-                                                        <td>
-                                                            {e.costPrice.toLocaleString()}
-                                                        </td>
-                                                        <td>
-                                                            {e.sellingPrice.toLocaleString()}
-                                                        </td>
-                                                    </tr>)
-                                                })}
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
 

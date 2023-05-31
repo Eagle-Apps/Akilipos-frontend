@@ -99,6 +99,18 @@ function Catalog() {
 
     let updateProduct = async () => {
         let url = `${productUrl}/edit-product/${productId}`;
+        const formData = new FormData()
+        formData.append('name', name)
+        formData.append('costPrice', Number(costPrice))
+        formData.append('description', description)
+        formData.append('quantity', Number(quantity))
+        formData.append('sellingPrice', Number(sellingPrice))
+        formData.append('coinValue', Number(coinValue))
+        formData.append('category', category)
+
+        for (let i = 0; i < imageUrl.length; i++) {
+            formData.append('imageUrl', imageUrl[i])
+        }
         let data = {
             name,
             description,
@@ -109,7 +121,6 @@ function Catalog() {
             quantity: Number(quantity),
             // imageUrl
         }
-
         setLoading(true);
         const response = await fetch(url, {
             headers: {
@@ -118,9 +129,9 @@ function Catalog() {
             },
             method: "PATCH",
             body: JSON.stringify(data)
+            // body: formData,
         });
-
-        console.log(response);
+        console.log(response.status);
         if (response.status === 200) {
             loadProducts()
             setError("Product Updated!!!")
@@ -189,7 +200,7 @@ function Catalog() {
                     {/* header section */}
                     <div className="row page-titles">
                         <div className="col-md-5 align-self-center">
-                            <h3>Catalog</h3>
+                            <h3>Inventory</h3>
                         </div>
                         <div className="col-md-7 align-items-center">
                             <ol className="breadcrumb">

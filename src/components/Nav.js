@@ -90,19 +90,19 @@ function NavBar(props) {
                   <NavDropdown.Item>
                     <Link to={`/employees/${id}`}>
                       <Icon icon="bi:shop" width="24px" height="24px" className="me-3" />
-                      My Employees
+                      Employees
                     </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
-                    <Link to={`/products/${id}`}>
+                    <Link to={`/inventory/${id}`}>
                       <Icon icon="fluent-mdl2:product-variant" width="24px" height="24px" className="me-3" />
-                      My Products
+                      Inventory
                     </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
                     <Link to={`/suppliers/${id}`} style={{ textAlign: "center" }}>
                       <Icon icon="fluent:people-community-add-20-filled" width="24px" height="24px" className="me-3" />
-                      My Suppliers
+                      Suppliers
                     </Link>
                   </NavDropdown.Item>
                 </NavDropdown>
@@ -111,7 +111,7 @@ function NavBar(props) {
               <Nav.Item id={props.class3}>
                 <Link to={`/customers-view/${id}`} style={{ display: "flex", color: props.color3, alignItems: "center" }}>
                   <Icon icon="ph:users-four-light" width="24px" height="24px" className="me-3" />
-                  My Customers
+                  Customers
                 </Link>
               </Nav.Item>
 
@@ -132,7 +132,7 @@ function NavBar(props) {
               <Nav.Item id={props.class44}>
                 <Link to={`/reports/${id}`} style={{ display: "flex", color: props.color44, alignItems: "center" }}>
                   <Icon icon="ic:outline-assessment" width="24px" height="24px" className="me-3" />
-                  Reports & Analysis
+                  Analysis
                 </Link>
               </Nav.Item>
             </div>

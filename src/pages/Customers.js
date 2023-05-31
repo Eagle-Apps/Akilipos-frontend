@@ -157,9 +157,9 @@ function Customers() {
                                         <li className="nav-item" role="presentation">
                                             <button className="nav-link custom-nav-ah" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Rewards</button>
                                         </li>
-                                        {/* <li className="nav-item" role="presentation">
-                                            <button className="nav-link custom-nav-ah" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Report</button>
-                                        </li> */}
+                                        <li className="nav-item" role="presentation">
+                                            <button className="nav-link custom-nav-ah" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Analysis</button>
+                                        </li>
                                     </ul>
                                     <div className="tab-content" id="myTabContent">
                                         {/* message section in tab */}
@@ -290,9 +290,9 @@ function Customers() {
                                             </div>
                                         </div>
                                         {/* Report section in tab */}
-                                        {/* <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                        <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                             Report goes here
-                                        </div> */}
+                                        </div>
                                     </div>
                                 </div>
 

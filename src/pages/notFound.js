@@ -4,9 +4,11 @@ import NavBar from "../components/Nav";
 import Footer from "../components/Footer";
 import Aos from "aos";
 import 'aos/dist/aos.css';
+import { Link, useParams } from "react-router-dom";
 
 
 function NotFound() {
+    let { id } = useParams();
     useEffect(() => {
         Aos.init({ duration: 1000 })
     }, []);

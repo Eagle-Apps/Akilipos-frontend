@@ -104,7 +104,7 @@ function Home(props) {
                     </div>
                 </div>
 
-                <Row className="business">
+                <Row className="business mx-1 my-2" style={{ background: "whitesmoke" }}>
                     <Carousel fade>
                         <Carousel.Item>
                             <Row>

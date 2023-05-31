@@ -18,17 +18,44 @@ function Sales() {
     let [quantity, setQty] = useState(1);
     let [product, setProduct] = useState();
     let [error, setError] = useState("");
+    let [customer, setCustomer] = useState("");
     let [total, setTotal] = useState();
     let [loading, setLoading] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    let [customerUrl] = store.customer;
+    let [customers, setCustomers] = useState([]);
 
     useEffect(() => {
         loadProducts();
+        loadCustomers();
         Aos.init({ duration: 1000 })
     }, []);
 
     useEffect(() => {
         loadData();
     }, []);
+
+    const handleSearch = (e) => {
+        const q = e.target.value;
+        setSearchQuery(q);
+
+        const filteredResults = customers.filter((item) =>
+            item.name.toLowerCase().includes(q.toLowerCase())
+        );
+
+        setSearchResults(filteredResults);
+    };
+
+    let loadCustomers = () => {
+        let url = `${customerUrl}/customers/${id}`;
+        console.log(url);
+        fetch(url)
+            .then((e) => e.json())
+            .then((res) => {
+                setCustomers(res.customers)
+            });
+    };
 
     let loadProducts = () => {
         let url = `${productUrl}/products/${id}`;
@@ -105,6 +132,30 @@ function Sales() {
         }
     };
 
+    const handleEdit = async (id, fieldName, newValue) => {
+        let data = JSON.parse(localStorage.getItem('akili-products'));
+        const updatedData = data.map((item) => {
+            if (data.indexOf(item) === id) {
+                return {
+                    ...item,
+                    [fieldName]: newValue,
+                };
+            }
+            return item;
+        });
+        await localStorage.setItem('akili-products', JSON.stringify(updatedData))
+        loadData();
+    };
+
+    const handleDelete = async (id) => {
+        let data = JSON.parse(localStorage.getItem('akili-products'));
+        data.splice(id, 1);
+        await localStorage.setItem('akili-products', JSON.stringify(data))
+        loadData();
+    };
+
+    console.log(customer)
+
 
     return <>
         <Row>
@@ -148,9 +199,24 @@ function Sales() {
                             data-aos-once="true"
                             data-aos-easing="ease-out-sine">
                             <div className="card-body">
-                                <h4 className="card-title">Sales</h4>
+                                {/* <h4 className="card-title">Sales</h4> */}
+
+                                <div className="form-group w-50">
+                                    <input type="text" style={{ border: "1px solid #8da1af", borderRadius: "50px" }}
+                                        value={searchQuery}
+                                        onChange={handleSearch}
+                                        placeholder="Search customer by name"
+                                        className="form-control" />
+                                    <div className="mt-1 p-2" style={{ height: "100px", overflowY: "hidden", background:"" }}>
+                                        {searchResults?.map((e, i) => {
+                                            return (
+                                                <p key={e.id} value={(e.id)} onClick={() => setCustomer(e.id)} >{e.name}</p>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
-                                    <h5>{error}</h5>
+                                    <h5 className="text-center">{error}</h5>
                                     <table className="table table-striped">
                                         <thead>
                                             <tr>
@@ -159,6 +225,7 @@ function Sales() {
                                                 <th>Qty</th>
                                                 <th>Unit Price</th>
                                                 <th>Total Price</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -167,9 +234,20 @@ function Sales() {
                                                     <tr className="gradeX">
                                                         <td>{i + 1}</td>
                                                         <td>{JSON.parse(e.productId).name}</td>
-                                                        <td>{e.quantity}</td>
+                                                        <td>
+                                                            <input type="number" defaultValue={e.quantity}
+                                                                style={{ border: "none", background: "inherit", width: "50px" }}
+                                                                onChange={(x) => handleEdit(i, 'quantity', parseInt(x.target.value))}
+                                                            />
+                                                        </td>
                                                         <td className="center">{JSON.parse(e.productId).sellingPrice}</td>
                                                         <td className="center">{JSON.parse(e.productId).sellingPrice * e.quantity}</td>
+                                                        <td >
+                                                            <a onClick={() => handleDelete(i)}
+                                                                id="edit" className="text-inverse" title="" data-toggle="tooltip"
+                                                                data-original-title="Delete"><i className="ti-trash"></i>
+                                                            </a>
+                                                        </td>
                                                     </tr>
                                                 )
                                             })}
@@ -181,7 +259,7 @@ function Sales() {
                                             </div>
                                         </tfoot>
                                     </table>
-                                    <button className="create-btn-ah" style={{ background: "#c5e5de" }} onClick={() => createOrder()}>
+                                    <button className="create-btn-ah" style={{ background: "#c5e5de", float: "right" }} onClick={() => createOrder()}>
                                         {loading ? <PulseLoader color="white" size={8} /> : "Submit"}
                                     </button>
                                 </div>

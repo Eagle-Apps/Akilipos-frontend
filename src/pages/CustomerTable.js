@@ -21,7 +21,6 @@ function CustomersTable() {
         fetch(url)
             .then((e) => e.json())
             .then((res) => {
-                console.log(res);
                 setCustomers(res.customers)
             });
     };

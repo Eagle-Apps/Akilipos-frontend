@@ -50,7 +50,7 @@ function App() {
             {/* <Route path="/sample" element={<Sample />} /> */}
             <Route path="/register" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/products/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Catalog /></Protected>} />
+            <Route path="/inventory/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Catalog /></Protected>} />
             <Route path="/reset-password" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><ResetPassword /></Protected>} />
             <Route path="/help/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><HelpCenter /></Protected>} />
             <Route path="/faq" element={<Faq />} />

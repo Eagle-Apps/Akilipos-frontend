@@ -7,6 +7,7 @@ import 'aos/dist/aos.css';
 import { useParams } from "react-router-dom";
 import { Store } from "../context/store";
 import PulseLoader from "react-spinners/PulseLoader";
+import Modal from "react-bootstrap/Modal";
 
 function Sales() {
     let store = useContext(Store);
@@ -19,12 +20,31 @@ function Sales() {
     let [product, setProduct] = useState();
     let [error, setError] = useState("");
     let [customer, setCustomer] = useState("");
-    let [total, setTotal] = useState();
+    let [total, setTotal] = useState(0.00);
     let [loading, setLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [searchProductQuery, setSearchProductQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [searchProductResults, setSearchProductResults] = useState([]);
     let [customerUrl] = store.customer;
     let [customers, setCustomers] = useState([]);
+    let arr = [];
+
+
+
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    let [employees, setEmployees] = useState([]);
+    let [email, setEmail] = useState("");
+    let [password, setPassword] = useState("");
+    let [phone, setPhone] = useState("");
+    let [name, setName] = useState("");
+    let [username, setUsername] = useState("");
+    let [address, setAddress] = useState("");
+    let [salary, setSalary] = useState(0);
+    let [position, setPosition] = useState("");
 
     useEffect(() => {
         loadProducts();
@@ -36,7 +56,7 @@ function Sales() {
         loadData();
     }, []);
 
-    const handleSearch = (e) => {
+    const handleCustomerSearch = (e) => {
         const q = e.target.value;
         setSearchQuery(q);
 
@@ -47,15 +67,27 @@ function Sales() {
         setSearchResults(filteredResults);
     };
 
+    const handleProductSearch = (e) => {
+        const q = e.target.value;
+        setSearchProductQuery(q);
+
+        const filteredResults = products.filter((item) =>
+            item.name.toLowerCase().includes(q.toLowerCase())
+        );
+
+        setSearchProductResults(filteredResults);
+    };
+
     let loadCustomers = () => {
         let url = `${customerUrl}/customers/${id}`;
-        console.log(url);
         fetch(url)
             .then((e) => e.json())
             .then((res) => {
                 setCustomers(res.customers)
             });
     };
+
+
 
     let loadProducts = () => {
         let url = `${productUrl}/products/${id}`;
@@ -79,12 +111,29 @@ function Sales() {
             arr.push(data)
             localStorage.setItem('akili-products', JSON.stringify(arr))
             loadData();
+
         }
     };
 
-    let loadData = () => {
-        setTableData(JSON.parse(localStorage.getItem('akili-products')))
+
+    // let loadData = async () => {
+    //     await new Promise((resolve) => {
+    //         const data = JSON.parse(localStorage.getItem('akili-products'));
+    //         setTableData(data);
+    //         resolve();
+    //     });
+    //     updateTotal();
+    // };
+
+    let loadData = async () => {
+        const data = JSON.parse(localStorage.getItem('akili-products'));
+        setTableData(data);
+        await new Promise((resolve) => {
+            resolve();
+        });
+        updateTotal();
     };
+
 
     let createOrder = async () => {
         let productItems = JSON.parse(localStorage.getItem('akili-products'))
@@ -99,7 +148,7 @@ function Sales() {
         });
         let data = {
             business: id, products: newData, totalBill,
-            status: "completed", orderType: "order"
+            status: "completed", orderType: "order", customer
         };
         setLoading(true);
         setQty(1)
@@ -118,6 +167,7 @@ function Sales() {
             const t1 = setTimeout(() => {
                 setLoading(false);
                 setError("");
+                setTotal(0);
                 clearTimeout(t1);
             }, 2000);
             localStorage.removeItem('akili-products');
@@ -147,14 +197,38 @@ function Sales() {
         loadData();
     };
 
-    const handleDelete = async (id) => {
+    // let handleDelete = async (id) => {
+    //     let data = JSON.parse(localStorage.getItem('akili-products'));
+    //     let x = data.filter((e, i) => i !== id);
+    //     await new Promise((resolve) => {
+    //         localStorage.setItem('akili-products', JSON.stringify(x));
+    //         resolve();
+    //     });
+    //     await loadData();
+    // };
+
+    let handleDelete = async (id) => {
         let data = JSON.parse(localStorage.getItem('akili-products'));
-        data.splice(id, 1);
-        await localStorage.setItem('akili-products', JSON.stringify(data))
-        loadData();
+        let x = data.filter((e, i) => i !== id);
+        localStorage.setItem('akili-products', JSON.stringify(x));
+        await loadData();
     };
 
-    console.log(customer)
+
+
+    let updateTotal = async () => {
+        await new Promise((resolve) => {
+            setTotal(JSON.parse(localStorage.getItem('akili-total')).reduce((a, b) => a + b, 0));
+            resolve();
+        });
+    };
+
+    const addCustomer = () => {
+
+    }
+
+
+
 
 
     return <>
@@ -177,22 +251,48 @@ function Sales() {
 
                         <div className="col-md-3">
                             <div className="row">
-                                <div class="form-group">
+                                <div className="form-group  ms-3">
+                                    <input type="text" style={{ border: "1px solid #8da1af", borderRadius: "50px" }}
+                                        value={searchProductQuery}
+                                        onChange={handleProductSearch}
+                                        placeholder="Search product by name"
+                                        className="form-control" />
+                                    <div className="mt-1 p-2 " style={{ height: "100px", overflowY: "hidden", background: "white" }}>
+                                        {searchProductResults?.map((e, i) => {
+                                            return (
+                                                <p key={e._id} onClick={() => setProduct(JSON.stringify(e))} >{e.name}</p>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                                {/* <div class="form-group">
                                     <select class="form-control custom-select" name={product} onChange={(x) => setProduct(x.target.value)}>
                                         <option value="">Select Products</option>
                                         {products?.map((e, i) => {
                                             return (
-                                                <option key={e._id} value={JSON.stringify(e)} >{e.name}</option>
+                                                <option key={e.id} value={JSON.stringify(e)} >{e.name}</option>
                                             )
                                         })}
 
                                     </select>
-                                </div>
-                                <div className="form-group">
+                                </div> */}
+                                <div className="form-group m-3">
                                     <input value={quantity} onChange={(e) => setQty(e.target.value)} type="number" className="form-control" id="exampleInputEmail1" placeholder="Quantity" />
                                 </div>
                             </div>
-                            <button className="create-btn-ah" onClick={() => addItem()} style={{ background: "white", width: "100%" }}>Add Item</button>
+                            <button className="create-btn-ah ms-3" onClick={() => addItem()} style={{ background: "white", width: "100%" }}>Add Item</button>
+
+                            <div className="m-4 p-4" style={{ background: "white" }}>
+                                <p>Most in Demand</p>
+                                <ul>
+                                    {products?.map((e, i) => {
+                                        return (
+                                            <li>{e.name}</li>
+                                        )
+                                    })}
+
+                                </ul>
+                            </div>
                         </div>
 
                         <div className="col-md-8 card" data-aos="zoom-in"
@@ -201,20 +301,82 @@ function Sales() {
                             <div className="card-body">
                                 {/* <h4 className="card-title">Sales</h4> */}
 
-                                <div className="form-group w-50">
-                                    <input type="text" style={{ border: "1px solid #8da1af", borderRadius: "50px" }}
-                                        value={searchQuery}
-                                        onChange={handleSearch}
-                                        placeholder="Search customer by name"
-                                        className="form-control" />
-                                    <div className="mt-1 p-2" style={{ height: "100px", overflowY: "hidden", background:"" }}>
-                                        {searchResults?.map((e, i) => {
-                                            return (
-                                                <p key={e.id} value={(e.id)} onClick={() => setCustomer(e.id)} >{e.name}</p>
-                                            )
-                                        })}
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="form-group w-75">
+                                            <input type="text" style={{ border: "1px solid #8da1af", borderRadius: "50px" }}
+                                                value={searchQuery}
+                                                onChange={handleCustomerSearch}
+                                                placeholder="Search customer by name"
+                                                className="form-control" />
+                                            <div className="mt-1 p-2" style={{ height: "100px", overflowY: "hidden", background: "" }}>
+                                                {searchResults?.map((e, i) => {
+                                                    return (
+                                                        <p key={e.id} value={(e.id)} onClick={() => setCustomer(e.id)} >{e.name}</p>
+                                                    )
+                                                })}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className=" mb-3">
+                                            <button style={{ background: "white", width: "100%", border: "1px solid #8da1af", }} className="create-btn-ah" onClick={handleShow}> Customer +</button>
+                                            <Modal
+                                                show={show}
+                                                onHide={handleClose}
+                                                backdrop="static"
+                                                keyboard={false}
+                                                centered
+                                            >
+                                                <Modal.Header closeButton
+                                                    style={{ padding: "10px 50px" }} >
+                                                    <Modal.Title>Add a New Customer ?</Modal.Title>
+                                                </Modal.Header>
+                                                <Modal.Body style={{ padding: "15px 50px" }}>
+                                                    <p id="error">{error}</p>
+                                                    <div className="card card-body">
+                                                        <div className="col-sm-12 col-xs-12">
+                                                            <div>
+                                                                <div className="row">
+                                                                    <div className="form-group col-md-6">
+                                                                        <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="exampleInputEmail1" placeholder="Name" />
+                                                                    </div>
+                                                                    <div className="form-group col-md-6">
+                                                                        <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" className="form-control" id="exampleInputEmail7" placeholder="Username" />
+                                                                    </div>
+                                                                    <div className="form-group  col-md-6">
+                                                                        <input value={address} onChange={(e) => setAddress(e.target.value)} type="address" className="form-control" id="exampleInputEmai1" placeholder="Address" />
+                                                                    </div>
+                                                                    <div className="form-group  col-md-6">
+                                                                        <input value={position} onChange={(e) => setPosition(e.target.value)} type="text" className="form-control" id="exampleInputPassword1" placeholder="Role" />
+                                                                    </div>
+                                                                    <div className="form-group  col-md-6">
+                                                                        <input value={salary} onChange={(e) => setSalary(e.target.value)} type="number" className="form-control" id="exampleInputNumber1" placeholder="Salary" />
+                                                                    </div>
+                                                                    <div className="form-group  col-md-6">
+                                                                        <input value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" className="form-control" id="exampleInputPassword1" placeholder="Phone Number" />
+                                                                    </div>
+                                                                    <div className="form-group  col-md-6">
+                                                                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" id="exampleInputEmail3" placeholder=" Email" />
+                                                                    </div>
+                                                                    <div className="form-group  col-md-6">
+                                                                        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" id="exampleInputPassword2" placeholder=" Password" />
+                                                                    </div>
+                                                                </div>
+                                                                <button onClick={addCustomer} style={{ background: "black", color: "white", fontWeight: "800" }}
+                                                                    type="submit" className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Submit"}
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </Modal.Body>
+                                            </Modal>
+                                        </div>
                                     </div>
                                 </div>
+
+
                                 <div class="table-responsive">
                                     <h5 className="text-center">{error}</h5>
                                     <table className="table table-striped">
@@ -230,18 +392,21 @@ function Sales() {
                                         </thead>
                                         <tbody>
                                             {tableData?.map((e, i) => {
+                                                let item = e.productId
+                                                arr?.push(JSON.parse(item).sellingPrice * e?.quantity)
+                                                localStorage.setItem("akili-total", JSON.stringify(arr))
                                                 return (
                                                     <tr className="gradeX">
                                                         <td>{i + 1}</td>
-                                                        <td>{JSON.parse(e.productId).name}</td>
+                                                        <td>{JSON.parse(item).name}</td>
                                                         <td>
                                                             <input type="number" defaultValue={e.quantity}
                                                                 style={{ border: "none", background: "inherit", width: "50px" }}
                                                                 onChange={(x) => handleEdit(i, 'quantity', parseInt(x.target.value))}
                                                             />
                                                         </td>
-                                                        <td className="center">{JSON.parse(e.productId).sellingPrice}</td>
-                                                        <td className="center">{JSON.parse(e.productId).sellingPrice * e.quantity}</td>
+                                                        <td className="center">{JSON.parse(item).sellingPrice}</td>
+                                                        <td className="center">{JSON.parse(item).sellingPrice * e.quantity}</td>
                                                         <td >
                                                             <a onClick={() => handleDelete(i)}
                                                                 id="edit" className="text-inverse" title="" data-toggle="tooltip"
@@ -252,13 +417,15 @@ function Sales() {
                                                 )
                                             })}
                                         </tbody>
-                                        <tfoot style={{ float: "right" }}>
-                                            <div>
-                                                <p>Total</p>
-                                                <p>{total}</p>
-                                            </div>
-                                        </tfoot>
                                     </table>
+                                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                        <p className="fw-bolder fs-3">Tax</p>
+                                        <p className="fw-bolder fs-3">0.00</p>
+                                    </div>
+                                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                        <p className="fw-bolder fs-3">Total</p>
+                                        <p className="fw-bolder fs-3">{total?.toLocaleString()}</p>
+                                    </div>
                                     <button className="create-btn-ah" style={{ background: "#c5e5de", float: "right" }} onClick={() => createOrder()}>
                                         {loading ? <PulseLoader color="white" size={8} /> : "Submit"}
                                     </button>

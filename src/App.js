@@ -29,6 +29,7 @@ import Sales from './pages/Sales';
 import Protected from './components/Protected';
 import { useCookies } from 'react-cookie';
 import { useParams } from "react-router-dom";
+import ShopList from './pages/Shoplist';
 
 function App() {
   let { id } = useParams();
@@ -62,6 +63,7 @@ function App() {
             <Route path="/employees/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Employess /></Protected>} />
             <Route path="/suppliers/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Vendors /></Protected>} />
             <Route path="/sales/:id" element={<Sales />} />
+            <Route path="/shopping-list/:id" element={<ShopList />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>

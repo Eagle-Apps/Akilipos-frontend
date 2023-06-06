@@ -3,7 +3,6 @@ import { Col, Row } from "react-bootstrap";
 import NavBar from "../components/Nav";
 import Footer from "../components/Footer";
 import Modal from "react-bootstrap/Modal";
-import { Home, RotateCcw } from "react-feather";
 import { Store } from "../context/store";
 import { useParams } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";

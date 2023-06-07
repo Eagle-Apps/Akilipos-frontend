@@ -107,9 +107,14 @@ function NavBar(props) {
                   </NavDropdown.Item>
                   <NavDropdown.Item>
                     <Link to={`/shopping-list/${id}`} style={{ textAlign: "center" }}>
-                      {/* <Icon icon="fluent:people-community-add-20-filled" width="24px" height="24px" className="me-3" /> */}
                       <Icon icon="icon-park:list" width="24" className="me-3" />
                       Shop List
+                    </Link>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>
+                    <Link to={`/credit/${id}`} style={{ textAlign: "center" }}>
+                      <Icon icon="fa:book" width="24" height="24" className="me-3" />
+                      Credit Book
                     </Link>
                   </NavDropdown.Item>
                 </NavDropdown>

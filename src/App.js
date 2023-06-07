@@ -30,6 +30,7 @@ import Protected from './components/Protected';
 import { useCookies } from 'react-cookie';
 import { useParams } from "react-router-dom";
 import ShopList from './pages/Shoplist';
+import Credit from './pages/CreditBook';
 
 function App() {
   let { id } = useParams();
@@ -64,6 +65,7 @@ function App() {
             <Route path="/suppliers/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Vendors /></Protected>} />
             <Route path="/sales/:id" element={<Sales />} />
             <Route path="/shopping-list/:id" element={<ShopList />} />
+            <Route path="/credit/:id" element={<Credit />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>

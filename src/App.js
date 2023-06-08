@@ -31,6 +31,7 @@ import { useCookies } from 'react-cookie';
 import { useParams } from "react-router-dom";
 import ShopList from './pages/Shoplist';
 import Credit from './pages/CreditBook';
+import Payment from './pages/Payment';
 
 function App() {
   let { id } = useParams();
@@ -66,6 +67,7 @@ function App() {
             <Route path="/sales/:id" element={<Sales />} />
             <Route path="/shopping-list/:id" element={<ShopList />} />
             <Route path="/credit/:id" element={<Credit />} />
+            <Route path="/payments/:id" element={<Payment />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>

@@ -32,6 +32,7 @@ import { useParams } from "react-router-dom";
 import ShopList from './pages/Shoplist';
 import Credit from './pages/CreditBook';
 import Payment from './pages/Payment';
+import ItemsOnDemand from './pages/ItemsOnDemand';
 
 function App() {
   let { id } = useParams();
@@ -68,6 +69,7 @@ function App() {
             <Route path="/shopping-list/:id" element={<ShopList />} />
             <Route path="/credit/:id" element={<Credit />} />
             <Route path="/payments/:id" element={<Payment />} />
+            <Route path="/in-demand/:id" element={<ItemsOnDemand />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>

@@ -8,7 +8,7 @@ import { Store } from "../context/store";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useCookies } from 'react-cookie';
 
-function Payment() {
+function ItemsOnDemand() {
     let store = useContext(Store);
     let [productUrl] = store.product;
     const [show, setShow] = useState(false);
@@ -191,7 +191,7 @@ function Payment() {
     return <>
         <Row>
             <Col md="2" sm="12">
-                <NavBar class5="activeBar" color5="white" />
+                <NavBar class2="activeBar" color2="white" />
             </Col>
             <Col md="10" sm="12" style={{ minHeight: "100vh" }} className="content-wrapper">
                 <div style={{ minHeight: "85vh" }}>
@@ -199,9 +199,14 @@ function Payment() {
                     {/* header section */}
                     <div className="row page-titles">
                         <div className="col-md-5 align-self-center">
-                            <h3>Payment</h3>
+                            <h3>Items On Demand</h3>
                         </div>
-
+                        <div className="col-md-7 align-items-center">
+                            <ol className="breadcrumb">
+                                <li className="breadcrumb-item">My Business</li>
+                                <li className="breadcrumb-item active">Items On Demand</li>
+                            </ol>
+                        </div>
                     </div>
 
                     <div className="pe-3">
@@ -216,7 +221,7 @@ function Payment() {
                             >
                                 <Modal.Header closeButton
                                     style={{ padding: "10px 50px" }} >
-                                    <Modal.Title>Make Payment</Modal.Title>
+                                    <Modal.Title>Add an Item?</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body style={{ padding: "15px 50px" }}>
                                     <p id="error">{error}</p>
@@ -224,33 +229,36 @@ function Payment() {
                                         <div className="col-sm-12 col-xs-12">
                                             <div>
                                                 <div className="row">
-                                                    <div className="form-group col-md-12">
-                                                        <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="exampleInputEmail1" placeholder="Client" />
+                                                    <div className="form-group col-md-6">
+                                                        <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="exampleInputEmail1" placeholder="Product Name" />
                                                     </div>
                                                     <div className="form-group col-md-6">
-                                                        <input value={description} onChange={(e) => setDescp(e.target.value)} type="text" className="form-control" id="exampleInputEmail7" placeholder="Invoice Number" />
+                                                        <input value={description} onChange={(e) => setDescp(e.target.value)} type="text" className="form-control" id="exampleInputEmail7" placeholder="Description" />
                                                     </div>
                                                     <div className="form-group  col-md-6">
-                                                        <input value={costPrice} onChange={(e) => setCost(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Amount" />
+                                                        <input value={category} onChange={(e) => setCategory(e.target.value)} type="text" className="form-control" id="exampleInputEmai1" placeholder="Category" />
                                                     </div>
-                                                    {/* <div className="form-group  col-md-6">
-                                                    <input value={sellingPrice} onChange={(e) => setSell(e.target.value)} type="number" className="form-control" id="exampleInputNumber1" placeholder="Selling Price" />
-                                                </div>
-                                                <div className="form-group  col-md-6">
-                                                    <input value={quantity} onChange={(e) => setQty(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Quantity" />
-                                                </div>
-                                                <div className="form-group  col-md-6">
-                                                    <input value={coinValue} onChange={(e) => setCoin(e.target.value)} type="number" className="form-control" id="exampleInputEmail3" placeholder="Coin Value" />
-                                                </div>
-                                                <div className="form-group  col-md-6">
-                                                    <input name="imageUrl" multiple onChange={(e) => setImage(e.target.files)} type="file" className="form-control" id="exampleInputPassword2" placeholder="Image" />
-                                                </div> */}
+                                                    <div className="form-group  col-md-6">
+                                                        <input value={costPrice} onChange={(e) => setCost(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Cost Price" />
+                                                    </div>
+                                                    <div className="form-group  col-md-6">
+                                                        <input value={sellingPrice} onChange={(e) => setSell(e.target.value)} type="number" className="form-control" id="exampleInputNumber1" placeholder="Selling Price" />
+                                                    </div>
+                                                    <div className="form-group  col-md-6">
+                                                        <input value={quantity} onChange={(e) => setQty(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Quantity" />
+                                                    </div>
+                                                    <div className="form-group  col-md-6">
+                                                        <input value={coinValue} onChange={(e) => setCoin(e.target.value)} type="number" className="form-control" id="exampleInputEmail3" placeholder="Coin Value" />
+                                                    </div>
+                                                    <div className="form-group  col-md-6">
+                                                        <input name="imageUrl" multiple onChange={(e) => setImage(e.target.files)} type="file" className="form-control" id="exampleInputPassword2" placeholder="Image" />
+                                                    </div>
                                                 </div>
                                                 {show1 ? <button
                                                     type="submit" onClick={() => updateProduct(productId)} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Update"}
                                                 </button> :
                                                     <button
-                                                        type="submit" onClick={() => createProduct()} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Pay"}
+                                                        type="submit" onClick={() => createProduct()} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Submit"}
                                                     </button>}
 
                                             </div>
@@ -264,8 +272,8 @@ function Payment() {
                         {/* Product Overview Section */}
                         <div className="card card-default">
                             <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
-                                <h4 className="card-title m-b-0">Payment</h4>
-                                <button style={{ background: "#c5e5de" }} className="create-btn-ah" onClick={handleShow}>Pay +</button>
+                                <h4 className="card-title m-b-0">Items On Demand</h4>
+                                <button style={{ background: "#c5e5de" }} className="create-btn-ah" onClick={handleShow}>Items +</button>
                             </div>
                             <h2 className="text-center">{errorMsg}</h2>
                             <div className="card-body collapse show">
@@ -273,38 +281,29 @@ function Payment() {
                                     <table className="table product-overview">
                                         <thead>
                                             <tr>
-                                                <th>Invoice Number</th>
-                                                <th>Date</th>
-                                                <th>Method</th>
-                                                <th>Amount (&#x20A6;)</th>
-                                                <th>Remark</th>
+                                                <th>Title</th>
+                                                <th>Description</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {products?.length === 0 ? <div>No Product found</div> :
                                                 products.map((e, i) => {
-                                                    let year = new Date(e.updatedAt).getFullYear();
-                                                    let month = new Date(e.updatedAt).getMonth() + 1;
-                                                    let day = new Date(e.updatedAt).getDate();
-                                                    let date = `${day}/${month}/${year}`;
                                                     return (<tr>
-                                                        <td style={{ textTransform: "capitalize" }}>{e._id.slice(0, 5)} </td>
-                                                        <td>{date}</td>
-                                                        <td>Cash</td>
-                                                        <td>
-                                                            {e.costPrice.toLocaleString()}
+                                                        <td style={{ textTransform: "capitalize" }}>{e.name}</td>
+                                                        <td>Brief Description of Product if available</td>
+                                                        <td><a onClick={() => editModal(e)} id="edit" className="text-inverse p-r-10"
+                                                            data-toggle="tooltip" title="" data-original-title="Edit"><i
+                                                                className="ti-marker-alt"></i></a>
+                                                            <a onClick={() => deleteProduct(e._id)} id="edit"
+                                                                className="text-inverse" title="" data-toggle="tooltip"
+                                                                data-original-title="Delete"><i className="ti-trash"></i>
+                                                            </a>
                                                         </td>
-                                                        <td>Confirmed</td>
                                                     </tr>)
                                                 })}
 
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td className="text-center fw-bolder fs-3" colSpan={3}>Total</td>
-                                                <td className="fw-bolder fs-5">10,575</td>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -323,4 +322,4 @@ function Payment() {
     </>
 };
 
-export default Payment;
+export default ItemsOnDemand;

@@ -212,7 +212,6 @@ function ShopList() {
                     <div className="pe-3">
 
                         <div className="mt-2 mb-3">
-                            <button style={{ background: "white" }} className="create-btn-ah" onClick={handleShow}>Add Item +</button>
                             <Modal
                                 show={show}
                                 onHide={handleClose}
@@ -272,8 +271,9 @@ function ShopList() {
 
                         {/* Product Overview Section */}
                         <div className="card card-default">
-                            <div className="card-header">
+                            <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }} >
                                 <h4 className="card-title m-b-0">Shopping List</h4>
+                                <button style={{ background: "#c5e5de" }} className="create-btn-ah" onClick={handleShow}>New Item +</button>
                             </div>
                             <h2 className="text-center">{errorMsg}</h2>
                             <div className="card-body collapse show">

@@ -13,8 +13,11 @@ function Credit() {
     let [productUrl] = store.product;
     const [show, setShow] = useState(false);
     const [show1, setShow1] = useState(false);
+    const [show2, setShow2] = useState(false);
+    const handleClose2 = () => { setShow2(false); setShow1(false); setLoading(false) };
     const handleClose = () => { setShow(false); setShow1(false); setLoading(false) };
     const handleShow = () => setShow(true);
+    const handleShow2 = () => setShow2(true);
     let { id } = useParams();
     let [products, setProducts] = useState([]);
     let [productId, setProductId] = useState("");
@@ -210,70 +213,120 @@ function Credit() {
                     </div>
 
                     <div className="pe-3">
-
-                        {/* <div className="mt-2 mb-3">
-                            <button style={{ background: "white" }} className="create-btn-ah" onClick={handleShow}>Add Item +</button>
-                            <Modal
-                                show={show}
-                                onHide={handleClose}
-                                backdrop="static"
-                                keyboard={false}
-                                centered
-                            >
-                                <Modal.Header closeButton
-                                    style={{ padding: "10px 50px" }} >
-                                    <Modal.Title>Add a Item to List?</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body style={{ padding: "15px 50px" }}>
-                                    <p id="error">{error}</p>
-                                    <div className="card card-body">
-                                        <div className="col-sm-12 col-xs-12">
-                                            <div>
-                                                <div className="row">
-                                                    <div className="form-group col-md-6">
-                                                        <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="exampleInputEmail1" placeholder="Product Name" />
-                                                    </div>
-                                                    <div className="form-group col-md-6">
-                                                        <input value={description} onChange={(e) => setDescp(e.target.value)} type="text" className="form-control" id="exampleInputEmail7" placeholder="Description" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
-                                                        <input value={category} onChange={(e) => setCategory(e.target.value)} type="text" className="form-control" id="exampleInputEmai1" placeholder="Category" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
-                                                        <input value={costPrice} onChange={(e) => setCost(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Cost Price" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
-                                                        <input value={sellingPrice} onChange={(e) => setSell(e.target.value)} type="number" className="form-control" id="exampleInputNumber1" placeholder="Selling Price" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
-                                                        <input value={quantity} onChange={(e) => setQty(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Quantity" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
-                                                        <input value={coinValue} onChange={(e) => setCoin(e.target.value)} type="number" className="form-control" id="exampleInputEmail3" placeholder="Coin Value" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
-                                                        <input name="imageUrl" multiple onChange={(e) => setImage(e.target.files)} type="file" className="form-control" id="exampleInputPassword2" placeholder="Image" />
-                                                    </div>
+                        <Modal
+                            show={show}
+                            onHide={handleClose}
+                            backdrop="static"
+                            keyboard={false}
+                            centered
+                        >
+                            <Modal.Header closeButton
+                                style={{ padding: "10px 50px" }} >
+                                <Modal.Title>New Credit</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body style={{ padding: "15px 50px" }}>
+                                <p id="error">{error}</p>
+                                <div className="card card-body">
+                                    <div className="col-sm-12 col-xs-12">
+                                        <div>
+                                            <div className="row">
+                                                <div className="form-group col-md-6">
+                                                    <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="exampleInputEmail1" placeholder="Product Name" />
                                                 </div>
-                                                {show1 ? <button
-                                                    type="submit" onClick={() => updateProduct(productId)} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Update"}
-                                                </button> :
-                                                    <button
-                                                        type="submit" onClick={() => createProduct()} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Submit"}
-                                                    </button>}
-
+                                                <div className="form-group col-md-6">
+                                                    <input value={description} onChange={(e) => setDescp(e.target.value)} type="text" className="form-control" id="exampleInputEmail7" placeholder="Description" />
+                                                </div>
+                                                <div className="form-group  col-md-6">
+                                                    <input value={category} onChange={(e) => setCategory(e.target.value)} type="text" className="form-control" id="exampleInputEmai1" placeholder="Category" />
+                                                </div>
+                                                <div className="form-group  col-md-6">
+                                                    <input value={costPrice} onChange={(e) => setCost(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Cost Price" />
+                                                </div>
+                                                <div className="form-group  col-md-6">
+                                                    <input value={sellingPrice} onChange={(e) => setSell(e.target.value)} type="number" className="form-control" id="exampleInputNumber1" placeholder="Selling Price" />
+                                                </div>
+                                                <div className="form-group  col-md-6">
+                                                    <input value={quantity} onChange={(e) => setQty(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Quantity" />
+                                                </div>
+                                                <div className="form-group  col-md-6">
+                                                    <input value={coinValue} onChange={(e) => setCoin(e.target.value)} type="number" className="form-control" id="exampleInputEmail3" placeholder="Coin Value" />
+                                                </div>
+                                                <div className="form-group  col-md-6">
+                                                    <input name="imageUrl" multiple onChange={(e) => setImage(e.target.files)} type="file" className="form-control" id="exampleInputPassword2" placeholder="Image" />
+                                                </div>
                                             </div>
+                                            {show1 ? <button
+                                                type="submit" onClick={() => updateProduct(productId)} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Update"}
+                                            </button> :
+                                                <button
+                                                    type="submit" onClick={() => createProduct()} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Submit"}
+                                                </button>}
+
                                         </div>
                                     </div>
+                                </div>
 
-                                </Modal.Body>
-                            </Modal>
-                        </div> */}
+                            </Modal.Body>
+                        </Modal>
+
+                        <Modal
+                            show={show2}
+                            onHide={handleClose2}
+                            backdrop="static"
+                            keyboard={false}
+                            centered
+                        >
+                            <Modal.Header closeButton
+                                style={{ padding: "10px 50px" }} >
+                                <Modal.Title>Make Payment</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body style={{ padding: "15px 50px" }}>
+                                <p id="error">{error}</p>
+                                <div className="card card-body">
+                                    <div className="col-sm-12 col-xs-12">
+                                        <div>
+                                            <div className="row">
+                                                <div className="form-group col-md-12">
+                                                    <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="exampleInputEmail1" placeholder="Client" />
+                                                </div>
+                                                <div className="form-group col-md-6">
+                                                    <input value={description} onChange={(e) => setDescp(e.target.value)} type="text" className="form-control" id="exampleInputEmail7" placeholder="Invoice Number" />
+                                                </div>
+                                                <div className="form-group  col-md-6">
+                                                    <input value={costPrice} onChange={(e) => setCost(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Amount" />
+                                                </div>
+                                                {/* <div className="form-group  col-md-6">
+                                                    <input value={sellingPrice} onChange={(e) => setSell(e.target.value)} type="number" className="form-control" id="exampleInputNumber1" placeholder="Selling Price" />
+                                                </div>
+                                                <div className="form-group  col-md-6">
+                                                    <input value={quantity} onChange={(e) => setQty(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Quantity" />
+                                                </div>
+                                                <div className="form-group  col-md-6">
+                                                    <input value={coinValue} onChange={(e) => setCoin(e.target.value)} type="number" className="form-control" id="exampleInputEmail3" placeholder="Coin Value" />
+                                                </div>
+                                                <div className="form-group  col-md-6">
+                                                    <input name="imageUrl" multiple onChange={(e) => setImage(e.target.files)} type="file" className="form-control" id="exampleInputPassword2" placeholder="Image" />
+                                                </div> */}
+                                            </div>
+                                            {show1 ? <button
+                                                type="submit" onClick={() => updateProduct(productId)} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Update"}
+                                            </button> :
+                                                <button
+                                                    type="submit" onClick={() => createProduct()} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Pay"}
+                                                </button>}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </Modal.Body>
+                        </Modal>
 
                         {/* Product Overview Section */}
                         <div className="card card-default">
-                            <div className="card-header">
+                            <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
                                 <h4 className="card-title m-b-0">Credit Book</h4>
+                                <button style={{ background: "#c5e5de" }} className="create-btn-ah" onClick={handleShow}>Credit +</button>
                             </div>
                             <h2 className="text-center">{errorMsg}</h2>
                             <div className="card-body collapse show">
@@ -281,9 +334,12 @@ function Credit() {
                                     <table className="table product-overview">
                                         <thead>
                                             <tr>
-                                                <th>Invoice Number</th>
-                                                <th>Payment Due</th>
                                                 <th>Name</th>
+                                                <th>Invoice No.</th>
+                                                <th>Credit No.</th>
+                                                <th>Date</th>
+                                                <th>Date Due</th>
+                                                <th>Installments</th>
                                                 <th>Amount (&#x20A6;)</th>
                                                 <th>Total Paid (&#x20A6;)</th>
                                                 <th>Outstanding (&#x20A6;)</th>
@@ -297,9 +353,12 @@ function Credit() {
                                                     let day = new Date(e.updatedAt).getDate();
                                                     let date = `${day}/${month}/${year}`;
                                                     return (<tr>
-                                                        <td style={{ textTransform: "capitalize" }}>{e._id.slice(0, 5)} </td>
-                                                        <td>{date}</td>
                                                         <td>Ahmed Hero</td>
+                                                        <td style={{ textTransform: "uppercase" }}>{e._id.slice(0, 5)} </td>
+                                                        <td style={{ textTransform: "uppercase" }}>{e._id.slice(5, 10)} </td>
+                                                        <td>{date}</td>
+                                                        <td>{date}</td>
+                                                        <td>Not Specified</td>
                                                         <td>
                                                             {e.costPrice.toLocaleString()}
                                                         </td>
@@ -309,6 +368,7 @@ function Credit() {
                                                             {e.costPrice.toLocaleString()}
                                                         </td>
                                                         <td>
+                                                            <a className="me-2" style={{ cursor: "pointer" }} onClick={handleShow2}>Pay</a>
                                                             <a onClick={() => deleteProduct(e._id)} id="edit"
                                                                 className="text-inverse" title="" data-toggle="tooltip"
                                                                 data-original-title="Delete"><i className="ti-trash"></i>
@@ -320,7 +380,7 @@ function Credit() {
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td className="text-center fw-bolder fs-3" colSpan={3}>Total</td>
+                                                <td className="text-center fw-bolder fs-3" colSpan={6}>Total</td>
                                                 <td className="fw-bolder fs-5">10,575</td>
                                                 <td className="fw-bolder fs-5">0</td>
                                                 <td className="fw-bolder fs-5">10,575</td>

@@ -112,6 +112,12 @@ function NavBar(props) {
                     </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
+                    <Link to={`/in-demand/${id}`} style={{ textAlign: "center" }}>
+                      <Icon icon="ep:list" width="24" className="me-3" />
+                      Items On Demand
+                    </Link>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>
                     <Link to={`/credit/${id}`} style={{ textAlign: "center" }}>
                       <Icon icon="fa:book" width="24" height="24" className="me-3" />
                       Credit Book

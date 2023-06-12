@@ -208,8 +208,9 @@ function Profile() {
 
                         {/* Profile Overview Section */}
                         <div className="card card-default">
+                            {/* info */}
                             <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
-                                <h4 className="card-title m-b-0">Profile</h4>
+                                <h4 className="card-title m-b-0">Info</h4>
                             </div>
                             <div className="card-body">
                                 <div className="row">
@@ -233,7 +234,72 @@ function Profile() {
                                 <hr></hr>
                             </div>
 
+                            {/* credit */}
+                            <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
+                                <h4 className="card-title m-b-0">Credit Book</h4>
+                            </div>
                             <div className="card-body collapse show">
+                                <div className="table-responsive">
+                                    <table className="table product-overview">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Invoice No.</th>
+                                                <th>Credit No.</th>
+                                                <th>Date</th>
+                                                <th>Date Due</th>
+                                                <th>Installments</th>
+                                                <th>Amount (&#x20A6;)</th>
+                                                <th>Total Paid (&#x20A6;)</th>
+                                                <th>Outstanding (&#x20A6;)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {products?.length === 0 ? <div>No Product found</div> :
+                                                products.map((e, i) => {
+                                                    let year = new Date(e.updatedAt).getFullYear();
+                                                    let month = new Date(e.updatedAt).getMonth() + 1;
+                                                    let day = new Date(e.updatedAt).getDate();
+                                                    let date = `${day}/${month}/${year}`;
+                                                    return (<tr>
+                                                        <td>
+                                                            <Link style={{ color: "inherit", textDecoration: "none" }} to={`/profile/${e._id}/${id}`}>
+                                                                Ahmed Hero
+                                                            </Link>
+                                                        </td>
+                                                        <td style={{ textTransform: "uppercase" }}>{e._id.slice(0, 5)} </td>
+                                                        <td style={{ textTransform: "uppercase" }}>{e._id.slice(5, 10)} </td>
+                                                        <td>{date}</td>
+                                                        <td>{date}</td>
+                                                        <td>Not Specified</td>
+                                                        <td>
+                                                            {e.costPrice.toLocaleString()}
+                                                        </td>
+                                                        <td>
+                                                            0.00
+                                                        </td> <td>
+                                                            {e.costPrice.toLocaleString()}
+                                                        </td>
+                                                    </tr>)
+                                                })}
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td className="text-center fw-bolder fs-3" colSpan={6}>Total</td>
+                                                <td className="fw-bolder fs-5">10,575</td>
+                                                <td className="fw-bolder fs-5">0</td>
+                                                <td className="fw-bolder fs-5">10,575</td>
+                                                <td className="fw-bolder fs-5"></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
+                            {/* payment */}
+                            <div className="card-body collapse show">
+                                <h4 className="card-title m-b-0">Payments</h4>
                                 <div className="table-responsive">
                                     <table className="table product-overview">
                                         <thead>

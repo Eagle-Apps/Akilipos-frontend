@@ -8,14 +8,14 @@ import { Store } from "../context/store";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useCookies } from 'react-cookie';
 
-function Payment() {
+function Profile() {
     let store = useContext(Store);
     let [productUrl] = store.product;
     const [show, setShow] = useState(false);
     const [show1, setShow1] = useState(false);
     const handleClose = () => { setShow(false); setShow1(false); setLoading(false) };
     const handleShow = () => setShow(true);
-    let { id } = useParams();
+    let { id1, id } = useParams();
     let [products, setProducts] = useState([]);
     let [productId, setProductId] = useState("");
     let [loading, setLoading] = useState(false);
@@ -191,7 +191,7 @@ function Payment() {
     return <>
         <Row>
             <Col md="2" sm="12">
-                <NavBar class5="activeBar" color5="white" />
+                <NavBar class3="activeBar" color3="white" />
             </Col>
             <Col md="10" sm="12" style={{ minHeight: "100vh" }} className="content-wrapper">
                 <div style={{ minHeight: "85vh" }}>
@@ -199,75 +199,40 @@ function Payment() {
                     {/* header section */}
                     <div className="row page-titles">
                         <div className="col-md-5 align-self-center">
-                            <h3>Payment</h3>
+                            <h3>Profile</h3>
                         </div>
 
                     </div>
 
                     <div className="pe-3">
 
-                        <div className="mt-2 mb-3">
-                            <Modal
-                                show={show}
-                                onHide={handleClose}
-                                backdrop="static"
-                                keyboard={false}
-                                centered
-                            >
-                                <Modal.Header closeButton
-                                    style={{ padding: "10px 50px" }} >
-                                    <Modal.Title>Make Payment</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body style={{ padding: "15px 50px" }}>
-                                    <p id="error">{error}</p>
-                                    <div className="card card-body">
-                                        <div className="col-sm-12 col-xs-12">
-                                            <div>
-                                                <div className="row">
-                                                    <div className="form-group col-md-12">
-                                                        <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="exampleInputEmail1" placeholder="Client" />
-                                                    </div>
-                                                    <div className="form-group col-md-6">
-                                                        <input value={description} onChange={(e) => setDescp(e.target.value)} type="text" className="form-control" id="exampleInputEmail7" placeholder="Invoice Number" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
-                                                        <input value={costPrice} onChange={(e) => setCost(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Amount" />
-                                                    </div>
-                                                    {/* <div className="form-group  col-md-6">
-                                                    <input value={sellingPrice} onChange={(e) => setSell(e.target.value)} type="number" className="form-control" id="exampleInputNumber1" placeholder="Selling Price" />
-                                                </div>
-                                                <div className="form-group  col-md-6">
-                                                    <input value={quantity} onChange={(e) => setQty(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Quantity" />
-                                                </div>
-                                                <div className="form-group  col-md-6">
-                                                    <input value={coinValue} onChange={(e) => setCoin(e.target.value)} type="number" className="form-control" id="exampleInputEmail3" placeholder="Coin Value" />
-                                                </div>
-                                                <div className="form-group  col-md-6">
-                                                    <input name="imageUrl" multiple onChange={(e) => setImage(e.target.files)} type="file" className="form-control" id="exampleInputPassword2" placeholder="Image" />
-                                                </div> */}
-                                                </div>
-                                                {show1 ? <button
-                                                    type="submit" onClick={() => updateProduct(productId)} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Update"}
-                                                </button> :
-                                                    <button
-                                                        type="submit" onClick={() => createProduct()} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Pay"}
-                                                    </button>}
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </Modal.Body>
-                            </Modal>
-                        </div>
-
-                        {/* Product Overview Section */}
+                        {/* Profile Overview Section */}
                         <div className="card card-default">
                             <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
-                                <h4 className="card-title m-b-0">Payment</h4>
-                                <button style={{ background: "#c5e5de" }} className="create-btn-ah" onClick={handleShow}>Pay +</button>
+                                <h4 className="card-title m-b-0">Profile</h4>
                             </div>
-                            <h2 className="text-center">{errorMsg}</h2>
+                            <div className="card-body">
+                                <div className="row">
+                                    <div className="col-md-3 col-xs-6 b-r"> <strong>Full Name</strong>
+                                        <br />
+                                        <p className="text-muted">Ahmed Hero</p>
+                                    </div>
+                                    <div className="col-md-3 col-xs-6 b-r"> <strong>Mobile</strong>
+                                        <br />
+                                        <p className="text-muted">(123) 456 7890</p>
+                                    </div>
+                                    <div className="col-md-3 col-xs-6 b-r"> <strong>Email</strong>
+                                        <br />
+                                        <p className="text-muted">ahmed233@gmail.com</p>
+                                    </div>
+                                    <div className="col-md-3 col-xs-6"> <strong>Location</strong>
+                                        <br />
+                                        <p className="text-muted">Dape, Abuja</p>
+                                    </div>
+                                </div>
+                                <hr></hr>
+                            </div>
+
                             <div className="card-body collapse show">
                                 <div className="table-responsive">
                                     <table className="table product-overview">
@@ -282,7 +247,7 @@ function Payment() {
                                         </thead>
                                         <tbody>
                                             {products?.length === 0 ? <div>No Product found</div> :
-                                                products.map((e, i) => {
+                                                products?.map((e, i) => {
                                                     let year = new Date(e.updatedAt).getFullYear();
                                                     let month = new Date(e.updatedAt).getMonth() + 1;
                                                     let day = new Date(e.updatedAt).getDate();
@@ -323,4 +288,4 @@ function Payment() {
     </>
 };
 
-export default Payment;
+export default Profile;

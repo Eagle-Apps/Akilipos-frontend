@@ -64,10 +64,20 @@ function CustomersTable() {
                                         </div> : customers?.map((e, i) => {
                                             return (
                                                 <tr key={i}>
-                                                    <td>{e.name}</td>
-                                                    <td>{e.email}</td>
-                                                    <td>{e.phone}</td>
-                                                    <td>{e.address}</td>
+                                                    <td>
+                                                        <Link style={{ color: "inherit", textDecoration: "none" }} to={`/profile/${e.id}/${id}`}>
+                                                            {e.name}
+                                                        </Link>
+                                                    </td>
+                                                    <td>
+                                                        <Link style={{ color: "inherit", textDecoration: "none" }} to={`/profile/${e.id}/${id}`}>{e.email}
+                                                        </Link></td>
+                                                    <td>
+                                                        <Link style={{ color: "inherit", textDecoration: "none" }} to={`/profile/${e.id}/${id}`}>{e.phone}
+                                                        </Link></td>
+                                                    <td>
+                                                        <Link style={{ color: "inherit", textDecoration: "none" }} to={`/profile/${e.id}/${id}`}>{e.address}
+                                                        </Link></td>
                                                 </tr>
                                             )
                                         })}

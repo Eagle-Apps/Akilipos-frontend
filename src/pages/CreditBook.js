@@ -353,7 +353,11 @@ function Credit() {
                                                     let day = new Date(e.updatedAt).getDate();
                                                     let date = `${day}/${month}/${year}`;
                                                     return (<tr>
-                                                        <td>Ahmed Hero</td>
+                                                        <td>
+                                                            <Link style={{ color: "inherit", textDecoration: "none" }} to={`/profile/${e._id}/${id}`}>
+                                                                Ahmed Hero
+                                                            </Link>
+                                                        </td>
                                                         <td style={{ textTransform: "uppercase" }}>{e._id.slice(0, 5)} </td>
                                                         <td style={{ textTransform: "uppercase" }}>{e._id.slice(5, 10)} </td>
                                                         <td>{date}</td>

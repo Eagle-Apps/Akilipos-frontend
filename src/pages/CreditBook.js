@@ -322,7 +322,7 @@ function Credit() {
                             </Modal.Body>
                         </Modal>
 
-                        {/* Product Overview Section */}
+                        {/* Credit Overview Section */}
                         <div className="card card-default">
                             <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
                                 <h4 className="card-title m-b-0">Credit Book</h4>
@@ -346,7 +346,7 @@ function Credit() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {products?.length === 0 ? <div>No Product found</div> :
+                                            {products?.length === 0 ? <div>No Credit found</div> :
                                                 products.map((e, i) => {
                                                     let year = new Date(e.updatedAt).getFullYear();
                                                     let month = new Date(e.updatedAt).getMonth() + 1;
@@ -354,7 +354,7 @@ function Credit() {
                                                     let date = `${day}/${month}/${year}`;
                                                     return (<tr>
                                                         <td>
-                                                            <Link style={{ color: "inherit", textDecoration: "none" }} to={`/profile/${e._id}/${id}`}>
+                                                            <Link style={{ color: "inherit"}} to={`/profile/${e._id}/${id}`}>
                                                                 Ahmed Hero
                                                             </Link>
                                                         </td>

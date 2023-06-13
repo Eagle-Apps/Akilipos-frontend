@@ -243,38 +243,32 @@ function Profile() {
                                     <table className="table product-overview">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
                                                 <th>Invoice No.</th>
                                                 <th>Credit No.</th>
                                                 <th>Date</th>
-                                                <th>Date Due</th>
-                                                <th>Installments</th>
                                                 <th>Amount (&#x20A6;)</th>
+                                                <th>Installments</th>
+                                                <th>Date Due</th>
                                                 <th>Total Paid (&#x20A6;)</th>
                                                 <th>Outstanding (&#x20A6;)</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {products?.length === 0 ? <div>No Product found</div> :
+                                            {products?.length === 0 ? <div>No Credit found</div> :
                                                 products.map((e, i) => {
                                                     let year = new Date(e.updatedAt).getFullYear();
                                                     let month = new Date(e.updatedAt).getMonth() + 1;
                                                     let day = new Date(e.updatedAt).getDate();
                                                     let date = `${day}/${month}/${year}`;
                                                     return (<tr>
-                                                        <td>
-                                                            <Link style={{ color: "inherit", textDecoration: "none" }} to={`/profile/${e._id}/${id}`}>
-                                                                Ahmed Hero
-                                                            </Link>
-                                                        </td>
                                                         <td style={{ textTransform: "uppercase" }}>{e._id.slice(0, 5)} </td>
                                                         <td style={{ textTransform: "uppercase" }}>{e._id.slice(5, 10)} </td>
                                                         <td>{date}</td>
-                                                        <td>{date}</td>
-                                                        <td>Not Specified</td>
                                                         <td>
                                                             {e.costPrice.toLocaleString()}
                                                         </td>
+                                                        <td>Not Specified</td>
+                                                        <td>{date}</td>
                                                         <td>
                                                             0.00
                                                         </td> <td>
@@ -285,16 +279,16 @@ function Profile() {
 
                                         </tbody>
                                         <tfoot>
-                                            <tr>
-                                                <td className="text-center fw-bolder fs-3" colSpan={6}>Total</td>
-                                                <td className="fw-bolder fs-5">10,575</td>
-                                                <td className="fw-bolder fs-5">0</td>
-                                                <td className="fw-bolder fs-5">10,575</td>
-                                                <td className="fw-bolder fs-5"></td>
+                                            <tr style={{ borderBottom: "none" }} >
+                                                <td className="text-center fw-bolder fs-3" style={{ borderBottom: "none" }} colSpan={5}>Total</td>
+                                                <td className="fw-bolder fs-5" style={{ borderBottom: "none" }} >10,575</td>
+                                                <td className="fw-bolder fs-5" style={{ borderBottom: "none" }} >0</td>
+                                                <td className="fw-bolder fs-5" style={{ borderBottom: "none" }} >10,575</td>
                                             </tr>
                                         </tfoot>
                                     </table>
                                 </div>
+                                <hr></hr>
                             </div>
 
                             {/* payment */}
@@ -306,13 +300,14 @@ function Profile() {
                                             <tr>
                                                 <th>Invoice Number</th>
                                                 <th>Date</th>
+                                                <th>Category</th>
                                                 <th>Method</th>
                                                 <th>Amount (&#x20A6;)</th>
                                                 <th>Remark</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {products?.length === 0 ? <div>No Product found</div> :
+                                            {products?.length === 0 ? <div>No Payment found</div> :
                                                 products?.map((e, i) => {
                                                     let year = new Date(e.updatedAt).getFullYear();
                                                     let month = new Date(e.updatedAt).getMonth() + 1;
@@ -321,6 +316,7 @@ function Profile() {
                                                     return (<tr>
                                                         <td style={{ textTransform: "capitalize" }}>{e._id.slice(0, 5)} </td>
                                                         <td>{date}</td>
+                                                        <td>Partial / Full</td>
                                                         <td>Cash</td>
                                                         <td>
                                                             {e.costPrice.toLocaleString()}

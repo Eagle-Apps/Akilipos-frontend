@@ -37,12 +37,16 @@ function ShopList() {
     }, []);
 
     let loadProducts = () => {
-        let url = `${productUrl}/products/${id}`;
+        let url = `${productUrl}/shoplist/${id}`;
+        let arr = [];
         fetch(url)
             .then((e) => e.json())
             .then((res) => {
-                setProducts(res.products)
-            });
+                res.map((e, i) => {
+                    arr.push(e.products);
+                })
+                setProducts(arr);
+            })
     };
 
     let createProduct = async () => {
@@ -130,7 +134,6 @@ function ShopList() {
             body: JSON.stringify(data)
             // body: formData,
         });
-        console.log(response.status);
         if (response.status === 200) {
             loadProducts()
             setError("Product Updated!!!")
@@ -291,26 +294,29 @@ function ShopList() {
                                         <tbody>
                                             {products?.length === 0 ? <div>No Product found</div> :
                                                 products.map((e, i) => {
-                                                    let year = new Date(e.updatedAt).getFullYear();
-                                                    let month = new Date(e.updatedAt).getMonth() + 1;
-                                                    let day = new Date(e.updatedAt).getDate();
-                                                    let date = `${day}/${month}/${year}`;
-                                                    return (<tr>
-                                                        <td style={{ textTransform: "capitalize" }}>{e.name}</td>
-                                                        <td>{e.quantity}</td>
-                                                        <td>Pending</td>
-                                                        <td>
-                                                            {e.costPrice.toLocaleString()}
-                                                        </td>
-                                                        <td><a onClick={() => editModal(e)} id="edit" className="text-inverse p-r-10"
-                                                            data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                                className="ti-marker-alt"></i></a>
-                                                            <a onClick={() => deleteProduct(e._id)} id="edit"
-                                                                className="text-inverse" title="" data-toggle="tooltip"
-                                                                data-original-title="Delete"><i className="ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>)
+                                                    return (
+                                                        e.map((a, b) => {
+                                                            return (<tr>
+                                                                <td style={{ textTransform: "capitalize" }}>{a.name}</td>
+                                                                <td>{a.quantity}</td>
+                                                                <td>Pending</td>
+                                                                <td>
+                                                                    {a.costPrice.toLocaleString()}
+                                                                </td>
+                                                                <td><a onClick={() => editModal(a)} id="edit" className="text-inverse p-r-10"
+                                                                    data-toggle="tooltip" title="" data-original-title="Edit"><i
+                                                                        className="ti-marker-alt"></i></a>
+                                                                    <a onClick={() => deleteProduct(a.productId)} id="edit"
+                                                                        className="text-inverse" title="" data-toggle="tooltip"
+                                                                        data-original-title="Delete"><i className="ti-trash"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>)
+                                                        })
+                                                    )
+
+
+
                                                 })}
 
                                         </tbody>

@@ -132,6 +132,13 @@ function NavBar(props) {
                   </Link>
                 </Nav.Item>
 
+                <Nav.Item id={props.class44}>
+                  <Link to={`/orders/${id}`} style={{ display: "flex", color: props.color44, alignItems: "center" }}>
+                    <Icon icon="fe:list-order" width="24px" height="24px" className="me-3" />
+                    Orders
+                  </Link>
+                </Nav.Item>
+
                 <Nav.Item id={props.class5}>
                   <Link to={`/payments/${id}`} style={{ display: "flex", color: props.color5, alignItems: "center" }}>
                     <Icon icon="mdi:credit-card-check-outline" width="24px" height="24px" className="me-3" />

@@ -31,7 +31,17 @@ function Sales() {
     let arr = [];
 
 
-
+    const scrollbarStyle = {
+        height: "200px",
+        overflowY: "scroll",
+        background: "white",
+        scrollbarWidth: "thin",
+        scrollbarColor: "red yellow",
+        WebkitOverflowScrolling: "touch",
+        WebkitScrollbarWidth: "thin",
+        WebkitScrollbarColor: "red yellow",
+        borderRadius: "5px"
+    };
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -250,22 +260,33 @@ function Sales() {
 
 
                         <div className="col-md-3">
-                            <div className="row">
-                                <div className="form-group  ms-3">
-                                    <input type="text" style={{ border: "1px solid #8da1af", borderRadius: "50px" }}
-                                        value={searchProductQuery}
-                                        onChange={handleProductSearch}
-                                        placeholder="Search product by name"
-                                        className="form-control" />
-                                    <div className="mt-1 p-2 " style={{ height: "100px", overflowY: "hidden", background: "white" }}>
-                                        {searchProductResults?.map((e, i) => {
-                                            return (
-                                                <p key={e._id} onClick={() => setProduct(JSON.stringify(e))} >{e.name}</p>
-                                            )
-                                        })}
+
+                            <div className="pe-3">
+                                <div className="row">
+                                    <div className="form-group  ms-3">
+                                        <input
+                                            type="text"
+                                            style={{
+                                                border: "1px solid #8da1af",
+                                                borderRadius: "50px",
+                                                color: "#8da1af"
+                                            }}
+                                            value={searchProductQuery}
+                                            onChange={handleProductSearch}
+                                            placeholder="Search product by name"
+                                            className="form-control"
+                                        />
+
+                                        <div className="mt-1 p-2 " style={scrollbarStyle}>
+
+                                            {searchProductResults?.map((e, i) => {
+                                                return (
+                                                    <p key={e._id} onClick={() => setProduct(JSON.stringify(e))} >{e.name}</p>
+                                                )
+                                            })}
+                                        </div>
                                     </div>
-                                </div>
-                                {/* <div class="form-group">
+                                    {/* <div class="form-group">
                                     <select class="form-control custom-select" name={product} onChange={(x) => setProduct(x.target.value)}>
                                         <option value="">Select Products</option>
                                         {products?.map((e, i) => {
@@ -276,23 +297,25 @@ function Sales() {
 
                                     </select>
                                 </div> */}
-                                <div className="form-group m-3">
-                                    <input value={quantity} onChange={(e) => setQty(e.target.value)} type="number" className="form-control" id="exampleInputEmail1" placeholder="Quantity" />
+                                    <div className="form-group m-3">
+                                        <input value={quantity} onChange={(e) => setQty(e.target.value)} type="number" className="form-control" id="exampleInputEmail1" placeholder="Quantity" />
+                                    </div>
+                                </div>
+                                <button className="create-btn-ah ms-3" onClick={() => addItem()} style={{ background: "white", width: "100%" }}>Add Item</button>
+
+                                <div className="mt-4 ms-3 p-4" style={{ background: "white" }}>
+                                    <p>Most in Demand</p>
+                                    <ul>
+                                        {products?.map((e, i) => {
+                                            return (
+                                                <li>{e.name}</li>
+                                            )
+                                        })}
+
+                                    </ul>
                                 </div>
                             </div>
-                            <button className="create-btn-ah ms-3" onClick={() => addItem()} style={{ background: "white", width: "100%" }}>Add Item</button>
 
-                            <div className="m-4 p-4" style={{ background: "white" }}>
-                                <p>Most in Demand</p>
-                                <ul>
-                                    {products?.map((e, i) => {
-                                        return (
-                                            <li>{e.name}</li>
-                                        )
-                                    })}
-
-                                </ul>
-                            </div>
                         </div>
 
                         <div className="col-md-8 card" data-aos="zoom-in"

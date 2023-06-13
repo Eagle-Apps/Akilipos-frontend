@@ -34,6 +34,7 @@ import Credit from './pages/CreditBook';
 import Payment from './pages/Payment';
 import ItemsOnDemand from './pages/ItemsOnDemand';
 import Profile from './pages/Profile';
+import Order from './pages/Order';
 
 function App() {
   let { id } = useParams();
@@ -70,6 +71,7 @@ function App() {
             <Route path="/shopping-list/:id" element={<ShopList />} />
             <Route path="/credit/:id" element={<Credit />} />
             <Route path="/payments/:id" element={<Payment />} />
+            <Route path="/orders/:id" element={<Order />} />
             <Route path="/in-demand/:id" element={<ItemsOnDemand />} />
             <Route path="/profile/:id1/:id" element={<Profile />} />
             <Route path="*" element={<NotFound />} />

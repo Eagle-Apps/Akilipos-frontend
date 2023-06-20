@@ -8,7 +8,7 @@ import { Store } from "../context/store";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useCookies } from 'react-cookie';
 
-function Order() {
+function SingleOrder() {
     let store = useContext(Store);
     let [orderUrl] = store.order;
     const [show, setShow] = useState(false);
@@ -41,10 +41,10 @@ function Order() {
 
     let loadOrders = () => {
         let url = `${orderUrl}/store/orders/${id}`;
-        console.log(url);
         fetch(url)
             .then((e) => e.json())
             .then((res) => {
+                console.log(res)
                 setProducts(res)
             });
     };
@@ -235,7 +235,7 @@ function Order() {
                                                     let month = new Date(e.createdAt).getMonth() + 1;
                                                     let day = new Date(e.createdAt).getDate();
                                                     let date = `${day}/${month}/${year}`;
-                                                    if (e.orderType === "order")
+                                                    if (e.orderType === "order" && i === 0)
                                                         return (<tr>
                                                             <td style={{ textTransform: "uppercase" }}>{e.id.slice(5, 10)} </td>
                                                             <td colSpan={2} style={{ textTransform: "uppercase" }}>
@@ -305,4 +305,4 @@ function Order() {
     </>
 };
 
-export default Order;
+export default SingleOrder;

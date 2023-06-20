@@ -2,13 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import NavBar from "../components/Nav";
 import Footer from "../components/Footer";
-import Modal from "react-bootstrap/Modal";
 import { Link, useParams } from "react-router-dom";
 import { Store } from "../context/store";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useCookies } from 'react-cookie';
 
-function Order() {
+function Analysis() {
     let store = useContext(Store);
     let [orderUrl] = store.order;
     const [show, setShow] = useState(false);
@@ -305,4 +304,4 @@ function Order() {
     </>
 };
 
-export default Order;
+export default Analysis;

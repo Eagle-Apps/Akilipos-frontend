@@ -6,6 +6,7 @@ import "./assets/css/forgotPassword.css";
 import "./assets/css/faq.css";
 import "./assets/css/customers.css";
 import "./assets/css/navbar.css";
+import "./assets/css/nav.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sample from './pages/sample';
 import Home from './pages/Home';

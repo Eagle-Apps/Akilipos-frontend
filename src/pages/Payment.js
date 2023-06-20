@@ -190,11 +190,11 @@ function Payment() {
 
     return <>
         <Row>
-            <Col md="2" sm="12">
+            <Col lg="3" >
                 <NavBar class5="activeBar" color5="white" />
             </Col>
-            <Col md="10" sm="12" style={{ minHeight: "100vh" }} className="content-wrapper">
-                <div style={{ minHeight: "85vh" }}>
+            <Col lg="9" className="content-wrapper">
+                <div className="content-wrapper-card">
 
                     {/* header section */}
                     <div className="row page-titles">

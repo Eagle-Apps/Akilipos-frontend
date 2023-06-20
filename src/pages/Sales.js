@@ -243,11 +243,11 @@ function Sales() {
 
     return <>
         <Row>
-            <Col md="2" sm="12">
+            <Col lg="3">
                 <NavBar class4="activeBar" color4="white" />
             </Col>
-            <Col md="10" sm="12" style={{ minHeight: "100vh" }} className="content-wrapper">
-                <div style={{ minHeight: "85vh" }}>
+            <Col  lg="9" className="content-wrapper">
+                <div className="content-wrapper-card">
 
                     {/* header section */}
                     <div className="row page-titles">
@@ -259,7 +259,7 @@ function Sales() {
                     <div className="row">
 
 
-                        <div className="col-md-3">
+                        <div className="col-md-4">
 
                             <div className="pe-3">
                                 <div className="row">

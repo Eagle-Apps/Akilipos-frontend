@@ -194,11 +194,11 @@ function Order() {
 
     return <>
         <Row>
-            <Col md="2" sm="12">
-                <NavBar class2="activeBar" color2="white" />
+            <Col lg="3">
+                <NavBar class444="activeBar" color444="white" />
             </Col>
-            <Col md="10" sm="12" style={{ minHeight: "100vh" }} className="content-wrapper">
-                <div style={{ minHeight: "85vh" }}>
+            <Col  lg="9"  className="content-wrapper">
+                <div className="content-wrapper-card">
 
                     {/* header section */}
                     <div className="row page-titles">

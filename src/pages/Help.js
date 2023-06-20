@@ -134,11 +134,11 @@ function HelpCenter() {
     const handleShow = () => setShow(true);
     return <>
         <Row>
-            <Col md="2" sm="12">
+            <Col lg="3">
                 <NavBar class7="activeBar" color7="white" />
             </Col>
-            <Col md="10" sm="12" style={{ minHeight: "100vh" }} className="content-wrapper">
-                <div style={{ minHeight: "85vh" }}>
+            <Col lg="9" className="content-wrapper">
+                <div className="content-wrapper-card">
 
                     {/* header section */}
                     <div className="row page-titles">
@@ -150,7 +150,7 @@ function HelpCenter() {
                     <div className="pe-3">
 
                         <div className="mt-2 mb-3">
-                            <button style={{ background: "white" }} className="create-btn-ah" onClick={handleShow}>Ask a Question ?</button>
+                            <button style={{ background: "white" }} className="create-btn-ah ms-lg-0 ms-3" onClick={handleShow}>Ask a Question ?</button>
                             <Modal
                                 show={show}
                                 onHide={handleClose}

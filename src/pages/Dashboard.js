@@ -70,11 +70,11 @@ function Dashboard() {
 
     return <>
         <Row>
-            <Col md="2" sm="12">
+            <Col lg="3">
                 <NavBar class1="activeBar" color1="white" />
             </Col>
-            <Col md="10" sm="12" style={{ minHeight: "100vh" }} className="content-wrapper">
-                <div style={{ minHeight: "85vh" }}>
+            <Col lg="9" className="content-wrapper">
+                <div className="content-wrapper-card">
 
                     {/* dashboard section */}
                     <div className="row page-titles">
@@ -94,7 +94,7 @@ function Dashboard() {
                         </div>
                     </div>
 
-                    <div className="pe-3">
+                    <div className="pe-lg-3">
                         {/* Top cards section */}
                         <div className="card-group">
                             <div className="card" data-aos="slide-down">
@@ -260,7 +260,7 @@ function Dashboard() {
                         </div>
 
                         {/* Product Overview Section */}
-                        <div className="card card-default" data-aos="slide-left"
+                        <div className="card card-default" data-aos="slide-up"
                             data-aos-once="true"
                             data-aos-easing="ease-out-sine">
                             {/* <div className="card-header">
@@ -400,7 +400,7 @@ function Dashboard() {
 
 
                         {/* employee report section */}
-                        <div className="row" data-aos="zoom-in" data-aos-once="true">
+                        <div className="row" data-aos="slide-down" data-aos-once="true">
                             <div className="col-lg-12">
                                 <div className="card">
                                     <div className="card-body">

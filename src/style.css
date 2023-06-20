@@ -46,9 +46,14 @@
 }
 
 #activeBar {
-    background-color: #70bfad;
+    background-color: #70bfad !important;
     color: white;
     border-radius: 5px;
+}
+
+#activeBar a:hover,
+.logo:hover {
+    background-color: transparent !important;
 }
 
 .refresh:hover {
@@ -56,18 +61,18 @@
     background-color: #8da1af;
 }
 
-.header-header{
+.header-header {
     background-color: #8da1af !important;
 }
 
-.header-mid a{
+.header-mid a {
     color: black;
     text-decoration: none;
     font-weight: 600;
     font-size: 20px;
 }
 
-.header-mid div{
+.header-mid div {
     margin: 10px 0px;
 }
 
@@ -78,7 +83,7 @@
     border-radius: 40px;
     border: none;
     outline: none;
-    width: 18%;
+    width: fit-content;
     height: 40px;
     font-size: 20px;
     font-weight: 700;
@@ -179,68 +184,41 @@
 }
 
 #logo {
-    height: 50px;
-    margin-right: -10px;
-    margin-top: -13px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    font-weight: 800;
-    background-image: linear-gradient(to right, silver 40%, #70bfad);
-    margin-bottom: 5px;
-    margin-top: -10px;
-    border-radius: 50%;
-    padding: auto;
+    height: 100px;
+    width: 100%;
+    border-radius: 10%;
+    /* margin-right: -10px; */
+    /* margin-top: -90px; */
 }
 
 #nav {
     font-weight: 700;
     text-decoration: none;
-    width: 100%;
-    max-height: 100vh;
-    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    width: 24%;
     background-image: linear-gradient(#eaf5f2 80%, white);
 }
 
 #nav a {
     text-decoration: none;
-    color: #000000;
-    height: 60px;
-    padding-left: 20px;
-}
-
-.topNav {
-    height: 80vh;
-}
-
-.bottomNav {
-    height: 20vh;
+    color: #000;
+    height: 45px;
+    padding-left: 5px;
+    margin: 5px 0px;
 }
 
 #nav a:hover {
     background-color: silver;
     cursor: pointer;
+    border-radius: 8px;
 }
 
-/* .choice-ah section {
-    border: 1px solid #AAAAAA;
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
+#businessNav:hover {
+    background-color: transparent !important;
 }
-
-.choice-ah section input {
-    width: 100%;
-    border: none;
-    outline: none;
-}
-
-.choice-ah section div {
-    border-bottom: 1px solid #AAAAAA;
-    margin-bottom: 20px;
-} */
 
 .no-quiz-ah {
     height: 300px;
@@ -248,10 +226,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-#nav-active-ah {
-    background-color: #fafafa;
 }
 
 .notFound {
@@ -267,12 +241,15 @@
     background-color: rgb(114, 193, 175, 0.3);
     box-shadow: silver 0px -10px 10px 0px;
     padding: 0px;
-    /* margin: 0px; */
+    min-height: 100vh;
+}
+
+.content-wrapper-card {
+    min-height: 85vh;
 }
 
 .login-register {
     background-image: url("./assets/images/bg-biz.avif");
-    /* background-position: right; */
     background-size: cover;
 }
 
@@ -335,4 +312,80 @@
     padding: 50px 0px;
     text-transform: uppercase;
     font-size: 30px;
+}
+
+.showBar {
+    display: block;
+}
+
+.hideBar {
+    display: none;
+}
+
+#navbarScroll {
+    width: 100%;
+}
+
+.logo1 img {
+    width: 80px !important;
+    height: 100% !important;
+}
+
+@media (max-width: 768px) {
+    #navbarScroll {
+        background-color: white;
+        padding: 0px 20px;
+    }
+
+    #nav {
+        display: flex;
+        width: 100% !important;
+        position: fixed;
+        height: fit-content;
+    }
+
+    .showBar {
+        display: none !important;
+    }
+
+    .hideBar {
+        display: block !important;
+    }
+
+    .navBorder {
+        box-shadow: 0px 5px 5px 0px black;
+        height: 100px;
+    }
+
+    .content-wrapper {
+        background-color: rgb(114, 193, 175, 0.3);
+        box-shadow: silver 0px -10px 10px 0px;
+        padding: 0px;
+        min-height: fit-content;
+        margin-top: 110px !important;
+    }
+
+    .content-wrapper .page-titles {
+        height: fit-content;
+        font-size: 16px;
+        padding-bottom: 0;
+    }
+
+    /* .content-wrapper .card {
+    } */
+
+    .img-circle {
+        width: 100px;
+    }
+
+    .business img {
+        width: 100%;
+        height: 250px;
+        border-radius: 0;
+        object-fit: contain;
+    }
+
+    .business h3 {
+        font-size: 30px;
+    }
 }

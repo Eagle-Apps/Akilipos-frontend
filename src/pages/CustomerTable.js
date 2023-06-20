@@ -26,11 +26,11 @@ function CustomersTable() {
     };
     return <>
         <Row>
-            <Col md="2" sm="12">
+            <Col lg="3">
                 <NavBar class3="activeBar" color3="white" />
             </Col>
-            <Col md="10" sm="12" style={{ minHeight: "100vh" }} className="content-wrapper">
-                <div style={{ minHeight: "85vh" }}>
+            <Col lg="9" className="content-wrapper">
+                <div className="content-wrapper-card">
 
                     {/* header section */}
                     <div className="row page-titles">
@@ -39,7 +39,7 @@ function CustomersTable() {
                         </div>
                     </div>
 
-                    <div className="card me-2">
+                    <div className="card me-lg-2">
                         <div className="card-body">
                             <h4 className="card-title">Customers Details ({customers.length > 0 ? customers.length : 0})</h4>
                             <Link to={`/customers/${id}`} className="card-subtitle-link">

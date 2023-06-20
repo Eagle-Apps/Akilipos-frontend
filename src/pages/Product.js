@@ -190,11 +190,11 @@ function Catalog() {
 
     return <>
         <Row>
-            <Col md="2" sm="12">
+            <Col lg="3">
                 <NavBar class2="activeBar" color2="white" />
             </Col>
-            <Col md="10" sm="12" style={{ minHeight: "100vh" }} className="content-wrapper">
-                <div style={{ minHeight: "85vh" }}>
+            <Col lg="9" className="content-wrapper">
+                <div className="content-wrapper-card">
 
                     {/* header section */}
                     <div className="row page-titles">
@@ -335,7 +335,7 @@ function Catalog() {
                     <Footer />
                 </div>
             </Col>
-        </Row>
+        </Row >
 
     </>
 }

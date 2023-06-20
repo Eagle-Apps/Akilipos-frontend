@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../components/Footer";
-import logo from "../assets/images/akili.png";
+import logo from "../assets/images/akili1.png";
 import { Link } from "react-router-dom";
 import Img1 from "../assets/images/bg-biz.jpg";
 import Img2 from "../assets/images/bg-woman.jpg";
@@ -26,9 +26,8 @@ function Home(props) {
                 <div data-role="Header" className={`header-header`}>
                     <div className="header-container">
                         <Link to="/" className="header-navlink">
-                            <div className="logo" style={{ width: "150px" }}>
-                                <img id="logo" src={logo} alt="akili-logo" />
-                                <p style={{ color: "white" }}>AKILI POS</p>
+                            <div className="logo1">
+                                <img id="logo1" src={logo} alt="akili-logo" />
                             </div>
                         </Link>
                     </div>
@@ -65,9 +64,8 @@ function Home(props) {
                     <div data-role="MobileMenu" className={`header-mobile-menu ${hide}`}>
                         <div className="header-top">
                             <Link to="/" className="header-navlink3">
-                                <div className="logo" style={{ width: "150px" }}>
+                                <div className="logo1" >
                                     <img id="logo" src={logo} alt="akili-logo" />
-                                    <p style={{ color: "white" }}>AKILI POS</p>
                                 </div>
                             </Link>
                             <div data-role="CloseMobileMenu" className="header-close-menu">

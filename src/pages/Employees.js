@@ -124,11 +124,11 @@ function Employess() {
     };
     return <>
         <Row>
-            <Col md="2" sm="12">
+            <Col lg="3">
                 <NavBar class2="activeBar" color2="white" />
             </Col>
-            <Col md="10" sm="12" style={{ minHeight: "100vh" }} className="content-wrapper">
-                <div style={{ minHeight: "85vh" }}>
+            <Col lg="9" className="content-wrapper">
+                <div className="content-wrapper-card">
 
                     {/* header section */}
                     <div className="row page-titles">
@@ -208,7 +208,7 @@ function Employess() {
                                         <div className="card card-body">
                                             <div className="row">
                                                 <div className="col-md-4 col-lg-3 text-center">
-                                                    <a href="app-contact-detail.html"><img src={e.image} alt="user" className="img-circle img-responsive" /></a>
+                                                    <a href="#"><img src={e.image} alt="user" className="img-circle img-responsive" /></a>
                                                 </div>
                                                 <div className="col-md-8 col-lg-9">
                                                     <h3 className="box-title m-b-0">{e.name}</h3> <small>{e.position}</small>

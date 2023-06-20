@@ -16,10 +16,10 @@ function NotFound() {
         <div className="cenn">
             <div className="cen">
                 <div className="row">
-                    <div className="col-md-3">
+                    <div className="col-md-2">
                         <NavBar />
                     </div>
-                    <div className="col-md-9 notFound" data-aos="slide-left"
+                    <div className="col-md-10 notFound" data-aos="slide-left"
                         data-aos-once="false"
                         data-aos-easing="ease-out-sine">
 

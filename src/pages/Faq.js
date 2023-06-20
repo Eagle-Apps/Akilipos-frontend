@@ -7,7 +7,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import { ChevronDown } from "react-feather";
-import logo from "../assets/images/akili.png";
+import logo from "../assets/images/akili1.png";
 import { Link } from "react-router-dom";
 
 function CustomToggle({ eventKey, day }) {
@@ -95,10 +95,9 @@ function Faq() {
             <Container>
                 <div data-role="Header" className={`header-header`}>
                     <div className="header-container">
-                        <Link to="/" className="header-navlink">
-                            <div className="logo" style={{ width: "150px" }}>
+                        <Link to="/" className="header-navlink3">
+                            <div className="logo1">
                                 <img id="logo" src={logo} alt="akili-logo" />
-                                <p style={{ color: "white" }}>AKILI POS</p>
                             </div>
                         </Link>
                     </div>
@@ -135,9 +134,8 @@ function Faq() {
                     <div data-role="MobileMenu" className={`header-mobile-menu ${hide}`}>
                         <div className="header-top">
                             <Link to="/" className="header-navlink3">
-                                <div className="logo" style={{ width: "150px" }}>
+                                <div className="logo1">
                                     <img id="logo" src={logo} alt="akili-logo" />
-                                    <p style={{ color: "white" }}>AKILI POS</p>
                                 </div>
                             </Link>
                             <div data-role="CloseMobileMenu" className="header-close-menu">

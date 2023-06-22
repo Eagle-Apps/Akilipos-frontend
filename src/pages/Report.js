@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
 import { Store } from "../context/store";
 import { useCookies } from 'react-cookie';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 function Analysis() {
@@ -14,6 +14,10 @@ function Analysis() {
     let { id } = useParams();
     const [cookies, setCookie] = useCookies(['akili']);
     const [chartData, setChartData] = useState({
+        datasets: []
+    });
+
+    const [pieData, setPieData] = useState({
         datasets: []
     });
     const options = {
@@ -37,7 +41,16 @@ function Analysis() {
             }
         },
         barPercentage: 0.5,
-        categoryPercentage: 0.5 
+        categoryPercentage: 0.5
+    };
+
+    const pieOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+        },
     };
 
     useEffect(() => {
@@ -56,10 +69,10 @@ function Analysis() {
                 const ordersCount = data.filter((e) => e.orderType === 'order').length;
                 const cartCount = data.filter((e) => e.orderType !== 'order').length;
                 const initial = {
-                    labels: ['Orders', 'Carts'],
+                    labels: ['Completed Orders', 'Pending Orders'],
                     datasets: [
                         {
-                            // label: 'Completed Order VS Pending Order',
+                            label: 'Completed Order VS Pending Order',
                             data: [ordersCount, cartCount],
                             backgroundColor: [
                                 'rgba(255, 99, 132)',
@@ -69,6 +82,28 @@ function Analysis() {
                     ]
                 }
                 setChartData(initial);
+            }
+            else {
+                console.error('Data is not an array:', data);
+            }
+
+            if (Array.isArray(data)) {
+
+                const storeCount = data.filter((e) => e.category === 'in-store').length;
+                const appCount = data.filter((e) => e.category !== 'in-store').length;
+                const initial = {
+                    labels: ['In-Store', 'In-App'],
+                    datasets: [
+                        {
+                            data: [storeCount, appCount],
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.6)',
+                                'rgba(255, 159, 64, 0.6)'
+                            ]
+                        }
+                    ]
+                }
+                setPieData(initial);
             }
             else {
                 console.error('Data is not an array:', data);
@@ -101,17 +136,17 @@ function Analysis() {
                             <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
                                 <h4 className="card-title m-b-0">Completed Order vs Pending Order</h4>
                             </div>
-                            <div className="card-body collapse show">
+                            <div className="card-body collapse show charts" >
                                 <Bar data={chartData} options={options} />
                             </div>
                         </div>
 
                         <div className="card card-default">
                             <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
-                                <h4 className="card-title m-b-0">Employee Sales in Amount</h4>
+                                <h4 className="card-title m-b-0">Purchases by Channel</h4>
                             </div>
-                            <div className="card-body collapse show">
-                                <Bar data={chartData} options={options} />
+                            <div className="card-body collapse show charts"  >
+                                <Pie data={pieData} options={pieOptions} />
                             </div>
                         </div>
                     </div>

@@ -23,6 +23,21 @@ function Analysis() {
                 beginAtZero: true,
             }
         },
+        plugins: {
+            legend: {
+                display: true
+            }
+        },
+        layout: {
+            padding: {
+                left: 50,
+                right: 50,
+                top: 0,
+                bottom: 0
+            }
+        },
+        barPercentage: 0.5,
+        categoryPercentage: 0.5 
     };
 
     useEffect(() => {
@@ -41,10 +56,10 @@ function Analysis() {
                 const ordersCount = data.filter((e) => e.orderType === 'order').length;
                 const cartCount = data.filter((e) => e.orderType !== 'order').length;
                 const initial = {
-                    labels: ['orders', 'carts'],
+                    labels: ['Orders', 'Carts'],
                     datasets: [
                         {
-                            label: 'Completed Order and Pending Order',
+                            // label: 'Completed Order VS Pending Order',
                             data: [ordersCount, cartCount],
                             backgroundColor: [
                                 'rgba(255, 99, 132)',
@@ -84,7 +99,16 @@ function Analysis() {
                         {/* Analysis Overview Section */}
                         <div className="card card-default">
                             <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
-                                <h4 className="card-title m-b-0">Analysis</h4>
+                                <h4 className="card-title m-b-0">Completed Order vs Pending Order</h4>
+                            </div>
+                            <div className="card-body collapse show">
+                                <Bar data={chartData} options={options} />
+                            </div>
+                        </div>
+
+                        <div className="card card-default">
+                            <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
+                                <h4 className="card-title m-b-0">Employee Sales in Amount</h4>
                             </div>
                             <div className="card-body collapse show">
                                 <Bar data={chartData} options={options} />

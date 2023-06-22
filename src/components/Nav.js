@@ -88,50 +88,53 @@ function NavBar(props) {
                   </Link>
                 </Nav.Item>
 
-                {/* <div id={props.class2} style={{ display: "flex", color: props.color2 }}> */}
-                <Link id={props.class2} style={{ display: "flex", color: props.color2 }}>
+
+                <Link id={props.class2} style={{ display: "flex", color: props.color2 }} >
                   <Icon icon="emojione-monotone:money-bag" width="24px" height="24px" className="me-3" style={{ display: " flex", justifySelf: "center", alignSelf: "center" }} />
                   <NavDropdown title="My Business" id="businessNav" >
-                    <NavDropdown.Item>
-                      <Link to={`/employees/${id}`} >
-                        <Icon icon="bi:shop" width="24px" height="24px" className="me-3" />
-                        Employees
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to={`/inventory/${id}`}>
-                        <Icon icon="fluent-mdl2:product-variant" width="24px" height="24px" className="me-3" />
-                        Inventory
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to={`/suppliers/${id}`} style={{ textAlign: "center" }}>
-                        <Icon icon="fluent:people-community-add-20-filled" width="24px" height="24px" className="me-3" />
-                        Suppliers
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to={`/shopping-list/${id}`} style={{ textAlign: "center" }}>
-                        <Icon icon="icon-park:list" width="24" className="me-3" />
-                        Shop List
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to={`/in-demand/${id}`} style={{ textAlign: "center" }}>
-                        <Icon icon="ep:list" width="24" className="me-3" />
-                        Items On Demand
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to={`/credit/${id}`} style={{ textAlign: "center" }}>
-                        <Icon icon="fa:book" width="24" height="24" className="me-3" />
-                        Credit Book
-                      </Link>
-                    </NavDropdown.Item>
+                    <div className="businessNav1">
+                      <NavDropdown.Item >
+                        <Link to={`/employees/${id}`} >
+                          <Icon icon="bi:shop" width="24px" height="24px" className="me-3" />
+                          Employees
+                        </Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <Link to={`/inventory/${id}`}>
+                          <Icon icon="fluent-mdl2:product-variant" width="24px" height="24px" className="me-3" />
+                          Inventory
+                        </Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <Link to={`/suppliers/${id}`} >
+                          <Icon icon="fluent:people-community-add-20-filled" width="24px" height="24px" className="me-3" />
+                          Suppliers
+                        </Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <Link to={`/shopping-list/${id}`} >
+                          <Icon icon="icon-park:list" width="24" className="me-3" />
+                          Shop List
+                        </Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <Link to={`/in-demand/${id}`} >
+                          <Icon icon="ep:list" width="24" className="me-3" />
+                          Items On Demand
+                        </Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <Link to={`/credit/${id}`}>
+                          <span >
+                            <Icon icon="fa:book" width="24" height="24" className="me-3" />
+                            Credit Book
+                          </span>
+                        </Link>
+                      </NavDropdown.Item>
+                    </div>
+
                   </NavDropdown>
                 </Link>
-
-                {/* </div> */}
 
                 <Nav.Item id={props.class3}>
                   <Link to={`/customers-view/${id}`} style={{ display: "flex", color: props.color3, alignItems: "center" }}>
@@ -243,25 +246,25 @@ function NavBar(props) {
                       </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
-                      <Link to={`/suppliers/${id}`} style={{ textAlign: "center" }}>
+                      <Link to={`/suppliers/${id}`} >
                         <Icon icon="fluent:people-community-add-20-filled" width="24px" height="24px" className="me-3" />
                         Suppliers
                       </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
-                      <Link to={`/shopping-list/${id}`} style={{ textAlign: "center" }}>
+                      <Link to={`/shopping-list/${id}`} >
                         <Icon icon="icon-park:list" width="24" className="me-3" />
                         Shop List
                       </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
-                      <Link to={`/in-demand/${id}`} style={{ textAlign: "center" }}>
+                      <Link to={`/in-demand/${id}`} >
                         <Icon icon="ep:list" width="24" className="me-3" />
                         Items On Demand
                       </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
-                      <Link to={`/credit/${id}`} style={{ textAlign: "center" }}>
+                      <Link to={`/credit/${id}`} >
                         <Icon icon="fa:book" width="24" height="24" className="me-3" />
                         Credit Book
                       </Link>

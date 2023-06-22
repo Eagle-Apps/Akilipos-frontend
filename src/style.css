@@ -216,8 +216,20 @@
     border-radius: 8px;
 }
 
+#businessNav a {
+    width: 100% !important;
+}
+
 #businessNav:hover {
     background-color: transparent !important;
+}
+
+.businessNav1 {
+    width: 100% !important;
+}
+
+#navbarScroll .businessNav1 a:hover {
+    background-color: silver !important;
 }
 
 .no-quiz-ah {

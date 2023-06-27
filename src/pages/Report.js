@@ -7,11 +7,14 @@ import { Store } from "../context/store";
 import { useCookies } from 'react-cookie';
 import { Bar, Pie } from 'react-chartjs-2';
 import 'chart.js/auto';
+import randomColor from 'randomcolor';
 
 function Analysis() {
     let store = useContext(Store);
+    let [productUrl] = store.product;
     let [orderUrl] = store.order;
     let { id } = useParams();
+    let [products, setProducts] = useState([]);
     const [cookies, setCookie] = useCookies(['akili']);
     const [chartData, setChartData] = useState({
         datasets: []
@@ -20,6 +23,19 @@ function Analysis() {
     const [pieData, setPieData] = useState({
         datasets: []
     });
+
+    const [productData, setProductData] = useState({
+        datasets: []
+    });
+
+    const generateRandomColors = (count) => {
+        return randomColor({
+            count: count,
+            luminosity: 'bright',
+            format: 'rgba',
+        });
+    };
+
     const options = {
         responsive: true,
         scales: {
@@ -32,14 +48,14 @@ function Analysis() {
                 display: true
             }
         },
-        layout: {
-            padding: {
-                left: 50,
-                right: 50,
-                top: 0,
-                bottom: 0
-            }
-        },
+        // layout: {
+        //     padding: {
+        //         left: 50,
+        //         right: 50,
+        //         top: 0,
+        //         bottom: 0
+        //     }
+        // },
         barPercentage: 0.5,
         categoryPercentage: 0.5
     };
@@ -55,6 +71,7 @@ function Analysis() {
 
     useEffect(() => {
         loadOrders();
+        loadProducts();
     }, []);
 
     const loadOrders = async () => {
@@ -74,10 +91,7 @@ function Analysis() {
                         {
                             label: 'Completed Order VS Pending Order',
                             data: [ordersCount, cartCount],
-                            backgroundColor: [
-                                'rgba(255, 99, 132)',
-                                'rgba(54, 162, 235)'
-                            ]
+                            backgroundColor: generateRandomColors(2),
                         }
                     ]
                 }
@@ -96,10 +110,7 @@ function Analysis() {
                     datasets: [
                         {
                             data: [storeCount, appCount],
-                            backgroundColor: [
-                                'rgba(75, 192, 192, 0.6)',
-                                'rgba(255, 159, 64, 0.6)'
-                            ]
+                            backgroundColor: generateRandomColors(2),
                         }
                     ]
                 }
@@ -110,6 +121,41 @@ function Analysis() {
             }
 
         } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    const loadProducts = async () => {
+        try {
+            const url = `${productUrl}/products/${id}`;
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (Array.isArray(data.products)) {
+                let newData = data.products;
+                let array = [];
+                let arr = [];
+                newData.map((e, i) => {
+                    array.push(e.name);
+                    arr.push(e.quantity);
+                })
+                const initial = {
+                    labels: array,
+                    datasets: [
+                        {
+                            data: arr,
+                            backgroundColor: generateRandomColors(arr.length),
+                        }
+                    ]
+                }
+                setProductData(initial);
+            }
+            else {
+                console.error('Data is not an array:', data);
+            }
+
+        }
+        catch (error) {
             console.error('Error fetching data:', error);
         }
     };
@@ -136,7 +182,7 @@ function Analysis() {
                             <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
                                 <h4 className="card-title m-b-0">Completed Order vs Pending Order</h4>
                             </div>
-                            <div className="card-body collapse show charts" >
+                            <div className="card-body collapse show charts-section" >
                                 <Bar data={chartData} options={options} />
                             </div>
                         </div>
@@ -145,8 +191,17 @@ function Analysis() {
                             <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
                                 <h4 className="card-title m-b-0">Purchases by Channel</h4>
                             </div>
-                            <div className="card-body collapse show charts"  >
+                            <div className="card-body collapse show charts-section"  >
                                 <Pie data={pieData} options={pieOptions} />
+                            </div>
+                        </div>
+
+                        <div className="card card-default">
+                            <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
+                                <h4 className="card-title m-b-0">Products VS Quantity</h4>
+                            </div>
+                            <div className="card-body collapse show charts-section" >
+                                <Pie data={productData} options={pieOptions} />
                             </div>
                         </div>
                     </div>

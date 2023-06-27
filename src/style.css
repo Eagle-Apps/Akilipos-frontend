@@ -343,10 +343,12 @@
     height: 100% !important;
 }
 
-.charts {
-    height: 400px;
-    margin: 0 auto;
+.charts-section {
+    height: auto !important;
+    margin: 50px auto;
 }
+
+
 
 @media (max-width: 768px) {
     #navbarScroll {

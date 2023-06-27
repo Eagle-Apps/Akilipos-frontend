@@ -38,6 +38,7 @@ function Login() {
             method: "POST",
             body: JSON.stringify(data)
         });
+        console.log(response);
 
         if (response.status === 200) {
             let res = await response.json();
@@ -63,7 +64,7 @@ function Login() {
             } else if (err.message === "invalid credentials") {
                 setError("Invalid Email or Password")
             } else {
-                setError("Error Occurred")
+                setError(err.message)
             }
 
             const t2 = setTimeout(() => {

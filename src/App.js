@@ -57,21 +57,21 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/dashboard/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Dashboard /></Protected>} />
+            <Route path="/dashboard/:id" element={<Dashboard />} />
             {/* <Route path="/sample" element={<Sample />} /> */}
             <Route path="/register" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/inventory/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Catalog /></Protected>} />
-            <Route path="/reset-password" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><ResetPassword /></Protected>} />
-            <Route path="/help/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><HelpCenter /></Protected>} />
+            <Route path="/inventory/:id" element={<Catalog />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/help/:id" element={<HelpCenter />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/customers/:id" element={<Customers />} />
             <Route path="/customers-view/:id" element={<CustomersTable />} />
             {/* <Route path="/customers-view/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><CustomersTable /></Protected>} /> */}
-            <Route path="/settings/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Settings /></Protected>} />
+            <Route path="/settings/:id" element={<Settings />} />
             <Route path="/prices" element={<Price />} />
-            <Route path="/employees/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Employess /></Protected>} />
-            <Route path="/suppliers/:id" element={<Protected id={id} isLoggedIn={isLoggedIn} isAdmin={isAdmin}><Vendors /></Protected>} />
+            <Route path="/employees/:id" element={<Employess />} />
+            <Route path="/suppliers/:id" element={<Vendors />} />
             <Route path="/sales/:id" element={<Sales />} />
             <Route path="/shopping-list/:id" element={<ShopList />} />
             <Route path="/credit/:id" element={<Credit />} />

@@ -8,7 +8,7 @@ import Img2 from "../assets/images/bg-woman.jpg";
 import Img3 from "../assets/images/5.jpg";
 import Carousel from 'react-bootstrap/Carousel';
 
-function Home(props) {
+function Home() {
     let [hide, setHide] = useState("");
 
     let mobileView = () => {

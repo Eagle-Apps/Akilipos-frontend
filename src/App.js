@@ -37,6 +37,8 @@ import ItemsOnDemand from './pages/ItemsOnDemand';
 import Profile from './pages/Profile';
 import Order from './pages/Order';
 import SingleOrder from './pages/SingleOrder';
+// import BarChart from './pages/Chart';
+// import LineGraph from './pages/Chart copy';
 import Analysis from './pages/Report';
 
 function App() {
@@ -78,8 +80,8 @@ function App() {
             <Route path="/order/:id" element={<SingleOrder />} />
             <Route path="/in-demand/:id" element={<ItemsOnDemand />} />
             <Route path="/profile/:id1/:id" element={<Profile />} />
-            <Route path="/chart/:id" element={<BarChart />} />
-            <Route path="/charts/:id" element={<LineGraph />} />
+            {/* <Route path="/chart/:id" element={<BarChart />} />
+            <Route path="/charts/:id" element={<LineGraph />} /> */}
             <Route path="/reports/:id" element={<Analysis />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

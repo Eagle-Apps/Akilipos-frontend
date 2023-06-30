@@ -37,8 +37,8 @@ import ItemsOnDemand from './pages/ItemsOnDemand';
 import Profile from './pages/Profile';
 import Order from './pages/Order';
 import SingleOrder from './pages/SingleOrder';
-import BarChart from './pages/Chart';
-import LineGraph from './pages/Chart copy';
+// import BarChart from './pages/Chart';
+// import LineGraph from './pages/Chart copy';
 import Analysis from './pages/Report';
 
 function App() {

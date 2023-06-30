@@ -11,7 +11,7 @@ import Form from 'react-bootstrap/Form';
 
 function ResetPassword() {
     let store = useContext(Store);
-    let [mainUrl] = store.endUrl;
+    let [mainUrl] = store.auth;
     let id = useParams();
     let history = useNavigate()
     let [user, setUser] = useState([]);

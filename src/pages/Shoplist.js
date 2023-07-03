@@ -17,6 +17,7 @@ function ShopList() {
     const handleShow = () => setShow(true);
     let { id } = useParams();
     let [products, setProducts] = useState([]);
+    let [storeProducts, setStoreProducts] = useState([]);
     let [productId, setProductId] = useState("");
     let [loading, setLoading] = useState(false);
     let [error, setError] = useState("");
@@ -33,10 +34,20 @@ function ShopList() {
     const [cookies, setCookie] = useCookies(['akili']);
 
     useEffect(() => {
+        loadShoppingProducts();
         loadProducts();
     }, []);
 
     let loadProducts = () => {
+        let url = `${productUrl}/products/${id}`;
+        fetch(url)
+            .then((e) => e.json())
+            .then((res) => {
+                setStoreProducts(res.products)
+            });
+    };
+
+    let loadShoppingProducts = () => {
         let url = `${productUrl}/shoplist/${id}`;
         let arr = [];
         fetch(url)
@@ -52,28 +63,26 @@ function ShopList() {
     let createProduct = async () => {
         if (imageUrl.length === 0) return (setError('Add Product Image'))
         setLoading(true);
+
         const formData = new FormData()
         formData.append('name', name)
         formData.append('costPrice', costPrice)
-        formData.append('description', description)
         formData.append('quantity', quantity)
-        formData.append('sellingPrice', sellingPrice)
-        formData.append('coinValue', coinValue)
-        formData.append('category', category)
+        formData.append('productId', productId)
 
         for (let i = 0; i < imageUrl.length; i++) {
             formData.append('imageUrl', imageUrl[i])
         }
-
-        let url = productUrl + "/product";
+        let data = { business: id, products: [formData], bill: costPrice * quantity };
+        let url = productUrl + "/shop-list";
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${cookies.akili}`
             },
-            body: formData,
+            body: data,
         });
-
+        console.log(response);
         if (response.status === 200) {
             await response.json()
             setError("Product Successfully Created.")
@@ -135,7 +144,7 @@ function ShopList() {
             // body: formData,
         });
         if (response.status === 200) {
-            loadProducts()
+            loadShoppingProducts()
             setError("Product Updated!!!")
             const t1 = await setTimeout(() => {
                 setError("")
@@ -176,7 +185,7 @@ function ShopList() {
             method: "DELETE"
         }) : console.log("");
         if (response.status === 200) {
-            loadProducts()
+            loadShoppingProducts()
             setErrorMsg("Product Deleted!!!")
             const t1 = await setTimeout(() => {
                 setErrorMsg("")
@@ -190,6 +199,20 @@ function ShopList() {
             }, 2000)
         }
     };
+
+    let sendValues = (e) => {
+        if (e !== "") {
+            let data = JSON.parse(e);
+            setName(data.name);
+            setCost(data.costPrice);
+            setImage(data.imageUrl);
+        } else {
+
+            setName("");
+            setCost(0);
+            setImage([]);
+        }
+    }
 
     return <>
         <Row>
@@ -224,7 +247,7 @@ function ShopList() {
                             >
                                 <Modal.Header closeButton
                                     style={{ padding: "10px 50px" }} >
-                                    <Modal.Title>Add a Item to List?</Modal.Title>
+                                    <Modal.Title>Add an Item to List?</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body style={{ padding: "15px 50px" }}>
                                     <p id="error">{error}</p>
@@ -232,30 +255,27 @@ function ShopList() {
                                         <div className="col-sm-12 col-xs-12">
                                             <div>
                                                 <div className="row">
+                                                    <select onChange={(e) => sendValues(e.target.value)} className="form-control custom-select mb-3" >
+                                                        <option value={""}>...</option>
+                                                        {storeProducts?.map((e, i) => {
+                                                            return <option value={JSON.stringify(e)} key={i}>
+                                                                {e.name}
+                                                            </option>
+                                                        })}
+
+                                                    </select>
                                                     <div className="form-group col-md-6">
                                                         <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="exampleInputEmail1" placeholder="Product Name" />
-                                                    </div>
-                                                    <div className="form-group col-md-6">
-                                                        <input value={description} onChange={(e) => setDescp(e.target.value)} type="text" className="form-control" id="exampleInputEmail7" placeholder="Description" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
-                                                        <input value={category} onChange={(e) => setCategory(e.target.value)} type="text" className="form-control" id="exampleInputEmai1" placeholder="Category" />
                                                     </div>
                                                     <div className="form-group  col-md-6">
                                                         <input value={costPrice} onChange={(e) => setCost(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Cost Price" />
                                                     </div>
                                                     <div className="form-group  col-md-6">
-                                                        <input value={sellingPrice} onChange={(e) => setSell(e.target.value)} type="number" className="form-control" id="exampleInputNumber1" placeholder="Selling Price" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
                                                         <input value={quantity} onChange={(e) => setQty(e.target.value)} type="number" className="form-control" id="exampleInputPassword1" placeholder="Quantity" />
                                                     </div>
-                                                    <div className="form-group  col-md-6">
-                                                        <input value={coinValue} onChange={(e) => setCoin(e.target.value)} type="number" className="form-control" id="exampleInputEmail3" placeholder="Coin Value" />
-                                                    </div>
-                                                    <div className="form-group  col-md-6">
+                                                    {/* <div className="form-group  col-md-6">
                                                         <input name="imageUrl" multiple onChange={(e) => setImage(e.target.files)} type="file" className="form-control" id="exampleInputPassword2" placeholder="Image" />
-                                                    </div>
+                                                    </div> */}
                                                 </div>
                                                 {show1 ? <button
                                                     type="submit" onClick={() => updateProduct(productId)} style={{ background: "black", color: "white", fontWeight: "800" }} className="btn waves-effect waves-light m-r-10">{loading ? <PulseLoader color="white" size={8} /> : "Update"}

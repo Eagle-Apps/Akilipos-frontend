@@ -125,16 +125,6 @@ function Sales() {
         }
     };
 
-
-    // let loadData = async () => {
-    //     await new Promise((resolve) => {
-    //         const data = JSON.parse(localStorage.getItem('akili-products'));
-    //         setTableData(data);
-    //         resolve();
-    //     });
-    //     updateTotal();
-    // };
-
     let loadData = async () => {
         const data = JSON.parse(localStorage.getItem('akili-products'));
         setTableData(data);
@@ -144,8 +134,8 @@ function Sales() {
         updateTotal();
     };
 
-
     let createOrder = async () => {
+        if (customer.trim() == "") return setError("customer not added");
         let productItems = JSON.parse(localStorage.getItem('akili-products'))
         let arr = [];
         let newData = [];
@@ -161,8 +151,8 @@ function Sales() {
             status: "completed", orderType: "order", customer
         };
         setLoading(true);
-        setQty(1)
-        setProduct("")
+        setQty(1);
+        setProduct("");
         let url = orderUrl + "/order";
         const response = await fetch(url, {
             headers: {
@@ -171,16 +161,18 @@ function Sales() {
             method: 'POST',
             body: JSON.stringify(data),
         });
+
         if (response.status === 200) {
             await response.json()
             setError("Order Created.")
             const t1 = setTimeout(() => {
                 setLoading(false);
                 setError("");
-                setTotal(0);
+                setTotal(0.00);
                 clearTimeout(t1);
             }, 2000);
             localStorage.removeItem('akili-products');
+            localStorage.setItem("akili-total", 0.00)
             loadData();
         } else {
             setError("Error Occured")
@@ -224,8 +216,6 @@ function Sales() {
         await loadData();
     };
 
-
-
     let updateTotal = async () => {
         await new Promise((resolve) => {
             setTotal(JSON.parse(localStorage.getItem('akili-total')).reduce((a, b) => a + b, 0));
@@ -246,7 +236,7 @@ function Sales() {
             <Col lg="3">
                 <NavBar class4="activeBar" color4="white" />
             </Col>
-            <Col  lg="9" className="content-wrapper">
+            <Col lg="9" className="content-wrapper">
                 <div className="content-wrapper-card">
 
                     {/* header section */}
@@ -281,7 +271,7 @@ function Sales() {
 
                                             {searchProductResults?.map((e, i) => {
                                                 return (
-                                                    <p key={e._id} onClick={() => setProduct(JSON.stringify(e))} >{e.name}</p>
+                                                    <p key={i} onClick={() => setProduct(JSON.stringify(e))} >{e.name}</p>
                                                 )
                                             })}
                                         </div>
@@ -308,7 +298,7 @@ function Sales() {
                                     <ul>
                                         {products?.map((e, i) => {
                                             return (
-                                                <li>{e.name}</li>
+                                                <li key={i}>{e.name}</li>
                                             )
                                         })}
 
@@ -335,7 +325,7 @@ function Sales() {
                                             <div className="mt-1 p-2" style={{ height: "100px", overflowY: "hidden", background: "" }}>
                                                 {searchResults?.map((e, i) => {
                                                     return (
-                                                        <p key={e.id} value={(e.id)} onClick={() => setCustomer(e.id)} >{e.name}</p>
+                                                        <p key={i} value={(e.id)} onClick={() => setCustomer(e.id)} >{e.name}</p>
                                                     )
                                                 })}
                                             </div>
@@ -343,7 +333,7 @@ function Sales() {
                                     </div>
                                     <div className="col-md-6">
                                         <div className=" mb-3">
-                                            <button style={{ background: "white", width: "100%", border: "1px solid #8da1af", }} className="create-btn-ah" onClick={handleShow}> Customer +</button>
+                                            <button style={{ background: "white", width: "fit-content", border: "1px solid #8da1af", }} className="create-btn-ah" onClick={handleShow}>+</button>
                                             <Modal
                                                 show={show}
                                                 onHide={handleClose}
@@ -419,7 +409,7 @@ function Sales() {
                                                 arr?.push(JSON.parse(item).sellingPrice * e?.quantity)
                                                 localStorage.setItem("akili-total", JSON.stringify(arr))
                                                 return (
-                                                    <tr className="gradeX">
+                                                    <tr className="gradeX" key={i}>
                                                         <td>{i + 1}</td>
                                                         <td>{JSON.parse(item).name}</td>
                                                         <td>
@@ -442,12 +432,12 @@ function Sales() {
                                         </tbody>
                                     </table>
                                     <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                        <p className="fw-bolder fs-3">Tax</p>
-                                        <p className="fw-bolder fs-3">0.00</p>
+                                        <p className="fw-bolder fs-5">Tax</p>
+                                        <p className="fw-bolder fs-5">0.00</p>
                                     </div>
                                     <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                        <p className="fw-bolder fs-3">Total</p>
-                                        <p className="fw-bolder fs-3">{total?.toLocaleString()}</p>
+                                        <p className="fw-bolder fs-5">Total</p>
+                                        <p className="fw-bolder fs-5">{total?.toLocaleString()}</p>
                                     </div>
                                     <button className="create-btn-ah" style={{ background: "#c5e5de", float: "right" }} onClick={() => createOrder()}>
                                         {loading ? <PulseLoader color="white" size={8} /> : "Submit"}

@@ -15,7 +15,9 @@ function Analysis() {
     let [orderUrl] = store.order;
     let { id } = useParams();
     let [products, setProducts] = useState([]);
+    let [shoppingProduct, setShoppingProduct] = useState([]);
     const [cookies, setCookie] = useCookies(['akili']);
+
     const [chartData, setChartData] = useState({
         datasets: []
     });
@@ -72,6 +74,7 @@ function Analysis() {
     useEffect(() => {
         loadOrders();
         loadProducts();
+        loadShoppingProducts();
     }, []);
 
     const loadOrders = async () => {
@@ -160,6 +163,15 @@ function Analysis() {
         }
     };
 
+    let loadShoppingProducts = () => {
+        let url = `${productUrl}/shoplist/${id}`;
+        fetch(url)
+            .then((e) => e.json())
+            .then((res) => {
+                setShoppingProduct(res);
+            })
+    };
+
     return <>
         <Row>
             <Col lg="3">
@@ -202,6 +214,92 @@ function Analysis() {
                             </div>
                             <div className="card-body collapse show charts-section" >
                                 <Pie data={productData} options={pieOptions} />
+                            </div>
+                        </div>
+
+                        <div className="card card-default">
+                            <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
+                                <h4 className="card-title m-b-0">Supplies</h4>
+                            </div>
+                            <div className="card-body collapse show">
+                                <div className="table-responsive">
+                                    <table className="table product-overview">
+                                        <thead>
+                                            <tr>
+                                                <th>Vendor</th>
+                                                <th colSpan={2} >Products</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Status</th>
+                                                <th>Amount (&#x20A6;)</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {shoppingProduct?.length === 0 ? <div>No Supplies found</div> :
+                                                shoppingProduct?.map((e, i) => {
+                                                    console.log(e);
+                                                    let year = new Date(e.updatedAt).getFullYear();
+                                                    let month = new Date(e.updatedAt).getMonth() + 1;
+                                                    let day = new Date(e.updatedAt).getDate();
+                                                    let date = `${day}/${month}/${year}`;
+                                                    return (<tr>
+                                                        <td style={{ textTransform: "uppercase" }}>Emma Eagle</td>
+                                                        <td colSpan={2} style={{ textTransform: "uppercase" }}>
+                                                            <ol>
+                                                                {e?.products?.map((a, b) => {
+
+                                                                    return (
+                                                                        <li>{a?.productId?.name || "Book"}</li>
+                                                                    )
+
+                                                                })}
+                                                            </ol>
+                                                        </td>
+                                                        <td style={{ textTransform: "capitalize" }}>
+                                                            <ol>
+                                                                {e.products.map((a, b) => {
+
+                                                                    return (
+                                                                        <li>{a?.productId?.sellingPrice || "1,000"}</li>
+                                                                    )
+
+                                                                })}
+                                                            </ol>
+                                                        </td>
+                                                        <td>
+                                                            <ol>
+                                                                {e.products.map((a, b) => {
+                                                                    return (
+                                                                        <li>{a?.quantity}</li>
+                                                                    )
+                                                                })}
+                                                            </ol>
+                                                        </td>
+                                                        {/* <td style={{ textTransform: "capitalize" }}>{e.status}</td> */}
+                                                        <td style={{ textTransform: "capitalize" }}>Purchased</td>
+                                                        <td>
+                                                            {e.bill.toLocaleString()}
+                                                        </td>
+                                                        <td>
+                                                            {date}
+                                                        </td>
+
+                                                    </tr>)
+                                                })}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="card card-default">
+                            <div className="card-header" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", alignItems: "center" }}>
+                                <h4 className="card-title m-b-0">Employees Sales</h4>
+                            </div>
+                            <div className="card-body collapse show charts-section" >
+                                {/* <Pie data={productData} options={pieOptions} /> */}
                             </div>
                         </div>
                     </div>
